@@ -1,8 +1,8 @@
 OcO
 ===
 
-### About / 简介
-
+About / 简介
+---
 Cordova + Vue 构建的 Hybrid App<br>
 <br>
 随着现在移动开发周期越来越短，各种各样的应用井喷式的出现，又如潮水般消失，导致应用的生命周期变得非常不稳定，各种快速开发，跨平台集成的需求越来越大，所以就催生了 `Native + Web` 这种快速构建的模式，利用 HTML5 搭建应用界面，原生做数据和逻辑处理。这样做的好处是减轻了移动端对不同设备做界面适配的工作，只需一套界面即可在所有设备中运行，大大减少开发时间。<br>
@@ -12,7 +12,9 @@ p.s. 包括 `ionic` ，`weex` 等框架也是利用 `Cordova` 做底层进行二
 <br>
 这套工程存在的目的，即是为不了解 Hybrid App 的开发者提供快速上手的教程，帮助其学会如何从零开始搭建，编写到最后打包成一个完整的应用。
 
-### Structure / 目录结构
+
+Structure / 目录结构
+---
 ```
 OcO/
     config.xml                  // 工程配置文件，包含有工程名，描述，使用平台，插件等信息
@@ -45,15 +47,20 @@ OcO/
     ../www/                     // Cordova 的 Web 端的根目录，用于存放编译好的文件，HTML，CSS，JavaScript 等（Vue 工程编译后的文件会存放于此）
 ```
 
+
+
 Cordova
 ===
 
-### Install / 安装
+Install / 安装
+---
 ```
 $sudo npm i cordova -g
 ```
 
-### Create / 创建
+
+Create / 创建
+---
 ```
 $cordova create ProjectName PackageName AppName
 
@@ -61,7 +68,9 @@ $cordova create ProjectName PackageName AppName
 $cordova create OcO xyz.saturn.OcO OcO
 ```
 
-### Add Platform / 添加移动端
+
+Add Platform / 添加移动端
+---
 * Android
 ```
 $cd OcO/
@@ -74,13 +83,17 @@ $cd OcO/
 $cordova platform add ios
 ```
 
-### Plugin List / 插件列表
+
+Plugin List / 插件列表
+---
 ```
 $cd OcO/
 $cordova plugin list
 ```
 
-### Add Plugin / 添加插件
+
+Add Plugin / 添加插件
+---
 ```
 $cordova plugin add <PLUGIN_NAME>
 ```
@@ -110,7 +123,9 @@ $cd OcO/
 $cordova plugin add cordova-plugin-wkwebview-engine
 ```
 
-### Remove Plugin / 移除插件
+
+Remove Plugin / 移除插件
+---
 ```
 $cordova plugin remove <PLUGIN_NAME>
 ```
@@ -139,9 +154,10 @@ $cd OcO/
 $cordova plugin remove cordova-plugin-wkwebview-engine
 ```
 
-### Custom Plugin / 自定义插件
 
-###### Structure / 目录结构
+Custom Plugin / 自定义插件
+---
+### Structure / 目录结构
 ```
 saturn.plugin.test          // 插件包名
     ../src/                 // 存放移动端代码文件
@@ -157,7 +173,7 @@ saturn.plugin.test          // 插件包名
     LICENSE                 // 开源证书
 ```
 
-###### JSON
+### JSON
 * `package.json`
 ```
 {
@@ -189,7 +205,7 @@ saturn.plugin.test          // 插件包名
 }
 ```
 
-###### XML
+### XML
 * `plugin.xml`
 ```
 <?xml version="1.0" encoding="UTF-8"?>
@@ -243,7 +259,7 @@ saturn.plugin.test          // 插件包名
 </plugin>
 ```
 
-###### JavaScript
+### Web
 * `test.js`
 ```
 var test = exports;
@@ -254,7 +270,7 @@ test.testMethod = function(arguments, successCallback, failureCallback) {
 }
 ```
 
-###### Android
+### Android
 * `TestPlugin.java`
 ```
 package xyz.saturn.test;
@@ -287,7 +303,7 @@ public class TestPlugin extends CordovaPlugin {
 }
 ```
 
-###### iOS
+### iOS
 * `STRTest.h`
 ```
 #import <Cordova/CDV.h>
@@ -319,7 +335,7 @@ public class TestPlugin extends CordovaPlugin {
 @end
 ```
 
-###### Install Custom Plugin / 安装自定义插件
+### Install Custom Plugin / 安装自定义插件
 ```
 $cordova plugin add <PLUGIN_PATH>
 
@@ -328,7 +344,9 @@ $cd OcO/
 $cordova plugin add orginal/plugin/saturn-plugin-test
 ```
 
-### Build / 构建
+
+Build / 构建
+---
 运行编译命令 `$cordova build` / `$cordova build android` 或添加插件命令 `$cordova plugin add ***` (*** 代表插件名)时出现错误提示 `Error: spawn EACCES` ，
 表示 cordova 没有获得 build / android build 的权限，执行 `$sudo chmod -R a+rwx ***/` (*** 表示该工程的根目录) / `$sudo chmod -R a+rwx ***/platforms/android/` (*** 表示该工程的根目录)来获得权限；
 或因工程没有获得使用 Gradle 的权限，执行 `sudo chmod 755 "/Applications/Android Studio.app/Contents/gradle/gradle-***/bin/gradle"` (*** 代表版本号)来获得权限。
@@ -353,15 +371,20 @@ $cordova build ios
 Vue
 ===
 
-### Root Path / 目录
+Root Path / 目录
+---
 `/OcO/web`
 
-### Install / 安装
+
+Install / 安装
+---
 ```
 $sudo npm install --global vue-cli
 ```
 
-### Create / 创建
+
+Create / 创建
+---
 ```
 $vue init webpack PackageName
 
@@ -370,22 +393,29 @@ $cd OcO/
 $vue init webpack web
 ```
 
-### node
+node
+---
 ```
 $npm i / $npm install
 ```
 
-### Build / 构建
+
+Build / 构建
+---
 ```
 $npm run build
 ```
 
-### Debug / 调试
+
+Debug / 调试
+---
 ```
 $npm run dev
 ```
 
-### Integrate / 整合
+
+Integrate / 整合
+---
 * 将 Vue 项目构建到 Cordova 的 Web 端 `/OcO/web/config/index.js`
 ```
 // line 7 / 7行
@@ -411,7 +441,9 @@ assetsPublicPath: './',
 <script src="cordova.js"></script>
 ```
 
-### Custom shell script / 自定义脚本 `OcO/web/package.json`
+
+Custom shell script / 自定义脚本 `OcO/web/package.json`
+---
 ```
 // line 12 / 12行
 "cordova": "npm run build && cordova build"
@@ -430,10 +462,13 @@ $npm run cordova
 Android
 ===
 
-### Root Path / 目录
+Root Path / 目录
+---
 `OcO/platforms/android`
 
-### Library / 类库 `/OcO/platforms/android/build.gradle`
+
+Library / 类库 `/OcO/platforms/android/build.gradle`
+---
 * [Volley](https://github.com/google/volley)
 ```
 // line 261 / 261行
@@ -446,7 +481,9 @@ compile 'com.android.volley:volley:1.0.0'
 compile 'com.google.code.gson:gson:2.8.0'
 ```
 
-### Add Plugin / 添加插件 `/OcO/platforms/android/android.json`
+
+Add Plugin / 添加插件 `/OcO/platforms/android/android.json`
+---
 声明用于 `JavaScript` 与 `Java` 通信的接口文件。
 ```
 {
@@ -463,7 +500,9 @@ compile 'com.google.code.gson:gson:2.8.0'
 }
 ```
 
-### WebActivity
+
+WebActivity
+---
 Cordova 默认寻找 `/OcO/platforms/android/src/xyz/saturn/oco` 目录下继承 'CordovaActivity' 的子类作为 WebActivity，若修改了 WebActivity 的路径，需要更改 Cordova 的读取路径。<br>
 * `/OcO/platforms/android/cordova/lib/prepare.js`
 * `/OcO/node_modules/cordova-android/bin/templates/cordova/lib/prepare.js`
@@ -485,7 +524,9 @@ var destFile = path.join(locations.root, 'src', pkg.replace(/\./g, '/'), 'activi
 shell.sed(/package [\w\.]*;/, 'package ' + pkg + '.activity' + ';', java_files[0]).to(destFile);
 ```
 
-### Gradle
+
+Gradle
+---
 解决 `Android Studio` 使用 `Gradle` 构建工程慢，从 [Gradle官网](https://gradle.org) 下载适用的版本，将zip包放入到 `/Users/username/.gradle/wrapper/dists/gradle-***-all/***/` (*** 表示版本号)目录下，重新打开工程，`Android Studio` 会自行解压安装。
 
 
@@ -493,17 +534,22 @@ shell.sed(/package [\w\.]*;/, 'package ' + pkg + '.activity' + ';', java_files[0
 iOS
 ===
 
-### Root Path / 目录
+Root Path / 目录
+---
 `OcO/platforms/ios`
 
-### Library / 类库 `/OcO/platforms/ios/Podfile`
+
+Library / 类库 `/OcO/platforms/ios/Podfile`
+---
 * [AFNetworking](https://github.com/AFNetworking/AFNetworking)
 ```
 // line 5 / 5行
 pod 'AFNetworking', '~> 2.6.0'
 ```
 
-### Add Plugin / 添加插件 `/OcO/platforms/ios/ios.json`
+
+Add Plugin / 添加插件 `/OcO/platforms/ios/ios.json`
+---
 声明用于 `JavaScript` 与 `Objective-C` 通信的接口文件。
 ```
 // line 15-26 / 15-26行
@@ -521,7 +567,9 @@ pod 'AFNetworking', '~> 2.6.0'
 }
 ```
 
-### UIWebView and WKWebView
+
+UIWebView and WKWebView
+---
 由于 `UIWebView` 性能缓慢，对于单页面应用不够友好，使用全新的 `WKWebView` 替代，全面提升其速度和降低内存资源使用率。<br>
 使用 Shell 脚本 `wkwebview-install` 可快速替换，但需要先执行 `vue-build` 构建工程。
 ```
@@ -533,8 +581,9 @@ if (window.indexedDB) {
 }
 ```
 
-### CocoaPods
 
+CocoaPods
+---
 * Install / 安装
 ```
 $sudo gem install -n /usr/local/bin cocoapods
@@ -564,35 +613,30 @@ PODS_ROOT = ${SRCROOT}/Pods
 Shell
 ===
 
-### Root Path / 目录
+Root Path / 目录
+---
 `/OcO/shell`
 
-### cordova-clean
-清空全部构建内容
 
-### cordova-plugin-add
-添加插件
+Detail / 说明
+---
+* cordova-clean             清空全部构建内容
 
-### cordova-plugin-remove
-移除插件
+* cordova-plugin-add        添加插件
 
-### npm-install
-安装 npm
+* cordova-plugin-remove     移除插件
 
-### npm-remove
-移除 npm
+* npm-install               安装 npm
 
-### pod-install
-为 iOS 工程导入指定的类库
+* npm-remove                移除 npm
 
-### vue-build
-构建 Vue 的代码并加载到 Cordova
+* pod-install               为 iOS 工程导入指定的类库
 
-### wkwebview-install
-将 iOS 的 web 框架换成 WKWebView，需要先执行 `vue-build` 构建工程
+* vue-build                 构建 Vue 的代码并加载到 Cordova
 
-### wkwebview-remove
-将 iOS 的 web 框架换成 UIWebView，需要先执行 `vue-build` 构建工程
+* wkwebview-install         将 iOS 的 web 框架换成 WKWebView，需要先执行 `vue-build` 构建工程
+
+* wkwebview-remove          将 iOS 的 web 框架换成 UIWebView，需要先执行 `vue-build` 构建工程
 
 
 
