@@ -1,5 +1,6 @@
 OcO
 ===
+[![License MIT](https://img.shields.io/badge/license-MIT-green.svg)](https://raw.githubusercontent.com/PFei-He/OcO/master/LICENSE)
 
 About / 简介
 ---
