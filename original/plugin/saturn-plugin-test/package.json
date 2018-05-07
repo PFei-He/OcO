@@ -1,0 +1,24 @@
+{
+  "name": "saturn-plugin-test",
+  "version": "0.0.1",
+  "cordova": {
+    "id": "saturn-plugin-test",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "description": "Saturn Test Plugin",
+  "repository": "",
+  "issue": "",
+  "keywords": [
+    "saturn",
+    "cordova",
+    "test",
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios"
+  ],
+  "author": "Saturn",
+  "license": "MIT"
+}

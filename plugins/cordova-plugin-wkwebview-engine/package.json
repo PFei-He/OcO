@@ -1,0 +1,154 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "cordova-plugin-wkwebview-engine",
+        "scope": null,
+        "escapedName": "cordova-plugin-wkwebview-engine",
+        "name": "cordova-plugin-wkwebview-engine",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "/Users/fay/Desktop/OcO/node_modules"
+    ]
+  ],
+  "_cnpm_publish_time": 1510361684072,
+  "_from": "cordova-plugin-wkwebview-engine@latest",
+  "_hasShrinkwrap": false,
+  "_id": "cordova-plugin-wkwebview-engine@1.1.4",
+  "_inCache": true,
+  "_location": "/cordova-plugin-wkwebview-engine",
+  "_nodeVersion": "6.6.0",
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/cordova-plugin-wkwebview-engine-1.1.4.tgz_1510361683985_0.42422114801593125"
+  },
+  "_npmUser": {
+    "name": "stevegill",
+    "email": "stevengill97@gmail.com"
+  },
+  "_npmVersion": "4.6.1",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "cordova-plugin-wkwebview-engine",
+    "scope": null,
+    "escapedName": "cordova-plugin-wkwebview-engine",
+    "name": "cordova-plugin-wkwebview-engine",
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npm.taobao.org/cordova-plugin-wkwebview-engine/download/cordova-plugin-wkwebview-engine-1.1.4.tgz",
+  "_shasum": "11b9cfa114ec0525c5c63e67a24eab4157034060",
+  "_shrinkwrap": null,
+  "_spec": "cordova-plugin-wkwebview-engine",
+  "_where": "/Users/fay/Desktop/OcO/node_modules",
+  "author": {
+    "name": "Apache Cordova"
+  },
+  "bugs": {
+    "url": "https://issues.apache.org/jira/browse/CB"
+  },
+  "dependencies": {},
+  "description": "The official Apache Cordova WKWebView Engine Plugin",
+  "devDependencies": {
+    "eslint": "^3.19.0",
+    "eslint-config-semistandard": "^11.0.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.3.0",
+    "eslint-plugin-node": "^5.0.0",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^3.0.1"
+  },
+  "directories": {},
+  "dist": {
+    "shasum": "11b9cfa114ec0525c5c63e67a24eab4157034060",
+    "size": 27462,
+    "noattachment": false,
+    "tarball": "http://registry.npm.taobao.org/cordova-plugin-wkwebview-engine/download/cordova-plugin-wkwebview-engine-1.1.4.tgz"
+  },
+  "engines": {
+    "cordovaDependencies": {
+      "2.0.0": {
+        "cordova": ">100"
+      }
+    }
+  },
+  "homepage": "https://github.com/apache/cordova-plugin-wkwebview-engine#readme",
+  "keywords": [
+    "cordova",
+    "wkwebview"
+  ],
+  "license": "Apache-2.0",
+  "main": "index.js",
+  "maintainers": [
+    {
+      "name": "anis",
+      "email": "anis.kadri@gmail.com"
+    },
+    {
+      "name": "bowserj",
+      "email": "bowserj@apache.org"
+    },
+    {
+      "name": "cordovaowner",
+      "email": "stevengill.97@gmail.com"
+    },
+    {
+      "name": "csantanapr",
+      "email": "csantana23@gmail.com"
+    },
+    {
+      "name": "filmaj",
+      "email": "maj.fil@gmail.com"
+    },
+    {
+      "name": "jcesarmobile",
+      "email": "jcesarmobile@gmail.com"
+    },
+    {
+      "name": "kotikov.vladimir",
+      "email": "kotikov.vladimir@gmail.com"
+    },
+    {
+      "name": "macdonst",
+      "email": "simon.macdonald@gmail.com"
+    },
+    {
+      "name": "purplecabbage",
+      "email": "purplecabbage@gmail.com"
+    },
+    {
+      "name": "shazron",
+      "email": "shazron@gmail.com"
+    },
+    {
+      "name": "stevegill",
+      "email": "stevengill97@gmail.com"
+    },
+    {
+      "name": "surajpindoria",
+      "email": "suraj.pindoria@yahoo.com"
+    }
+  ],
+  "name": "cordova-plugin-wkwebview-engine",
+  "optionalDependencies": {},
+  "publish_time": 1510361684072,
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/apache/cordova-plugin-wkwebview-engine.git"
+  },
+  "scripts": {
+    "eslint": "eslint src",
+    "objc-tests": "cd tests/ios && npm test",
+    "preobjc-tests": "cd tests/ios && npm install",
+    "test": "npm run eslint && npm run objc-tests"
+  },
+  "version": "1.1.4"
+}

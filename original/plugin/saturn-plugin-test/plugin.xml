@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright (c) 2018 saturn.xyz
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to deal
+  in the Software without restriction, including without limitation the rights
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+  THE SOFTWARE.
+-->
+
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+           id="saturn-plugin-test"
+      version="0.0.1">
+
+    <name>Test</name>
+    <description>Saturn Test Plugin</description>
+    <license>MIT</license>
+    <keywords>saturn,test</keywords>
+    <repo>></repo>
+    <issue></issue>
+
+    <engines>
+        <engine name="cordova-android" version=">=5.0.0"/>
+        <engine name="cordova-ios" version=">=9.0.0"/>
+    </engines>
+
+    <!-- android -->
+    <platform name="android">
+        <js-module src="www/test.js" name="test">
+            <run/>
+            <clobbers target="saturn.test" />
+        </js-module>
+        <config-file target="config.xml" parent="/*">
+            <feature name="Test" >
+                <param name="android-package" value="xyz.saturn.test.TestPlugin"/>
+                <param name="onload" value="true" />
+            </feature>
+        </config-file>
+        <source-file src="src/android/TestPlugin.java" target-dir="src/xyz/saturn/test" />
+    </platform>
+
+    <!-- ios -->
+    <platform name="ios">
+        <js-module src="www/test.js" name="test">
+            <run/>
+            <clobbers target="saturn.test" />
+        </js-module>
+        <config-file target="config.xml" parent="/*">
+            <feature name="Test">
+                <param name="ios-package" value="Test" onload="true" />
+		    </feature>
+        </config-file>
+        <header-file src="src/ios/STRTest.h" />
+        <source-file src="src/ios/STRTest.m" />
+    </platform>
+
+</plugin>

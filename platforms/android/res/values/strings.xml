@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">OcO</string>
+    <string name="launcher_name">@string/app_name</string>
+    <string name="activity_name">@string/launcher_name</string>
+    <string name="open_native">OPEN NATIVE</string>
+    <string name="open_web">OPEN WEB</string>
+    <string name="close_me">CLOSE ME</string>
+    <string name="request_network">REQUEST NETWORK!</string>
+</resources>

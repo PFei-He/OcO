@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="xyz.saturn.oco" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <feature name="Whitelist">
+        <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="Adapter">
+        <param name="android-package" value="xyz.saturn.oco.plugins.AdapterPlugin" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="Device">
+        <param name="android-package" value="xyz.saturn.oco.plugins.DevicePlugin" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="Network">
+        <param name="android-package" value="xyz.saturn.oco.plugins.NetworkPlugin" />
+        <param name="onload" value="true" />
+    </feature>
+    <name>OcO</name>
+    <description>
+        A sample Apache Cordova application that responds to the deviceready event.
+    </description>
+    <author email="dev@cordova.apache.org" href="http://cordova.io">
+        Apache Cordova Team
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <allow-intent href="market:*" />
+    <preference name="loglevel" value="DEBUG" />
+</widget>
