@@ -29,6 +29,9 @@ path=$(dirname $_)
 path=${path/\./$(pwd)}
 cd $path
 
+# 移除占位符文件
+rm -rf ../www/Placeholder
+
 # 进入 Web 工程目录
 cd ../web/
 

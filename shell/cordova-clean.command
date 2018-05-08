@@ -45,6 +45,7 @@ rm -rf .DS_Store
 rm -rf web/.idea/
 rm -rf www/index.html
 rm -rf www/static/
+rm -rf www/Placeholder
 
 # 退出脚本
 exit 0
