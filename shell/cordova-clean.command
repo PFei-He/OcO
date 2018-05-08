@@ -40,6 +40,7 @@ rm -rf platforms/android/android.iml
 rm -rf platforms/android/build/
 rm -rf platforms/android/local.properties
 rm -rf platforms/android/.idea/
+rm -rf platforms/android/.gradle/
 rm -rf .DS_Store
 rm -rf web/.idea/
 rm -rf www/index.html

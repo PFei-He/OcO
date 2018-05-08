@@ -34,7 +34,9 @@ cd ../
 
 # 移除所有 npm
 rm -rf node_modules/
+rm -rf package-lock.json
 rm -rf web/node_modules/
+rm -rf web/package-lock.json
 
 # 退出脚本
 exit 0
