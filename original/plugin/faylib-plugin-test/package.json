@@ -1,0 +1,24 @@
+{
+  "name": "faylib-plugin-test",
+  "version": "0.0.1",
+  "cordova": {
+    "id": "faylib-plugin-test",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "description": "FayLib Test Plugin",
+  "repository": "",
+  "issue": "",
+  "keywords": [
+    "faylib",
+    "cordova",
+    "test",
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios"
+  ],
+  "author": "FayLib",
+  "license": "MIT"
+}

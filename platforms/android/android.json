@@ -13,15 +13,15 @@
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"Adapter\"><param name=\"android-package\" value=\"xyz.saturn.oco.plugins.AdapterPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "xml": "<feature name=\"Adapter\"><param name=\"android-package\" value=\"top.faylib.oco.plugins.AdapterPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"Device\"><param name=\"android-package\" value=\"xyz.saturn.oco.plugins.DevicePlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "xml": "<feature name=\"Device\"><param name=\"android-package\" value=\"top.faylib.oco.plugins.DevicePlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"Network\"><param name=\"android-package\" value=\"xyz.saturn.oco.plugins.NetworkPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "xml": "<feature name=\"Network\"><param name=\"android-package\" value=\"top.faylib.oco.plugins.NetworkPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
                             "count": 1
                         }
                     ]
@@ -31,13 +31,13 @@
     },
     "installed_plugins": {
         "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "xyz.saturn.oco"
+            "PACKAGE_NAME": "top.faylib.oco"
         },
         "cordova-plugin-console": {
-            "PACKAGE_NAME": "xyz.saturn.oco"
+            "PACKAGE_NAME": "top.faylib.oco"
         },
         "cordova-plugin-wkwebview-engine": {
-            "PACKAGE_NAME": "xyz.saturn.oco"
+            "PACKAGE_NAME": "top.faylib.oco"
         }
     },
     "dependent_plugins": {},

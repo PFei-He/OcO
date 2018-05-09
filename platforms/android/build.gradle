@@ -23,10 +23,6 @@ buildscript {
     repositories {
         mavenCentral()
         jcenter()
-        maven {
-            url 'https://maven.google.com/'
-            name 'Google'
-        }
     }
 
     // Switch the Android Gradle plugin version requirement depending on the
@@ -43,10 +39,6 @@ allprojects {
     repositories {
         mavenCentral();
         jcenter()
-        maven {
-            url 'https://maven.google.com/'
-            name 'Google'
-        }
     }
 }
 
@@ -185,7 +177,7 @@ android {
     }
 
     lintOptions {
-        abortOnError false;
+      abortOnError false;
     }
 
     compileSdkVersion cdvCompileSdkVersion
@@ -194,13 +186,13 @@ android {
     if (Boolean.valueOf(cdvBuildMultipleApks)) {
         productFlavors {
             armv7 {
-                versionCode defaultConfig.versionCode * 10 + 2
+                versionCode defaultConfig.versionCode*10 + 2
                 ndk {
                     abiFilters "armeabi-v7a", ""
                 }
             }
             x86 {
-                versionCode defaultConfig.versionCode * 10 + 4
+                versionCode defaultConfig.versionCode*10 + 4
                 ndk {
                     abiFilters "x86", ""
                 }
@@ -239,8 +231,7 @@ android {
             release {
                 // These must be set or Gradle will complain (even if they are overridden).
                 keyAlias = ""
-                keyPassword = "__unset"
-                // And these must be set to non-empty in order to have the signing step added to the task graph.
+                keyPassword = "__unset" // And these must be set to non-empty in order to have the signing step added to the task graph.
                 storeFile = null
                 storePassword = "__unset"
             }
@@ -258,13 +249,14 @@ android {
 }
 
 dependencies {
-    compile 'com.android.volley:volley:1.0.0'
-    compile 'com.google.code.gson:gson:2.8.0'
     compile fileTree(dir: 'libs', include: '*.jar')
     // SUB-PROJECT DEPENDENCIES START
     debugCompile(project(path: "CordovaLib", configuration: "debug"))
     releaseCompile(project(path: "CordovaLib", configuration: "release"))
     // SUB-PROJECT DEPENDENCIES END
+
+    compile 'com.android.volley:volley:1.0.0'
+    compile 'com.google.code.gson:gson:2.8.0'
 }
 
 def promptForReleaseKeyPassword() {

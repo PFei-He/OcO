@@ -1,5 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="GfG-AJ-5ce">
+
+<!--
+  Copyright (c) 2018 faylib.top
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to deal
+  in the Software without restriction, including without limitation the rights
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+  THE SOFTWARE.
+-->
+
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="KR3-0m-oEo">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -11,74 +34,74 @@
     </dependencies>
     <scenes>
         <!--OcO Native View Controller-->
-        <scene sceneID="G4y-hq-HLr">
+        <scene sceneID="6E6-Rs-zd8">
             <objects>
-                <viewController id="c1z-vi-as5" customClass="OcONativeViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="TPr-lT-KuV">
+                <viewController id="LFm-W1-DlO" customClass="OcONativeViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="QUl-gK-p4p">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="yHt-SL-Jm8"/>
+                        <viewLayoutGuide key="safeArea" id="sgT-mH-wAg"/>
                     </view>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Zbw-ZA-qLf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Uzp-hW-fRX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="886" y="-184"/>
         </scene>
         <!--OcO Main View Controller-->
-        <scene sceneID="oho-jX-bns">
+        <scene sceneID="Ddy-ug-KwL">
             <objects>
-                <viewController id="GfG-AJ-5ce" customClass="OcOMainViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="msr-P6-QPA">
+                <viewController id="KR3-0m-oEo" customClass="OcOMainViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Hys-3n-pve">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5j3-nb-Ts4">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vdx-5A-JC6">
                                 <rect key="frame" x="87.5" y="318" width="96" height="30"/>
                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
                                 <state key="normal" title="OPEN NATIVE"/>
                                 <connections>
-                                    <action selector="openNative:" destination="TM7-tX-kEM" eventType="touchDown" id="H6K-2d-GkO"/>
+                                    <action selector="openNative:" destination="uHO-vJ-Lmy" eventType="touchDown" id="lJe-Ke-aQC"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ceK-TX-8KS">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1oX-wG-nol">
                                 <rect key="frame" x="191.5" y="318" width="77" height="30"/>
                                 <state key="normal" title="OPEN WEB"/>
                                 <connections>
-                                    <action selector="openWeb:" destination="TM7-tX-kEM" eventType="touchDown" id="yG0-9K-8qo"/>
+                                    <action selector="openWeb:" destination="uHO-vJ-Lmy" eventType="touchDown" id="Hxg-ad-3K8"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="5j3-nb-Ts4" firstAttribute="centerY" secondItem="msr-P6-QPA" secondAttribute="centerY" id="Jyr-rf-Ar1"/>
-                            <constraint firstItem="5j3-nb-Ts4" firstAttribute="centerX" secondItem="msr-P6-QPA" secondAttribute="centerX" constant="-52" id="NKi-Ld-FAD"/>
-                            <constraint firstItem="ceK-TX-8KS" firstAttribute="centerX" secondItem="msr-P6-QPA" secondAttribute="centerX" constant="42.5" id="dUb-jh-MVF"/>
-                            <constraint firstItem="ceK-TX-8KS" firstAttribute="centerY" secondItem="msr-P6-QPA" secondAttribute="centerY" id="u66-BS-knI"/>
+                            <constraint firstItem="vdx-5A-JC6" firstAttribute="centerX" secondItem="Hys-3n-pve" secondAttribute="centerX" constant="-52" id="7zv-bO-MOC"/>
+                            <constraint firstItem="1oX-wG-nol" firstAttribute="centerX" secondItem="Hys-3n-pve" secondAttribute="centerX" constant="42.5" id="UGN-8j-k6D"/>
+                            <constraint firstItem="1oX-wG-nol" firstAttribute="centerY" secondItem="Hys-3n-pve" secondAttribute="centerY" id="XNV-Vn-hVK"/>
+                            <constraint firstItem="vdx-5A-JC6" firstAttribute="centerY" secondItem="Hys-3n-pve" secondAttribute="centerY" id="Xe3-Rp-mhb"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="QOe-kH-fPd"/>
+                        <viewLayoutGuide key="safeArea" id="YOY-Zj-RWW"/>
                     </view>
                     <connections>
-                        <segue destination="c1z-vi-as5" kind="presentation" identifier="native" id="nsc-Nc-JQ6"/>
-                        <segue destination="IE7-sg-KHv" kind="presentation" identifier="web" id="PWK-lj-dXA"/>
+                        <segue destination="LFm-W1-DlO" kind="presentation" identifier="native" id="HIQ-iY-pD9"/>
+                        <segue destination="6kS-yw-nEa" kind="presentation" identifier="web" id="gPb-Rt-P2a"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="TM7-tX-kEM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uHO-vJ-Lmy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="119" y="119"/>
         </scene>
         <!--OcO Web View Controller-->
-        <scene sceneID="uvk-J6-tHn">
+        <scene sceneID="7DW-DP-EAn">
             <objects>
-                <viewController id="IE7-sg-KHv" customClass="OcOWebViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="SNs-jy-PeM">
+                <viewController id="6kS-yw-nEa" customClass="OcOWebViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6G7-7D-w4h">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="cpM-KY-TiG"/>
+                        <viewLayoutGuide key="safeArea" id="TLa-Db-Jio"/>
                     </view>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9yY-lV-tFJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dvs-1Y-0JI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="886" y="457"/>
         </scene>

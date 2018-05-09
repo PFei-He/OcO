@@ -1,51 +1,26 @@
 {
-  "_args": [
-    [
-      {
-        "raw": "cordova-plugin-console",
-        "scope": null,
-        "escapedName": "cordova-plugin-console",
-        "name": "cordova-plugin-console",
-        "rawSpec": "",
-        "spec": "latest",
-        "type": "tag"
-      },
-      "/Users/fay/Desktop/OcO/node_modules"
-    ]
-  ],
-  "_cnpm_publish_time": 1506114399454,
-  "_from": "cordova-plugin-console@latest",
-  "_hasShrinkwrap": false,
+  "_from": "cordova-plugin-console",
   "_id": "cordova-plugin-console@1.1.0",
-  "_inCache": true,
+  "_inBundle": false,
+  "_integrity": "sha1-4vusECkBeeRMtyxf28QQpTHBzW0=",
   "_location": "/cordova-plugin-console",
-  "_nodeVersion": "6.6.0",
-  "_npmOperationalInternal": {
-    "host": "s3://npm-registry-packages",
-    "tmp": "tmp/cordova-plugin-console-1.1.0.tgz_1506114399113_0.21866463334299624"
-  },
-  "_npmUser": {
-    "name": "stevegill",
-    "email": "stevengill97@gmail.com"
-  },
-  "_npmVersion": "4.6.1",
   "_phantomChildren": {},
   "_requested": {
+    "type": "tag",
+    "registry": true,
     "raw": "cordova-plugin-console",
-    "scope": null,
-    "escapedName": "cordova-plugin-console",
     "name": "cordova-plugin-console",
+    "escapedName": "cordova-plugin-console",
     "rawSpec": "",
-    "spec": "latest",
-    "type": "tag"
+    "saveSpec": null,
+    "fetchSpec": "latest"
   },
   "_requiredBy": [
     "#USER",
     "/"
   ],
-  "_resolved": "https://registry.npm.taobao.org/cordova-plugin-console/download/cordova-plugin-console-1.1.0.tgz",
+  "_resolved": "http://registry.npm.taobao.org/cordova-plugin-console/download/cordova-plugin-console-1.1.0.tgz",
   "_shasum": "e2fbac10290179e44cb72c5fdbc410a531c1cd6d",
-  "_shrinkwrap": null,
   "_spec": "cordova-plugin-console",
   "_where": "/Users/fay/Desktop/OcO/node_modules",
   "author": {
@@ -54,6 +29,7 @@
   "bugs": {
     "url": "https://issues.apache.org/jira/browse/CB"
   },
+  "bundleDependencies": false,
   "cordova": {
     "id": "cordova-plugin-console",
     "platforms": [
@@ -65,18 +41,10 @@
       "windows"
     ]
   },
-  "dependencies": {},
   "deprecated": "This plugin has been deprecated since it is now included in the latest versions of cordova-ios",
   "description": "Cordova Console Plugin",
   "devDependencies": {
     "jshint": "^2.6.0"
-  },
-  "directories": {},
-  "dist": {
-    "shasum": "e2fbac10290179e44cb72c5fdbc410a531c1cd6d",
-    "size": 21262,
-    "noattachment": false,
-    "tarball": "http://registry.npm.taobao.org/cordova-plugin-console/download/cordova-plugin-console-1.1.0.tgz"
   },
   "engines": {
     "cordovaDependencies": {
@@ -99,56 +67,7 @@
     "cordova-windows"
   ],
   "license": "Apache-2.0",
-  "maintainers": [
-    {
-      "name": "anis",
-      "email": "anis.kadri@gmail.com"
-    },
-    {
-      "name": "bowserj",
-      "email": "bowserj@apache.org"
-    },
-    {
-      "name": "cordovaowner",
-      "email": "stevengill.97@gmail.com"
-    },
-    {
-      "name": "csantanapr",
-      "email": "csantana23@gmail.com"
-    },
-    {
-      "name": "filmaj",
-      "email": "maj.fil@gmail.com"
-    },
-    {
-      "name": "jcesarmobile",
-      "email": "jcesarmobile@gmail.com"
-    },
-    {
-      "name": "macdonst",
-      "email": "simon.macdonald@gmail.com"
-    },
-    {
-      "name": "purplecabbage",
-      "email": "purplecabbage@gmail.com"
-    },
-    {
-      "name": "shazron",
-      "email": "shazron@gmail.com"
-    },
-    {
-      "name": "stevegill",
-      "email": "stevengill97@gmail.com"
-    },
-    {
-      "name": "surajpindoria",
-      "email": "suraj.pindoria@yahoo.com"
-    }
-  ],
   "name": "cordova-plugin-console",
-  "optionalDependencies": {},
-  "publish_time": 1506114399454,
-  "readme": "ERROR: No README data found!",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/apache/cordova-plugin-console.git"

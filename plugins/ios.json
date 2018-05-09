@@ -8,13 +8,13 @@
     },
     "installed_plugins": {
         "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "xyz.saturn.oco"
+            "PACKAGE_NAME": "top.faylib.oco"
         },
         "cordova-plugin-console": {
-            "PACKAGE_NAME": "xyz.saturn.oco"
+            "PACKAGE_NAME": "top.faylib.oco"
         },
         "cordova-plugin-wkwebview-engine": {
-            "PACKAGE_NAME": "xyz.saturn.oco"
+            "PACKAGE_NAME": "top.faylib.oco"
         }
     },
     "dependent_plugins": {}

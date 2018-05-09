@@ -1,14 +1,14 @@
 {
-    "name": "xyz.saturn.oco",
+    "name": "top.faylib.oco",
     "displayName": "OcO",
     "version": "1.0.0",
-    "description": "A sample Apache Cordova application that responds to the deviceready event.",
+    "description": "Hybrid App Demo",
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
     },
-    "author": "Apache Cordova Team",
-    "license": "Apache-2.0",
+    "author": "FayLib",
+    "license": "MIT",
     "dependencies": {
         "cordova-android": "^6.2.3",
         "cordova-ios": "^4.4.0",

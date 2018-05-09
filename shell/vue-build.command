@@ -1,7 +1,5 @@
 #
-# Created by Fay on 2018/03/05.
-#
-# Copyright (c) 2018 saturn.xyz
+# Copyright (c) 2018 faylib.top
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal

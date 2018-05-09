@@ -10,24 +10,25 @@
 		1D3623260D0F684500981E51 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* AppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		301BF552109A68D80062928A /* libCordova.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 301BF535109A57CC0062928A /* libCordova.a */; };
-		3FCF896F7F0A477FBFE666AC /* CDVWKWebViewEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C80A2B0EF024B20B278581D /* CDVWKWebViewEngine.m */; };
-		5744031A45F74B1898E7647D /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01568B1C3E0541749983E521 /* WebKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		657CC46D2087432000A4D6E6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 657CC46C2087432000A4D6E6 /* Images.xcassets */; };
-		657CC4722087434C00A4D6E6 /* build-debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 657CC46F2087434C00A4D6E6 /* build-debug.xcconfig */; };
-		657CC4732087434C00A4D6E6 /* build-release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 657CC4702087434C00A4D6E6 /* build-release.xcconfig */; };
-		657CC4762087435700A4D6E6 /* build.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 657CC4752087435700A4D6E6 /* build.xcconfig */; };
-		657CC4832087438900A4D6E6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 657CC47F2087438900A4D6E6 /* LaunchScreen.storyboard */; };
-		657CC4842087438900A4D6E6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 657CC4812087438900A4D6E6 /* Main.storyboard */; };
-		65D54A1B20844DA80054275E /* OcOAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D54A1A20844DA80054275E /* OcOAdapter.m */; };
-		65D54A1E20844DBA0054275E /* OcODevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D54A1D20844DBA0054275E /* OcODevice.m */; };
-		65D54A2120844DCD0054275E /* OcONetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D54A2020844DCD0054275E /* OcONetwork.m */; };
-		65D54A3120848AB60054275E /* OcOMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D54A3020848AB60054275E /* OcOMainViewController.m */; };
-		65D54A3420848AC50054275E /* OcONativeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D54A3320848AC50054275E /* OcONativeViewController.m */; };
-		65D54A3720848ADD0054275E /* OcOWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D54A3620848ADD0054275E /* OcOWebViewController.m */; };
-		73AB146A703F4591849D9B50 /* CDVLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = EDEF8B6DED5F4B02B160EC56 /* CDVLogger.m */; };
-		A29059AE31A9404FB66B4FDD /* CDVWKWebViewUIDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 95FD2740FABB46489D30D568 /* CDVWKWebViewUIDelegate.m */; };
-		D9A360242A4243F0A522BB1A /* CDVWKProcessPoolFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 05890D5926BE428BB8871FA5 /* CDVWKProcessPoolFactory.m */; };
-		EA82EF21553CAAF0B657AE27 /* libPods-OcO.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E6E71F681F5995CEF01C3395 /* libPods-OcO.a */; };
+		6547D15320A1B100001291EF /* OcOMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6547D14E20A1B100001291EF /* OcOMainViewController.m */; };
+		6547D15420A1B100001291EF /* OcONativeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6547D15020A1B100001291EF /* OcONativeViewController.m */; };
+		6547D15520A1B100001291EF /* OcOWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6547D15220A1B100001291EF /* OcOWebViewController.m */; };
+		6547D15C20A1B336001291EF /* OcOAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6547D15820A1B336001291EF /* OcOAdapter.m */; };
+		6547D15D20A1B336001291EF /* OcONetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 6547D15A20A1B336001291EF /* OcONetwork.m */; };
+		6547D15E20A1B336001291EF /* OcODevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 6547D15B20A1B336001291EF /* OcODevice.m */; };
+		65DDA25620A2CDCB002F1B91 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65DDA25420A2CDCB002F1B91 /* Images.xcassets */; };
+		65DDA25820A2CDD8002F1B91 /* OcO-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 65DDA25720A2CDD8002F1B91 /* OcO-Info.plist */; };
+		65DDA25E20A2CE28002F1B91 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65DDA25A20A2CE28002F1B91 /* LaunchScreen.storyboard */; };
+		65DDA25F20A2CE28002F1B91 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65DDA25C20A2CE28002F1B91 /* Main.storyboard */; };
+		65DDA26620A2CF42002F1B91 /* build-debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 65DDA26320A2CF42002F1B91 /* build-debug.xcconfig */; };
+		65DDA26720A2CF42002F1B91 /* build-release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 65DDA26420A2CF42002F1B91 /* build-release.xcconfig */; };
+		65DDA26820A2CF42002F1B91 /* build.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 65DDA26520A2CF42002F1B91 /* build.xcconfig */; };
+		6ADB7E317DD8486BA9969EC8 /* CDVWKWebViewUIDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ED12C59FD5548B39C5BA81E /* CDVWKWebViewUIDelegate.m */; };
+		7C13B126981B419490134368 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECA018CB0B484EC6AE1C344B /* WebKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		9DC00A17DAD946959CCADB2A /* CDVLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 114AE4B30E8A4A1BA8E050F5 /* CDVLogger.m */; };
+		A03E251534924960BA890D9D /* CDVWKWebViewEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = D515AB5B4D064F959D905461 /* CDVWKWebViewEngine.m */; };
+		B05D1520E12DAD0673EBFEC6 /* libPods-OcO.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 935A3B929559D45D4A8CF844 /* libPods-OcO.a */; };
+		B2E07412A51B4B799AC04F5C /* CDVWKProcessPoolFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = DEB4C8442CAE41D5BA3D5AF6 /* CDVWKProcessPoolFactory.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,7 +46,7 @@
 			remoteGlobalIDString = D2AAC07D0554694100DB518D;
 			remoteInfo = CordovaLib;
 		};
-		65D54A07208448790054275E /* PBXContainerItemProxy */ = {
+		6547D13520A1AED5001291EF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 301BF52D109A57CC0062928A /* CordovaLib/CordovaLib.xcodeproj */;
 			proxyType = 2;
@@ -55,47 +56,47 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		01568B1C3E0541749983E521 /* WebKit.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
-		05890D5926BE428BB8871FA5 /* CDVWKProcessPoolFactory.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = CDVWKProcessPoolFactory.m; path = "cordova-plugin-wkwebview-engine/CDVWKProcessPoolFactory.m"; sourceTree = "<group>"; };
-		06FDF5A2AC5F400A8946FF06 /* CDVWKWebViewUIDelegate.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = CDVWKWebViewUIDelegate.h; path = "cordova-plugin-wkwebview-engine/CDVWKWebViewUIDelegate.h"; sourceTree = "<group>"; };
-		140893AE41A4F848BED8C888 /* Pods-OcO.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OcO.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OcO/Pods-OcO.debug.xcconfig"; sourceTree = "<group>"; };
+		114AE4B30E8A4A1BA8E050F5 /* CDVLogger.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = CDVLogger.m; path = "cordova-plugin-console/CDVLogger.m"; sourceTree = "<group>"; };
+		1414982CA1AC4E54BE2790F3 /* CDVLogger.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = CDVLogger.h; path = "cordova-plugin-console/CDVLogger.h"; sourceTree = "<group>"; };
 		1D3623240D0F684500981E51 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		1D6058910D05DD3D006BFB54 /* OcO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OcO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		2ED12C59FD5548B39C5BA81E /* CDVWKWebViewUIDelegate.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = CDVWKWebViewUIDelegate.m; path = "cordova-plugin-wkwebview-engine/CDVWKWebViewUIDelegate.m"; sourceTree = "<group>"; };
 		301BF52D109A57CC0062928A /* CordovaLib/CordovaLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = CordovaLib/CordovaLib.xcodeproj; sourceTree = "<group>"; };
 		301BF56E109A69640062928A /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; path = www; sourceTree = SOURCE_ROOT; };
 		32CA4F630368D1EE00C91783 /* OcO-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OcO-Prefix.pch"; sourceTree = "<group>"; };
-		36CE87B50A6F493D8204E59B /* CDVWKProcessPoolFactory.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = CDVWKProcessPoolFactory.h; path = "cordova-plugin-wkwebview-engine/CDVWKProcessPoolFactory.h"; sourceTree = "<group>"; };
-		5ADE9BFC2BE1431E9E46CD55 /* CDVWKWebViewEngine.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = CDVWKWebViewEngine.h; path = "cordova-plugin-wkwebview-engine/CDVWKWebViewEngine.h"; sourceTree = "<group>"; };
-		657CC46C2087432000A4D6E6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		657CC46F2087434C00A4D6E6 /* build-debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "build-debug.xcconfig"; path = "cordova/build-debug.xcconfig"; sourceTree = SOURCE_ROOT; };
-		657CC4702087434C00A4D6E6 /* build-release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "build-release.xcconfig"; path = "cordova/build-release.xcconfig"; sourceTree = SOURCE_ROOT; };
-		657CC4752087435700A4D6E6 /* build.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = build.xcconfig; path = cordova/build.xcconfig; sourceTree = SOURCE_ROOT; };
-		657CC4772087437300A4D6E6 /* OcO-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "OcO-Info.plist"; sourceTree = "<group>"; };
-		657CC4802087438900A4D6E6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		657CC4822087438900A4D6E6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		65D54A1920844DA80054275E /* OcOAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OcOAdapter.h; path = "saturn-oco-plugins/OcOAdapter.h"; sourceTree = "<group>"; };
-		65D54A1A20844DA80054275E /* OcOAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = OcOAdapter.m; path = "saturn-oco-plugins/OcOAdapter.m"; sourceTree = "<group>"; };
-		65D54A1C20844DBA0054275E /* OcODevice.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OcODevice.h; path = "saturn-oco-plugins/OcODevice.h"; sourceTree = "<group>"; };
-		65D54A1D20844DBA0054275E /* OcODevice.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = OcODevice.m; path = "saturn-oco-plugins/OcODevice.m"; sourceTree = "<group>"; };
-		65D54A1F20844DCD0054275E /* OcONetwork.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OcONetwork.h; path = "saturn-oco-plugins/OcONetwork.h"; sourceTree = "<group>"; };
-		65D54A2020844DCD0054275E /* OcONetwork.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = OcONetwork.m; path = "saturn-oco-plugins/OcONetwork.m"; sourceTree = "<group>"; };
-		65D54A2F20848AB60054275E /* OcOMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OcOMainViewController.h; sourceTree = "<group>"; };
-		65D54A3020848AB60054275E /* OcOMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OcOMainViewController.m; sourceTree = "<group>"; };
-		65D54A3220848AC50054275E /* OcONativeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OcONativeViewController.h; sourceTree = "<group>"; };
-		65D54A3320848AC50054275E /* OcONativeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OcONativeViewController.m; sourceTree = "<group>"; };
-		65D54A3520848ADD0054275E /* OcOWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OcOWebViewController.h; sourceTree = "<group>"; };
-		65D54A3620848ADD0054275E /* OcOWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OcOWebViewController.m; sourceTree = "<group>"; };
-		6C80A2B0EF024B20B278581D /* CDVWKWebViewEngine.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = CDVWKWebViewEngine.m; path = "cordova-plugin-wkwebview-engine/CDVWKWebViewEngine.m"; sourceTree = "<group>"; };
-		7360AB052DA658257BC54DB6 /* Pods-OcO.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OcO.release.xcconfig"; path = "Pods/Target Support Files/Pods-OcO/Pods-OcO.release.xcconfig"; sourceTree = "<group>"; };
-		95FD2740FABB46489D30D568 /* CDVWKWebViewUIDelegate.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = CDVWKWebViewUIDelegate.m; path = "cordova-plugin-wkwebview-engine/CDVWKWebViewUIDelegate.m"; sourceTree = "<group>"; };
-		9F94BD1ADCD9473CB1CDC0D1 /* CDVLogger.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = CDVLogger.h; path = "cordova-plugin-console/CDVLogger.h"; sourceTree = "<group>"; };
-		E6E71F681F5995CEF01C3395 /* libPods-OcO.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OcO.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4B983E3D31435E0EE17B9D13 /* Pods-OcO.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OcO.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OcO/Pods-OcO.debug.xcconfig"; sourceTree = "<group>"; };
+		6547D14D20A1B100001291EF /* OcOMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OcOMainViewController.h; sourceTree = "<group>"; };
+		6547D14E20A1B100001291EF /* OcOMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OcOMainViewController.m; sourceTree = "<group>"; };
+		6547D14F20A1B100001291EF /* OcONativeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OcONativeViewController.h; sourceTree = "<group>"; };
+		6547D15020A1B100001291EF /* OcONativeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OcONativeViewController.m; sourceTree = "<group>"; };
+		6547D15120A1B100001291EF /* OcOWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OcOWebViewController.h; sourceTree = "<group>"; };
+		6547D15220A1B100001291EF /* OcOWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OcOWebViewController.m; sourceTree = "<group>"; };
+		6547D15620A1B336001291EF /* OcOAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OcOAdapter.h; path = "faylib-oco-plugins/OcOAdapter.h"; sourceTree = "<group>"; };
+		6547D15720A1B336001291EF /* OcODevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OcODevice.h; path = "faylib-oco-plugins/OcODevice.h"; sourceTree = "<group>"; };
+		6547D15820A1B336001291EF /* OcOAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OcOAdapter.m; path = "faylib-oco-plugins/OcOAdapter.m"; sourceTree = "<group>"; };
+		6547D15920A1B336001291EF /* OcONetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OcONetwork.h; path = "faylib-oco-plugins/OcONetwork.h"; sourceTree = "<group>"; };
+		6547D15A20A1B336001291EF /* OcONetwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OcONetwork.m; path = "faylib-oco-plugins/OcONetwork.m"; sourceTree = "<group>"; };
+		6547D15B20A1B336001291EF /* OcODevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OcODevice.m; path = "faylib-oco-plugins/OcODevice.m"; sourceTree = "<group>"; };
+		65DDA25420A2CDCB002F1B91 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = OcO/Images.xcassets; sourceTree = "<group>"; };
+		65DDA25720A2CDD8002F1B91 /* OcO-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "OcO-Info.plist"; path = "OcO/OcO-Info.plist"; sourceTree = "<group>"; };
+		65DDA25B20A2CE28002F1B91 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = OcO/Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		65DDA25D20A2CE28002F1B91 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = OcO/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		65DDA26320A2CF42002F1B91 /* build-debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "build-debug.xcconfig"; path = "cordova/build-debug.xcconfig"; sourceTree = "<group>"; };
+		65DDA26420A2CF42002F1B91 /* build-release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "build-release.xcconfig"; path = "cordova/build-release.xcconfig"; sourceTree = "<group>"; };
+		65DDA26520A2CF42002F1B91 /* build.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = build.xcconfig; path = cordova/build.xcconfig; sourceTree = "<group>"; };
+		935A3B929559D45D4A8CF844 /* libPods-OcO.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OcO.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A5FA15744BB34F28931AE083 /* CDVWKProcessPoolFactory.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = CDVWKProcessPoolFactory.h; path = "cordova-plugin-wkwebview-engine/CDVWKProcessPoolFactory.h"; sourceTree = "<group>"; };
+		C8E8777C039645E6B7A38121 /* CDVWKWebViewEngine.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = CDVWKWebViewEngine.h; path = "cordova-plugin-wkwebview-engine/CDVWKWebViewEngine.h"; sourceTree = "<group>"; };
+		D515AB5B4D064F959D905461 /* CDVWKWebViewEngine.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = CDVWKWebViewEngine.m; path = "cordova-plugin-wkwebview-engine/CDVWKWebViewEngine.m"; sourceTree = "<group>"; };
+		DEB4C8442CAE41D5BA3D5AF6 /* CDVWKProcessPoolFactory.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = CDVWKProcessPoolFactory.m; path = "cordova-plugin-wkwebview-engine/CDVWKProcessPoolFactory.m"; sourceTree = "<group>"; };
 		EB87FDF31871DA8E0020F90C /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; name = www; path = ../../www; sourceTree = "<group>"; };
 		EB87FDF41871DAF40020F90C /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = ../../config.xml; sourceTree = "<group>"; };
+		ECA018CB0B484EC6AE1C344B /* WebKit.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		ED33DF2A687741AEAF9F8254 /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
-		EDEF8B6DED5F4B02B160EC56 /* CDVLogger.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = CDVLogger.m; path = "cordova-plugin-console/CDVLogger.m"; sourceTree = "<group>"; };
+		F6CCB69EBA9228ADCD8A95C5 /* Pods-OcO.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OcO.release.xcconfig"; path = "Pods/Target Support Files/Pods-OcO/Pods-OcO.release.xcconfig"; sourceTree = "<group>"; };
+		F800BDEF1EBB4AC6A3E41BBB /* CDVWKWebViewUIDelegate.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = CDVWKWebViewUIDelegate.h; path = "cordova-plugin-wkwebview-engine/CDVWKWebViewUIDelegate.h"; sourceTree = "<group>"; };
 		F840E1F0165FE0F500CFE078 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = OcO/config.xml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -105,8 +106,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				301BF552109A68D80062928A /* libCordova.a in Frameworks */,
-				EA82EF21553CAAF0B657AE27 /* libPods-OcO.a in Frameworks */,
-				5744031A45F74B1898E7647D /* WebKit.framework in Frameworks */,
+				7C13B126981B419490134368 /* WebKit.framework in Frameworks */,
+				B05D1520E12DAD0673EBFEC6 /* libPods-OcO.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -118,9 +119,9 @@
 			children = (
 				1D3623240D0F684500981E51 /* AppDelegate.h */,
 				1D3623250D0F684500981E51 /* AppDelegate.m */,
-				65D54A11208448FB0054275E /* Base */,
-				65D54A12208448FB0054275E /* Model */,
-				65D54A09208448980054275E /* ViewController */,
+				6547D14A20A1B100001291EF /* Base */,
+				6547D14B20A1B100001291EF /* Model */,
+				6547D14C20A1B100001291EF /* ViewController */,
 			);
 			name = Classes;
 			path = OcO/Classes;
@@ -144,10 +145,10 @@
 				080E96DDFE201D6D7F000001 /* Classes */,
 				307C750510C5A3420062BCA9 /* Plugins */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
-				657CC46A2087430600A4D6E6 /* Resources */,
+				65DDA25020A2CD9C002F1B91 /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
-				E3E236438A31755CB46E4CFB /* Pods */,
+				565B7736BDEE3325404AEA24 /* Pods */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -166,8 +167,8 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E6E71F681F5995CEF01C3395 /* libPods-OcO.a */,
-				01568B1C3E0541749983E521 /* WebKit.framework */,
+				935A3B929559D45D4A8CF844 /* libPods-OcO.a */,
+				ECA018CB0B484EC6AE1C344B /* WebKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -176,7 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				301BF535109A57CC0062928A /* libCordova.a */,
-				65D54A08208448790054275E /* Cordova.framework */,
+				6547D13620A1AED5001291EF /* Cordova.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -184,82 +185,81 @@
 		307C750510C5A3420062BCA9 /* Plugins */ = {
 			isa = PBXGroup;
 			children = (
-				EDEF8B6DED5F4B02B160EC56 /* CDVLogger.m */,
-				9F94BD1ADCD9473CB1CDC0D1 /* CDVLogger.h */,
-				36CE87B50A6F493D8204E59B /* CDVWKProcessPoolFactory.h */,
-				05890D5926BE428BB8871FA5 /* CDVWKProcessPoolFactory.m */,
-				5ADE9BFC2BE1431E9E46CD55 /* CDVWKWebViewEngine.h */,
-				6C80A2B0EF024B20B278581D /* CDVWKWebViewEngine.m */,
-				06FDF5A2AC5F400A8946FF06 /* CDVWKWebViewUIDelegate.h */,
-				95FD2740FABB46489D30D568 /* CDVWKWebViewUIDelegate.m */,
-				65D54A1920844DA80054275E /* OcOAdapter.h */,
-				65D54A1A20844DA80054275E /* OcOAdapter.m */,
-				65D54A1C20844DBA0054275E /* OcODevice.h */,
-				65D54A1D20844DBA0054275E /* OcODevice.m */,
-				65D54A1F20844DCD0054275E /* OcONetwork.h */,
-				65D54A2020844DCD0054275E /* OcONetwork.m */,
+				1414982CA1AC4E54BE2790F3 /* CDVLogger.h */,
+				114AE4B30E8A4A1BA8E050F5 /* CDVLogger.m */,
+				A5FA15744BB34F28931AE083 /* CDVWKProcessPoolFactory.h */,
+				DEB4C8442CAE41D5BA3D5AF6 /* CDVWKProcessPoolFactory.m */,
+				C8E8777C039645E6B7A38121 /* CDVWKWebViewEngine.h */,
+				D515AB5B4D064F959D905461 /* CDVWKWebViewEngine.m */,
+				F800BDEF1EBB4AC6A3E41BBB /* CDVWKWebViewUIDelegate.h */,
+				2ED12C59FD5548B39C5BA81E /* CDVWKWebViewUIDelegate.m */,
+				6547D15620A1B336001291EF /* OcOAdapter.h */,
+				6547D15820A1B336001291EF /* OcOAdapter.m */,
+				6547D15720A1B336001291EF /* OcODevice.h */,
+				6547D15B20A1B336001291EF /* OcODevice.m */,
+				6547D15920A1B336001291EF /* OcONetwork.h */,
+				6547D15A20A1B336001291EF /* OcONetwork.m */,
 			);
 			name = Plugins;
 			path = OcO/Plugins;
 			sourceTree = SOURCE_ROOT;
 		};
-		657CC46A2087430600A4D6E6 /* Resources */ = {
+		565B7736BDEE3325404AEA24 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				657CC46C2087432000A4D6E6 /* Images.xcassets */,
-				657CC46E2087433E00A4D6E6 /* config */,
-				657CC4772087437300A4D6E6 /* OcO-Info.plist */,
-				657CC47F2087438900A4D6E6 /* LaunchScreen.storyboard */,
-				657CC4812087438900A4D6E6 /* Main.storyboard */,
+				4B983E3D31435E0EE17B9D13 /* Pods-OcO.debug.xcconfig */,
+				F6CCB69EBA9228ADCD8A95C5 /* Pods-OcO.release.xcconfig */,
 			);
-			name = Resources;
-			path = OcO;
+			name = Pods;
 			sourceTree = "<group>";
 		};
-		657CC46E2087433E00A4D6E6 /* config */ = {
-			isa = PBXGroup;
-			children = (
-				657CC46F2087434C00A4D6E6 /* build-debug.xcconfig */,
-				657CC4702087434C00A4D6E6 /* build-release.xcconfig */,
-				657CC4752087435700A4D6E6 /* build.xcconfig */,
-			);
-			name = config;
-			sourceTree = "<group>";
-		};
-		65D54A09208448980054275E /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				65D54A2F20848AB60054275E /* OcOMainViewController.h */,
-				65D54A3020848AB60054275E /* OcOMainViewController.m */,
-				65D54A3220848AC50054275E /* OcONativeViewController.h */,
-				65D54A3320848AC50054275E /* OcONativeViewController.m */,
-				65D54A3520848ADD0054275E /* OcOWebViewController.h */,
-				65D54A3620848ADD0054275E /* OcOWebViewController.m */,
-			);
-			path = ViewController;
-			sourceTree = "<group>";
-		};
-		65D54A11208448FB0054275E /* Base */ = {
+		6547D14A20A1B100001291EF /* Base */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			path = Base;
 			sourceTree = "<group>";
 		};
-		65D54A12208448FB0054275E /* Model */ = {
+		6547D14B20A1B100001291EF /* Model */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			path = Model;
 			sourceTree = "<group>";
 		};
-		E3E236438A31755CB46E4CFB /* Pods */ = {
+		6547D14C20A1B100001291EF /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				140893AE41A4F848BED8C888 /* Pods-OcO.debug.xcconfig */,
-				7360AB052DA658257BC54DB6 /* Pods-OcO.release.xcconfig */,
+				6547D14D20A1B100001291EF /* OcOMainViewController.h */,
+				6547D14E20A1B100001291EF /* OcOMainViewController.m */,
+				6547D14F20A1B100001291EF /* OcONativeViewController.h */,
+				6547D15020A1B100001291EF /* OcONativeViewController.m */,
+				6547D15120A1B100001291EF /* OcOWebViewController.h */,
+				6547D15220A1B100001291EF /* OcOWebViewController.m */,
 			);
-			name = Pods;
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		65DDA25020A2CD9C002F1B91 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				65DDA25420A2CDCB002F1B91 /* Images.xcassets */,
+				65DDA26220A2CE9C002F1B91 /* config */,
+				65DDA25720A2CDD8002F1B91 /* OcO-Info.plist */,
+				65DDA25A20A2CE28002F1B91 /* LaunchScreen.storyboard */,
+				65DDA25C20A2CE28002F1B91 /* Main.storyboard */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		65DDA26220A2CE9C002F1B91 /* config */ = {
+			isa = PBXGroup;
+			children = (
+				65DDA26320A2CF42002F1B91 /* build-debug.xcconfig */,
+				65DDA26420A2CF42002F1B91 /* build-release.xcconfig */,
+				65DDA26520A2CF42002F1B91 /* build.xcconfig */,
+			);
+			name = config;
 			sourceTree = "<group>";
 		};
 		EB87FDF11871DA420020F90C /* Staging */ = {
@@ -278,13 +278,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "OcO" */;
 			buildPhases = (
-				C0BF8F340696B436F88FB681 /* [CP] Check Pods Manifest.lock */,
+				2B2C91BF7FB860A98163D3AE /* [CP] Check Pods Manifest.lock */,
 				304B58A110DAC018002A0835 /* Copy www directory */,
 				1D60588D0D05DD3D006BFB54 /* Resources */,
 				1D60588E0D05DD3D006BFB54 /* Sources */,
 				1D60588F0D05DD3D006BFB54 /* Frameworks */,
-				277BE1292F60A5310ADE49B4 /* [CP] Embed Pods Frameworks */,
-				DC5FA5D82CE44B238CEAFEC7 /* [CP] Copy Pods Resources */,
+				2B328B20E336DFCFAB724FD9 /* [CP] Embed Pods Frameworks */,
+				B5D2ACE664337ED75E2B65D2 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -302,7 +302,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 920;
+				LastUpgradeCheck = 510;
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
 						DevelopmentTeam = YP2P43BPRF;
@@ -342,11 +342,11 @@
 			remoteRef = 301BF534109A57CC0062928A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		65D54A08208448790054275E /* Cordova.framework */ = {
+		6547D13620A1AED5001291EF /* Cordova.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = Cordova.framework;
-			remoteRef = 65D54A07208448790054275E /* PBXContainerItemProxy */;
+			remoteRef = 6547D13520A1AED5001291EF /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -356,19 +356,38 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				657CC4832087438900A4D6E6 /* LaunchScreen.storyboard in Resources */,
-				657CC4732087434C00A4D6E6 /* build-release.xcconfig in Resources */,
-				657CC46D2087432000A4D6E6 /* Images.xcassets in Resources */,
-				657CC4762087435700A4D6E6 /* build.xcconfig in Resources */,
-				657CC4842087438900A4D6E6 /* Main.storyboard in Resources */,
-				657CC4722087434C00A4D6E6 /* build-debug.xcconfig in Resources */,
+				65DDA25E20A2CE28002F1B91 /* LaunchScreen.storyboard in Resources */,
+				65DDA26820A2CF42002F1B91 /* build.xcconfig in Resources */,
+				65DDA25820A2CDD8002F1B91 /* OcO-Info.plist in Resources */,
+				65DDA25620A2CDCB002F1B91 /* Images.xcassets in Resources */,
+				65DDA26720A2CF42002F1B91 /* build-release.xcconfig in Resources */,
+				65DDA26620A2CF42002F1B91 /* build-debug.xcconfig in Resources */,
+				65DDA25F20A2CE28002F1B91 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		277BE1292F60A5310ADE49B4 /* [CP] Embed Pods Frameworks */ = {
+		2B2C91BF7FB860A98163D3AE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-OcO-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2B328B20E336DFCFAB724FD9 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -398,25 +417,7 @@
 			shellScript = "NODEJS_PATH=/usr/local/bin; NVM_NODE_PATH=~/.nvm/versions/node/`nvm version 2>/dev/null`/bin; N_NODE_PATH=`find /usr/local/n/versions/node/* -maxdepth 0 -type d 2>/dev/null | tail -1`/bin; XCODE_NODE_PATH=`xcode-select --print-path`/usr/share/xcs/Node/bin; PATH=$NODEJS_PATH:$NVM_NODE_PATH:$N_NODE_PATH:$XCODE_NODE_PATH:$PATH && node cordova/lib/copy-www-build-step.js";
 			showEnvVarsInLog = 0;
 		};
-		C0BF8F340696B436F88FB681 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-OcO-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		DC5FA5D82CE44B238CEAFEC7 /* [CP] Copy Pods Resources */ = {
+		B5D2ACE664337ED75E2B65D2 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -438,18 +439,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6547D15520A1B100001291EF /* OcOWebViewController.m in Sources */,
+				6547D15C20A1B336001291EF /* OcOAdapter.m in Sources */,
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
-				65D54A1B20844DA80054275E /* OcOAdapter.m in Sources */,
 				1D3623260D0F684500981E51 /* AppDelegate.m in Sources */,
-				65D54A3720848ADD0054275E /* OcOWebViewController.m in Sources */,
-				73AB146A703F4591849D9B50 /* CDVLogger.m in Sources */,
-				65D54A3120848AB60054275E /* OcOMainViewController.m in Sources */,
-				65D54A1E20844DBA0054275E /* OcODevice.m in Sources */,
-				65D54A2120844DCD0054275E /* OcONetwork.m in Sources */,
-				65D54A3420848AC50054275E /* OcONativeViewController.m in Sources */,
-				3FCF896F7F0A477FBFE666AC /* CDVWKWebViewEngine.m in Sources */,
-				A29059AE31A9404FB66B4FDD /* CDVWKWebViewUIDelegate.m in Sources */,
-				D9A360242A4243F0A522BB1A /* CDVWKProcessPoolFactory.m in Sources */,
+				6547D15D20A1B336001291EF /* OcONetwork.m in Sources */,
+				9DC00A17DAD946959CCADB2A /* CDVLogger.m in Sources */,
+				6547D15420A1B100001291EF /* OcONativeViewController.m in Sources */,
+				A03E251534924960BA890D9D /* CDVWKWebViewEngine.m in Sources */,
+				6547D15320A1B100001291EF /* OcOMainViewController.m in Sources */,
+				6ADB7E317DD8486BA9969EC8 /* CDVWKWebViewUIDelegate.m in Sources */,
+				B2E07412A51B4B799AC04F5C /* CDVWKProcessPoolFactory.m in Sources */,
+				6547D15E20A1B336001291EF /* OcODevice.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -464,18 +465,18 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		657CC47F2087438900A4D6E6 /* LaunchScreen.storyboard */ = {
+		65DDA25A20A2CE28002F1B91 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				657CC4802087438900A4D6E6 /* Base */,
+				65DDA25B20A2CE28002F1B91 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
-		657CC4812087438900A4D6E6 /* Main.storyboard */ = {
+		65DDA25C20A2CE28002F1B91 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				657CC4822087438900A4D6E6 /* Base */,
+				65DDA25D20A2CE28002F1B91 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -485,7 +486,7 @@
 /* Begin XCBuildConfiguration section */
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 140893AE41A4F848BED8C888 /* Pods-OcO.debug.xcconfig */;
+			baseConfigurationReference = 4B983E3D31435E0EE17B9D13 /* Pods-OcO.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -495,7 +496,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = YP2P43BPRF;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -505,7 +506,6 @@
 				INFOPLIST_FILE = "OcO/OcO-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = xyz.saturn.oco;
 				PRODUCT_NAME = OcO;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -514,7 +514,7 @@
 		};
 		1D6058950D05DD3E006BFB54 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7360AB052DA658257BC54DB6 /* Pods-OcO.release.xcconfig */;
+			baseConfigurationReference = F6CCB69EBA9228ADCD8A95C5 /* Pods-OcO.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -524,7 +524,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = YP2P43BPRF;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OcO/OcO-Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
@@ -532,7 +532,6 @@
 				INFOPLIST_FILE = "OcO/OcO-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = xyz.saturn.oco;
 				PRODUCT_NAME = OcO;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -544,34 +543,20 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = "";
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = NO;
@@ -583,33 +568,20 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = "";
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = NO;
 			};

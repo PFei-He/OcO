@@ -1,6 +1,8 @@
 OcO
 ===
-[![License MIT](https://img.shields.io/badge/license-MIT-green.svg)](https://raw.githubusercontent.com/PFei-He/OcO/master/LICENSE)
+[![](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/PFei-He/OcO/master/LICENSE)
+![](https://img.shields.io/badge/platform-android-lightgrey.svg)
+![](https://img.shields.io/badge/platform-ios-lightgrey.svg)
 
 Cordova + Vue 构建的 Hybrid App
 
@@ -50,6 +52,31 @@ OcO/
 ```
 
 
+Environment / 开发环境
+---
+Mac (macOS 10.13.3)
+
+
+Development Tools / 开发工具
+---
+* Web
+[IntelliJ IDEA](https://www.jetbrains.com/idea/)
+
+* Android
+[Android Studio](https://developer.android.com/studio/)
+
+* iOS
+[Xcode](https://developer.apple.com/xcode/)
+
+
+Detail / 说明
+---
+为了方便传输，本工程已进行了简化处理，各种编译包和构建工具都已删除，运行时会报错，所以需要执行如下的 Shell 脚本将工程完善
+1. android-permission  获取构建 Android 工程的权限，需要输入系统管理员密码
+2. npm-install  安装 npm
+3. vue-build  Web 端代码编译及转传至移动端
+
+
 
 Cordova
 ===
@@ -67,7 +94,7 @@ Create / 创建
 $cordova create ProjectName PackageName AppName
 
 // example / 范例
-$cordova create OcO xyz.saturn.OcO OcO
+$cordova create OcO top.faylib.OcO OcO
 ```
 
 
@@ -83,6 +110,14 @@ $cordova platform add android
 ```
 $cd OcO/
 $cordova platform add ios
+```
+
+
+Platform List / 平台列表
+---
+```
+$cd OcO/
+$cordova platform list
 ```
 
 
@@ -161,13 +196,13 @@ Custom Plugin / 自定义插件
 ---
 ### Structure / 目录结构
 ```
-saturn.plugin.test          // 插件包名
+faylib.plugin.test          // 插件包名
     ../src/                 // 存放移动端代码文件
         ../android/         // 存放 Android 端代码
             TestPlugin.java // Android 端代码文件
         ../ios/             // 存放 iOS 端代码文件
-            STRTest.h       // iOS 端代码文件
-            STRTest.m       // iOS 端代码文件
+            FLTest.h        // iOS 端代码文件
+            FLTest.m        // iOS 端代码文件
     ../www/                 // 存放 Web 端代码文件
         test.js             // Web 端代码文件
     package.json            // 插件描述文件
@@ -179,11 +214,11 @@ saturn.plugin.test          // 插件包名
 * `package.json`
 ```
 {
-    "name": "saturn-plugin-test",           // 插件名称
+    "name": "faylib-plugin-test",           // 插件名称
     "version": "0.0.1",                     // 版本号
-    "description": "Saturn Test Plugin",    // 插件描述
+    "description": "FayLib Test Plugin",    // 插件描述
     "cordova": {
-        "id": "saturn-plugin-test",         // 插件的ID，这个很重要，要和插件目录名一致
+        "id": "faylib-plugin-test",         // 插件的ID，这个很重要，要和插件目录名一致
         "platforms": [                      // 插件支持的平台
             "android",                      // 该插件支持Android和iOS
             "ios"
@@ -191,11 +226,11 @@ saturn.plugin.test          // 插件包名
     },
     "repository": {                         // 远程库地址
         "type": "git",
-        "url": "https://github.com/saturn/STRPluginTest"
+        "url": "https://github.com/PFei-He/FLPluginTest"
     },
     "issue": "",
     "keywords": [                           // 用于在 cordova plugin search 被查找出来
-        "saturn",
+        "faylib",
         "cordova",
         "test",
         "ecosystem:cordova",
@@ -213,13 +248,13 @@ saturn.plugin.test          // 插件包名
 <?xml version="1.0" encoding="UTF-8"?>
 
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
-           id="saturn-plugin-test"
+           id="faylib-plugin-test"
       version="0.0.1">
 
     <name>Test</name>
-    <description>Saturn Test Plugin</description>
+    <description>FayLib Test Plugin</description>
     <license>MIT</license>
-    <keywords>saturn,test</keywords>
+    <keywords>faylib,test</keywords>
     <repo>></repo>
     <issue></issue>
 
@@ -232,30 +267,30 @@ saturn.plugin.test          // 插件包名
     <platform name="android">
         <js-module src="www/test.js" name="test">
             <run/>
-            <clobbers target="saturn.test" />
+            <clobbers target="faylib.test" />
         </js-module>
         <config-file target="config.xml" parent="/*">
             <feature name="Test" >
-                <param name="android-package" value="xyz.saturn.test.TestPlugin"/>
+                <param name="android-package" value="top.faylib.test.TestPlugin"/>
                 <param name="onload" value="true" />
             </feature>
         </config-file>
-        <source-file src="src/android/TestPlugin.java" target-dir="src/xyz/saturn/test" />
+        <source-file src="src/android/TestPlugin.java" target-dir="src/top/faylib/test" />
     </platform>
 
     <!-- ios -->
     <platform name="ios">
         <js-module src="www/test.js" name="test">
             <run/>
-            <clobbers target="saturn.test" />
+            <clobbers target="faylib.test" />
         </js-module>
         <config-file target="config.xml" parent="/*">
             <feature name="Test">
                 <param name="ios-package" value="Test" onload="true" />
             </feature>
         </config-file>
-        <header-file src="src/ios/STRTest.h" />
-        <source-file src="src/ios/STRTest.m" />
+        <header-file src="src/ios/FLTest.h" />
+        <source-file src="src/ios/FLTest.m" />
     </platform>
 
 </plugin>
@@ -275,7 +310,7 @@ test.testMethod = function(arguments, successCallback, failureCallback) {
 ### Android
 * `TestPlugin.java`
 ```
-package xyz.saturn.test;
+package top.faylib.test;
 
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
@@ -306,21 +341,21 @@ public class TestPlugin extends CordovaPlugin {
 ```
 
 ### iOS
-* `STRTest.h`
+* `FLTest.h`
 ```
 #import <Cordova/CDV.h>
 
-@interface STRTest : CDVPlugin
+@interface FLTest : CDVPlugin
 
 @end
 ```
 
-* `STRTest.m`
+* `FLTest.m`
 ```
 #import <Foundation/Foundation.h>
-#import "STRTest.h"
+#import "FLTest.h"
 
-@implementation STRTest
+@implementation FLTest
     
 - (void)test_method:(CDVInvokedUrlCommand *)command
 {
@@ -343,15 +378,14 @@ $cordova plugin add <PLUGIN_PATH>
 
 // example / 范例
 $cd OcO/
-$cordova plugin add orginal/plugin/saturn-plugin-test
+$cordova plugin add orginal/plugin/faylib-plugin-test
 ```
 
 
 Build / 构建
 ---
-运行编译命令 `$cordova build` / `$cordova build android` 或添加插件命令 `$cordova plugin add ***` (*** 代表插件名)时出现错误提示 `Error: spawn EACCES` ，
-表示 cordova 没有获得 build / android build 的权限，执行 `$sudo chmod -R a+rwx ***/` (*** 表示该工程的根目录) / `$sudo chmod -R a+rwx ***/platforms/android/` (*** 表示该工程的根目录)来获得权限；
-或因工程没有获得使用 Gradle 的权限，执行 `sudo chmod 755 "/Applications/Android Studio.app/Contents/gradle/gradle-***/bin/gradle"` (*** 代表版本号)来获得权限。
+执行命令时出现错误提示 `Error: spawn EACCES` ，表示 cordova 没有获得操作 Android 工程的权限，执行 `$sudo chmod -R a+rwx ***/` / `$sudo chmod -R a+rwx */platforms/android/` (* 表示该工程的根目录)来获得权限；
+或因工程没有获得使用 Gradle 的权限，执行 `sudo chmod 755 "/Applications/Android Studio.app/Contents/gradle/gradle-*/bin/gradle"` (* 代表版本号)来获得权限。
 
 * All
 ```
@@ -418,7 +452,12 @@ $npm run dev
 
 Integrate / 整合
 ---
-* 将 Vue 项目构建到 Cordova 的 Web 端 `/OcO/web/config/index.js`
+* 将 Vue 项目构建到 Cordova 的 Web 端
+
+###### Path / 文件路径
+`/OcO/web/config/index.js`
+
+###### Edit / 编写
 ```
 // line 7 / 7行
 // index: path.resolve(__dirname, '../dist/index.html'),
@@ -437,15 +476,24 @@ assetsRoot: path.resolve(__dirname, '../../www'),
 assetsPublicPath: './',
 ```
 
-* 导入 Cordova 库以引导 Web 端 `/OcO/web/index.html`
+* 导入 Cordova 库以引导 Web 端
+
+###### Path / 文件路径
+`/OcO/web/index.html`
+
+###### Edit / 编写
 ```
 // line 17 / 17行
 <script src="cordova.js"></script>
 ```
 
 
-Custom shell script / 自定义脚本 `OcO/web/package.json`
+Custom shell script / 自定义脚本
 ---
+#### Path / 文件路径
+`OcO/web/package.json`
+
+#### Edit / 编写
 ```
 // line 12 / 12行
 "cordova": "npm run build && cordova build"
@@ -469,35 +517,44 @@ Root Path / 目录
 `OcO/platforms/android`
 
 
-Library / 类库 `/OcO/platforms/android/build.gradle`
+Library / 类库
 ---
+
+#### Path / 文件路径
+`/OcO/platforms/android/build.gradle`
+
+#### Edit / 编写
 * [Volley](https://github.com/google/volley)
 ```
-// line 261 / 261行
+// line 258 / 258行
 compile 'com.android.volley:volley:1.0.0'
 ```
 
 * [Gson](https://github.com/google/gson)
 ```
-// line 262 / 262行
+// line 259 / 259行
 compile 'com.google.code.gson:gson:2.8.0'
 ```
 
 
-Add Plugin / 添加插件 `/OcO/platforms/android/android.json`
+Add Plugin / 添加插件
 ---
+#### Path / 文件路径
+`/OcO/platforms/android/android.json`
+
+#### Edit / 编写
 声明用于 `JavaScript` 与 `Java` 通信的接口文件。
 ```
 {
-    "xml": "<feature name=\"Adapter\"><param name=\"android-package\" value=\"xyz.saturn.oco.plugins.AdapterPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
+    "xml": "<feature name=\"Adapter\"><param name=\"android-package\" value=\"top.faylib.oco.plugins.AdapterPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
     "count": 1
 },
 {
-    "xml": "<feature name=\"Device\"><param name=\"android-package\" value=\"xyz.saturn.oco.plugins.DevicePlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
+    "xml": "<feature name=\"Device\"><param name=\"android-package\" value=\"top.faylib.oco.plugins.DevicePlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
     "count": 1
 },
 {
-    "xml": "<feature name=\"Network\"><param name=\"android-package\" value=\"xyz.saturn.oco.plugins.NetworkPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
+    "xml": "<feature name=\"Network\"><param name=\"android-package\" value=\"top.faylib.oco.plugins.NetworkPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
     "count": 1
 }
 ```
@@ -505,9 +562,13 @@ Add Plugin / 添加插件 `/OcO/platforms/android/android.json`
 
 WebActivity
 ---
-Cordova 默认寻找 `/OcO/platforms/android/src/xyz/saturn/oco` 目录下继承 'CordovaActivity' 的子类作为 WebActivity，若修改了 WebActivity 的路径，需要更改 Cordova 的读取路径。<br>
+Cordova 默认寻找 `/OcO/platforms/android/src/top/faylib/oco` 目录下继承 'CordovaActivity' 的子类作为 WebActivity，若修改了 WebActivity 的路径，需要更改 Cordova 的读取路径。<br>
+
+#### Path / 文件路径
 * `/OcO/platforms/android/cordova/lib/prepare.js`
 * `/OcO/node_modules/cordova-android/bin/templates/cordova/lib/prepare.js`
+
+#### Edit / 编写
 ```
 // line 196 / 196行
 // var javaPattern = path.join(locations.root, 'src', orig_pkg.replace(/\./g, '/'), '*.java');
@@ -532,6 +593,20 @@ Gradle
 解决 `Android Studio` 使用 `Gradle` 构建工程慢，从 [Gradle官网](https://gradle.org) 下载适用的版本，将zip包放入到 `/Users/username/.gradle/wrapper/dists/gradle-***-all/***/` (*** 表示版本号)目录下，重新打开工程，`Android Studio` 会自行解压安装。
 
 
+Java 8
+---
+#### Path / 文件路径
+`/OcO/platforms/android/build.gradle`
+
+#### Edit / 编写
+```
+// line 174-176 / 174-176行
+jackOptions {
+	enabled true
+}
+```
+
+
 
 iOS
 ===
@@ -541,8 +616,12 @@ Root Path / 目录
 `OcO/platforms/ios`
 
 
-Library / 类库 `/OcO/platforms/ios/Podfile`
+Library / 类库
 ---
+#### Path / 文件路径
+`/OcO/platforms/ios/Podfile`
+
+#### Edit / 编写
 * [AFNetworking](https://github.com/AFNetworking/AFNetworking)
 ```
 // line 5 / 5行
@@ -550,8 +629,12 @@ pod 'AFNetworking', '~> 2.6.0'
 ```
 
 
-Add Plugin / 添加插件 `/OcO/platforms/ios/ios.json`
+Add Plugin / 添加插件
 ---
+#### Path / 文件路径
+`/OcO/platforms/ios/ios.json`
+
+#### Edit / 编写
 声明用于 `JavaScript` 与 `Objective-C` 通信的接口文件。
 ```
 // line 15-26 / 15-26行
@@ -596,8 +679,15 @@ $sudo gem install -n /usr/local/bin cocoapods
 $pod install
 ```
 
-由于未知原因，Cordova 工程添加 CocoaPods 后，不能自动修改配置文件导致工程报错，需要修复后才能使用 `OcO/platforms/ios/cordova/build.xcconfig` 。
+* Issue / 修复错误
+由于未知原因，Cordova 工程添加 CocoaPods 后，不能自动修改配置文件导致工程报错，需要修复后才能使用。
+
+###### Path / 文件路径
+`OcO/platforms/ios/cordova/build.xcconfig`
+
+###### Edit / 编写
 ```
+/* --- 此处以 AFNetworking 为例 --- */
 HEADER_SEARCH_PATHS = "$(TARGET_BUILD_DIR)/usr/local/lib/include" "$(OBJROOT)/UninstalledProducts/include" "$(OBJROOT)/UninstalledProducts/$(PLATFORM_NAME)/include" "$(BUILT_PRODUCTS_DIR)" "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/AFNetworking"
 
 OTHER_LDFLAGS = -ObjC -l"AFNetworking" -framework "CoreGraphics" -framework "MobileCoreServices" -framework "Security" -framework "SystemConfiguration"
@@ -622,23 +712,32 @@ Root Path / 目录
 
 Detail / 说明
 ---
-* cordova-clean             清空全部构建内容
+* cordova-clean
+清空全部构建内容
 
-* cordova-plugin-add        添加插件
+* cordova-plugin-add
+添加插件
 
-* cordova-plugin-remove     移除插件
+* cordova-plugin-remove
+移除插件
 
-* npm-install               安装 npm
+* npm-install
+安装 npm
 
-* npm-remove                移除 npm
+* npm-remove
+移除 npm
 
-* pod-install               为 iOS 工程导入指定的类库
+* pod-install
+为 iOS 工程导入指定的类库
 
-* vue-build                 构建 Vue 的代码并加载到 Cordova
+* vue-build
+构建 Vue 的代码并加载到 Cordova
 
-* wkwebview-install         将 iOS 的 web 框架换成 WKWebView，需要先执行 `vue-build` 构建工程
+* wkwebview-install
+将 iOS 的 web 框架换成 WKWebView，需要先执行 `vue-build` 构建工程
 
-* wkwebview-remove          将 iOS 的 web 框架换成 UIWebView，需要先执行 `vue-build` 构建工程
+* wkwebview-remove
+将 iOS 的 web 框架换成 UIWebView，需要先执行 `vue-build` 构建工程
 
 
 
