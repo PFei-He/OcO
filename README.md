@@ -94,7 +94,7 @@ Create / 创建
 $cordova create ProjectName PackageName AppName
 
 // example / 范例
-$cordova create OcO top.faylib.OcO OcO
+$cordova create OcO top.faylib.oco OcO
 ```
 
 
