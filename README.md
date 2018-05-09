@@ -387,17 +387,17 @@ Build / 构建
 执行命令时出现错误提示 `Error: spawn EACCES` ，表示 cordova 没有获得操作 Android 工程的权限，执行 `$sudo chmod -R a+rwx ***/` / `$sudo chmod -R a+rwx */platforms/android/` (* 表示该工程的根目录)来获得权限；
 或因工程没有获得使用 Gradle 的权限，执行 `sudo chmod 755 "/Applications/Android Studio.app/Contents/gradle/gradle-*/bin/gradle"` (* 代表版本号)来获得权限。
 
-* All
+* `All`
 ```
 $cordova build
 ```
 
-* Android
+* `Android`
 ```
 $cordova build android
 ```
 
-* iOS
+* `iOS`
 ```
 $cordova build ios
 ```
