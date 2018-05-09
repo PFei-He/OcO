@@ -59,13 +59,13 @@ Mac (macOS 10.13.3)
 
 Development Tools / 开发工具
 ---
-* Web
+* `Web`<br>
 [IntelliJ IDEA](https://www.jetbrains.com/idea/)
 
-* Android
+* `Android`<br>
 [Android Studio](https://developer.android.com/studio/)
 
-* iOS
+* `iOS`<br>
 [Xcode](https://developer.apple.com/xcode/)
 
 
@@ -100,13 +100,13 @@ $cordova create OcO top.faylib.oco OcO
 
 Add Platform / 添加移动端
 ---
-* Android
+* `Android`
 ```
 $cd OcO/
 $cordova platform add android
 ```
 
-* iOS
+* `iOS`
 ```
 $cd OcO/
 $cordova platform add ios
@@ -135,26 +135,26 @@ Add Plugin / 添加插件
 $cordova plugin add <PLUGIN_NAME>
 ```
 
-* Cordova Splash Screen
+* `Cordova Splash Screen`
 ```
 $cd OcO/
 $cordova plugin add cordova-plugin-splashscreen
 $cordova plugin add https://github.com/apache/cordova-plugin-splashscreen.git
 ```
 
-* Cordova Camera
+* `Cordova Camera`
 ```
 $cd OcO/
 $cordova plugin add cordova-plugin-camera
 ```
 
-* Cordova Console
+* `Cordova Console`
 ```
 $cd OcO/
 $cordova plugin add cordova-plugin-console
 ```
 
-* Cordova WKWebView Engine
+* `Cordova WKWebView Engine`
 ```
 $cd OcO/
 $cordova plugin add cordova-plugin-wkwebview-engine
@@ -167,25 +167,25 @@ Remove Plugin / 移除插件
 $cordova plugin remove <PLUGIN_NAME>
 ```
 
-* Cordova Splash Screen
+* `Cordova Splash Screen`
 ```
 $cd OcO/
 $cordova plugin remove cordova-plugin-splashscreen
 ```
 
-* Cordova Camera
+* `Cordova Camera`
 ```
 $cd OcO/
 $cordova plugin remove cordova-plugin-camera
 ```
 
-* Cordova Console
+* `Cordova Console`
 ```
 $cd OcO/
 $cordova plugin remove cordova-plugin-console
 ```
 
-* Cordova WKWebView Engine
+* `Cordova WKWebView Engine`
 ```
 $cd OcO/
 $cordova plugin remove cordova-plugin-wkwebview-engine
@@ -669,17 +669,17 @@ if (window.indexedDB) {
 
 CocoaPods
 ---
-* Install / 安装
+* `Install / 安装`
 ```
 $sudo gem install -n /usr/local/bin cocoapods
 ```
 
-* Download / 下载类库
+* `Download / 下载类库`
 ```
 $pod install
 ```
 
-* Issue / 修复错误
+* `Issue / 修复错误`<br>
 由于未知原因，Cordova 工程添加 CocoaPods 后，不能自动修改配置文件导致工程报错，需要修复后才能使用。
 
 ###### Path / 文件路径
@@ -712,31 +712,31 @@ Root Path / 目录
 
 Detail / 说明
 ---
-* cordova-clean
+* `cordova-clean`<br>
 清空全部构建内容
 
-* cordova-plugin-add
+* `cordova-plugin-add`<br>
 添加插件
 
-* cordova-plugin-remove
+* `cordova-plugin-remove`<br>
 移除插件
 
-* npm-install
+* `npm-install`<br>
 安装 npm
 
-* npm-remove
+* `npm-remove`<br>
 移除 npm
 
-* pod-install
+* `pod-install`<br>
 为 iOS 工程导入指定的类库
 
-* vue-build
+* `vue-build`<br>
 构建 Vue 的代码并加载到 Cordova
 
-* wkwebview-install
+* `wkwebview-install`<br>
 将 iOS 的 web 框架换成 WKWebView，需要先执行 `vue-build` 构建工程
 
-* wkwebview-remove
+* `wkwebview-remove`<br>
 将 iOS 的 web 框架换成 UIWebView，需要先执行 `vue-build` 构建工程
 
 
