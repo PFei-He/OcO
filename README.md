@@ -31,7 +31,12 @@ OcO/
     package.json                // 工程配置文件，构建工程时会使用此文件更新 config.xml 的内容
     ../platforms/               // 移动端文件夹
         ../android/             // Android 端根目录
+        	../...				// 省略常见文件和文件夹
+        	../assets/			// Android 的资源文件夹
+        		../www/			// 存放编译后的 Web 端代码和资源（构建工程后自动生成）
         ../ios/                 // iOS 端根目录
+        	../...				// 省略常见文件和文件夹
+        	../www/				// 存放编译后的 Web 端代码和资源（构建工程后自动生成）
         platforms.json          // 移动端信息文件，包含有如使用平台，平台版本号等信息
     ../plugins/                 // 存放插件包，编译时会自动导入到相应平台的工程中
     README.md                   // 工程说明（即为此文件）
@@ -40,7 +45,7 @@ OcO/
         ../screen/              // splash screen 图片
     ../shell/                   // 存放 Shell 脚本文件
     ../web/                     // Web 端根目录（Vue 工程目录）
-        ../bulid/
+        ../bulid/				// Vue 的构建工具包
         ../config/
         index.html              // Web 首页，由于为单页面应用，所以整个 Web App 只有这一页
         ../node_modules/        // npm 目录，存放构建工程需要的工具
@@ -303,9 +308,19 @@ var test = exports;
 var exec = require('cordova/exec');
 
 test.testMethod = function(arguments, successCallback, failureCallback) {
+
+	/**
+	* Web 端与移动端通信的方法
+	* successCallback: 移动端响应 '成功' 时执行的方法
+	* failureCallback: 移动端响应 '失败' 时执行的方法
+	* 'Test': 移动端用于接收消息的类的标识码
+	* 'test_method': 发送'test_method' 消息（移动端接收消息并响应的方法）
+	* arguments: 传递到移动端的参数，数组类型
+	*/
     exec(successCallback, failureCallback, 'Test', 'test_method', arguments);
 }
 ```
+p.s. 关于 '移动端用于接收消息的类的标识码' 的意思，是表示继承自 `CordovaPlugin` (Android) / `CDVPlugin` (iOS) 的子类在声明用于做通信类时所定义的唯一的名字，Cordova 通过这个名字找到移动端用于响应 Web 端消息的类。声明方法详见[Android 声明](https://github.com/PFei-He/OcO#edit--编写-4)与[iOS 声明](https://github.com/PFei-He/OcO#edit--编写-8)。
 
 ### Android
 * `TestPlugin.java`
@@ -321,15 +336,16 @@ public class TestPlugin extends CordovaPlugin {
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         
+        // 接收 Web 端发送来的 'test_method' 消息并作出响应
         if ("test_method".equals(action)) {
 
             // 获取 Web 端传递来的参数
             String param = args.getString(0);
 
-            // 响应成功的结果并回调到 Web 端
+            // 响应 '成功' 并回调到 Web 端
             callbackContext.success("SUCCESS");
             
-            // 响应失败的结果并回调到 Web 端
+            // 响应 '失败' 并回调到 Web 端
             callbackContext.error("ERROR");
 
             return true;
@@ -356,16 +372,17 @@ public class TestPlugin extends CordovaPlugin {
 #import "FLTest.h"
 
 @implementation FLTest
-    
+
+// 接收 Web 端发送来的 'test_method' 消息并作出响应
 - (void)test_method:(CDVInvokedUrlCommand *)command
 {
     // 获取 Web 端传递来的参数
     NSString *param = command.arguments[0];
     
-    // 响应成功的结果并回调到 Web 端
+    // 响应 '成功' 并回调到 Web 端
     [self sendStatus:CDVCommandStatus_ERROR message:@"SUCCESS" command:command];
     
-    // 响应失败的结果并回调到 Web 端
+    // 响应 '失败' 并回调到 Web 端
     [self sendStatus:CDVCommandStatus_ERROR message:@"ERROR" command:command];
 }
 
