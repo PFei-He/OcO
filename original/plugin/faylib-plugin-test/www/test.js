@@ -26,9 +26,23 @@ var test = exports;
 var exec = require('cordova/exec');
 
 test.debugMode = function(openOrNot) {
+
+	/**
+	* 发送 'debug_mode' 消息（Web 端与移动端通信的方法）
+	*/
 	exec(null, null, 'Test', 'debug_mode', [openOrNot]);
 };
 
 test.testMethod = function(arguments, successCallback, failureCallback) {
+
+	/**
+	* 发送 'test_method' 消息（Web 端与移动端通信的方法）
+    *
+	* successCallback: 移动端响应 '成功' 时执行的方法
+	* failureCallback: 移动端响应 '失败' 时执行的方法
+	* 'Test': 移动端用于接收消息的类的标识码
+	* 'test_method': 移动端接收消息并响应的方法名
+	* arguments: 传递到移动端的参数，数组类型
+	*/
 	exec(successCallback, failureCallback, 'Test', 'test_method', arguments);
 };

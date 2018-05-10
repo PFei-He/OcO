@@ -52,6 +52,7 @@
 
 #pragma mark - Cordova Plugin Methods (JavaScript -> Objective-C)
 
+// 接收 Web 端发送来的 'debug_mode' 消息并作出响应，command: 与 Web 端通信的响应对象
 - (void)debug_mode:(CDVInvokedUrlCommand *)command
 {
     self.debugMode = command.arguments[0];
@@ -59,15 +60,16 @@
     [self debugLog:@"debug_mode run", @"Debug Mode Open", nil];
 }
 
+// 接收 Web 端发送来的 'test_method' 消息并作出响应，command: 与 Web 端通信的响应对象
 - (void)test_method:(CDVInvokedUrlCommand *)command
 {
     // 获取 Web 端传递来的参数
     NSString *param = command.arguments[0];
     
-    // 响应成功的结果并回调到 Web 端
+    // 响应 '成功' 并回调到 Web 端
     [self sendStatus:CDVCommandStatus_ERROR message:@"SUCCESS" command:command];
 
-    // 响应失败的结果并回调到 Web 端
+    // 响应 '失败' 并回调到 Web 端
     [self sendStatus:CDVCommandStatus_ERROR message:@"ERROR" command:command];
 }
 
@@ -77,7 +79,7 @@
 
 #pragma mark - CDVPlugin Methods
 
-// 发送到JS的回调
+// 发送到 Web 端的回调
 - (void)sendStatus:(CDVCommandStatus)status message:(NSObject *)message command:(CDVInvokedUrlCommand *)command
 {
     [self sendStatus:status message:message keepCallback:NO command:command];
@@ -86,6 +88,7 @@
 // 发送到JS的回调
 - (void)sendStatus:(CDVCommandStatus)status message:(NSObject *)message keepCallback:(BOOL)yesOrNo command:(CDVInvokedUrlCommand *)command
 {
+    // 响应结果
     CDVPluginResult *pluginResult = nil;
     if ([message isKindOfClass:[NSString class]]) {
         pluginResult = [CDVPluginResult resultWithStatus:status messageAsString:(NSString *)message];
@@ -102,7 +105,11 @@
     } else {
         pluginResult = [CDVPluginResult resultWithStatus:status];
     }
+
+    // 保持响应
     [pluginResult setKeepCallbackAsBool:yesOrNo];
+
+    // 发送响应结果
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 

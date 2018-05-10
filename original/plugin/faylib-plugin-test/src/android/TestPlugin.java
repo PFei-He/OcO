@@ -59,9 +59,17 @@ public class TestPlugin extends CordovaPlugin {
 
     //region Cordova Plugin Methods (JavaScript -> Java)
 
+    /**
+    * 接收 Web 端消息的方法
+    *
+    * action: 消息名
+    * args: Web 端传递来的参数
+    * callbackContext: 与 Web 端通信的响应对象
+    */
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
 
+        // 接收 Web 端发送来的 'debug_mode' 消息并作出响应
         if (action.equals("debug_mode")) {
             debugMode = args.getBoolean(0);
 
@@ -70,6 +78,7 @@ public class TestPlugin extends CordovaPlugin {
             return true;
         }
 
+        // 接收 Web 端发送来的 'test_method' 消息并作出响应
         else if ("test_method".equals(action)) {
 
             // 获取 Web 端传递来的参数
@@ -98,6 +107,8 @@ public class TestPlugin extends CordovaPlugin {
     //region CordovaPlugin Methods
 
     private void send(PluginResult.Status status, Object message, boolean keepCallback, CallbackContext callbackContext) {
+
+        // 响应结果
         PluginResult pluginResult = null;
         if (message instanceof String) {
             pluginResult = new PluginResult(status, (String) message);
@@ -111,7 +122,11 @@ public class TestPlugin extends CordovaPlugin {
             pluginResult = new PluginResult(status, (float) message);
         }
         assert pluginResult != null;
+
+        // 保持响应
         pluginResult.setKeepCallback(keepCallback);
+
+        // 发送响应结果
         callbackContext.sendPluginResult(pluginResult);
     }
 
