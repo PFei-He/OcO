@@ -314,7 +314,7 @@ var exec = require('cordova/exec');
 
 test.testMethod = function(arguments, successCallback, failureCallback) {
 
-	/**
+    /**
     * 发送 'test_method' 消息（Web 端与移动端通信的方法）
     *
     * successCallback: 移动端响应 '成功' 时执行的方法
