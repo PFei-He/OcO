@@ -52,51 +52,13 @@ public class NativeActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_native);
+        setTitle("Native");
     }
 
     //endregion
 
 
     //region Events Management
-
-    public void closeMe(View v) {
-        finish();
-    }
-
-    public void requestNetwork(View v) {
-
-        // 创建请求队列（异步请求）
-        RequestQueue queue = Volley.newRequestQueue(this);
-
-        // 创建网络请求（发送GET请求）
-        JsonObjectRequest request = new JsonObjectRequest("http://www.weather.com.cn/data/sk/101010100.html", null, response -> {
-
-            // 请求结果状态码
-            Log.i("OcO", String.valueOf(statusCode));
-
-            Log.i("OcO", response.toString());
-        }, error -> {
-
-            // 请求结果状态码
-            Log.i("OcO", String.valueOf(error.networkResponse.statusCode));
-
-            Log.i("OcO", error.toString());
-        }) {// 重写网络响应的方法
-            @Override
-            protected Response<JSONObject> parseNetworkResponse(NetworkResponse response) {
-                statusCode = response.statusCode;
-                return super.parseNetworkResponse(response);
-            }
-        };
-
-        // 添加请求超时间隔（30000毫秒-30秒），重试次数1次（失败不再重试），规避次数1f
-        request.setRetryPolicy(new DefaultRetryPolicy(30000,
-                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-
-        // 添加请求到队列
-        queue.add(request);
-    }
 
     //endregion
 

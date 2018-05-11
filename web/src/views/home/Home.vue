@@ -24,7 +24,7 @@
 
 <template>
   <div class="home">
-    <navigation-bar>OcO</navigation-bar>
+    <navigation-bar>Hybrid</navigation-bar>
     <h1>{{ msg }}</h1>
     <button id="next" @click="pushNext">Next Page</button>
   </div>

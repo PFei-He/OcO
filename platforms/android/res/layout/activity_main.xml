@@ -27,22 +27,40 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff"
-    android:gravity="center|center_horizontal|center_vertical"
-    android:orientation="horizontal"
+    android:orientation="vertical"
+    android:rowCount="2"
+    android:columnCount="1"
     tools:context="top.faylib.oco.activity.MainActivity">
 
     <Button
         android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:background="@drawable/shape1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="6.66dp"
+        android:layout_marginLeft="6.66dp"
+        android:layout_marginRight="6.66dp"
+        android:layout_weight="1"
         android:onClick="openNative"
-        android:text="@string/open_native" />
+        android:text="@string/native_text"
+        android:textSize="20sp"
+        android:textAllCaps="false"
+        android:textColor="#FF9300" />
 
     <Button
         android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="openWeb"
-        android:text="@string/open_web" />
+        android:background="@drawable/shape2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="6.66dp"
+        android:layout_marginLeft="6.66dp"
+        android:layout_marginRight="6.66dp"
+        android:layout_marginBottom="6.66dp"
+        android:layout_weight="1"
+        android:onClick="openHybrid"
+        android:text="@string/hybrid_text"
+        android:textSize="20sp"
+        android:textAllCaps="false"
+        android:textColor="#FF9300" />
 
 </LinearLayout>

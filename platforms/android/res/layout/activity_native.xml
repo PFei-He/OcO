@@ -31,26 +31,4 @@
     android:orientation="horizontal"
     tools:context="top.faylib.oco.activity.NativeActivity">
 
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_weight="1"
-        android:onClick="closeMe"
-        android:background="#ffff00"
-        android:text="@string/close_me"
-        android:textColor="#ff7f00" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="20dp"
-        android:layout_weight="1"
-        android:onClick="requestNetwork"
-        android:background="#00ffff"
-        android:text="@string/request_network"
-        android:textColor="#007aff" />
-
 </LinearLayout>

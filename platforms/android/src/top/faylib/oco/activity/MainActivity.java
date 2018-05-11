@@ -50,7 +50,7 @@ public class MainActivity extends Activity {
         NativeActivity.start(this);
     }
 
-    public void openWeb(View v) {
+    public void openHybrid(View v) {
         WebActivity.start(this);
     }
 

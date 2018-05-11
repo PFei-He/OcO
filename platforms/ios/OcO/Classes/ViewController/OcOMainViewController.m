@@ -45,9 +45,9 @@
     [self performSegueWithIdentifier:@"native" sender:self];
 }
 
-- (IBAction)openWeb:(id)sender
+- (IBAction)openHybrid:(id)sender
 {
-    [self performSegueWithIdentifier:@"web" sender:self];
+    [self performSegueWithIdentifier:@"hybrid" sender:self];
 }
 
 

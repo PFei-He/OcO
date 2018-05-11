@@ -1,39 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<!--
-  Copyright (c) 2018 faylib.top
-
-  Permission is hereby granted, free of charge, to any person obtaining a copy
-  of this software and associated documentation files (the "Software"), to deal
-  in the Software without restriction, including without limitation the rights
-  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-  copies of the Software, and to permit persons to whom the Software is
-  furnished to do so, subject to the following conditions:
-
-  The above copyright notice and this permission notice shall be included in
-  all copies or substantial portions of the Software.
-
-  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-  THE SOFTWARE.
--->
-
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="KR3-0m-oEo">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="GWF-Qn-dom">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--OcO Native View Controller-->
+        <!--Navigation Controller-->
+        <scene sceneID="06r-7f-Z7d">
+            <objects>
+                <navigationController id="O9Q-Hq-e9D" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="0Gn-yh-4Ik">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.0" green="0.42352941179999998" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="0.60784313725490191" green="0.60784313725490191" blue="0.60784313725490191" alpha="1" colorSpace="calibratedRGB"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="LFm-W1-DlO" kind="relationship" relationship="rootViewController" id="2lc-5m-WyZ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fDb-GX-pFO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="886" y="-191"/>
+        </scene>
+        <!--Native-->
         <scene sceneID="6E6-Rs-zd8">
             <objects>
                 <viewController id="LFm-W1-DlO" customClass="OcONativeViewController" sceneMemberID="viewController">
@@ -43,12 +41,33 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="sgT-mH-wAg"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Native" id="DQr-AX-d9z"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uzp-hW-fRX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="886" y="-184"/>
+            <point key="canvasLocation" x="1681" y="-191"/>
         </scene>
-        <!--OcO Main View Controller-->
+        <!--Navigation Controller-->
+        <scene sceneID="8ow-iI-7Kh">
+            <objects>
+                <navigationController id="GWF-Qn-dom" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Qgh-iB-xnZ">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.40763346354166669" green="0.0" blue="0.4697536892361111" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="KR3-0m-oEo" kind="relationship" relationship="rootViewController" id="DKJ-MP-BBu"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qr4-mO-hV9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-750" y="117"/>
+        </scene>
+        <!--OcO-->
         <scene sceneID="Ddy-ug-KwL">
             <objects>
                 <viewController id="KR3-0m-oEo" customClass="OcOMainViewController" sceneMemberID="viewController">
@@ -56,39 +75,63 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vdx-5A-JC6">
-                                <rect key="frame" x="87.5" y="318" width="96" height="30"/>
-                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
-                                <state key="normal" title="OPEN NATIVE"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1oX-wG-nol">
+                                <rect key="frame" x="6.5" y="368.5" width="362" height="291.5"/>
+                                <color key="backgroundColor" red="0.30980392156862746" green="0.37254901960784315" blue="0.43529411764705883" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <state key="normal" title="I'm a hybrid app">
+                                    <color key="titleColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="openNative:" destination="uHO-vJ-Lmy" eventType="touchDown" id="lJe-Ke-aQC"/>
+                                    <action selector="openHybrid:" destination="KR3-0m-oEo" eventType="touchDown" id="nRo-gm-hKo"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1oX-wG-nol">
-                                <rect key="frame" x="191.5" y="318" width="77" height="30"/>
-                                <state key="normal" title="OPEN WEB"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vdx-5A-JC6">
+                                <rect key="frame" x="6.5" y="70.5" width="362" height="291.5"/>
+                                <color key="backgroundColor" red="0.0" green="0.42352941176470588" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="25"/>
+                                <state key="normal" title="I 'm a native app">
+                                    <color key="titleColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="openWeb:" destination="uHO-vJ-Lmy" eventType="touchDown" id="Hxg-ad-3K8"/>
+                                    <action selector="openNative:" destination="uHO-vJ-Lmy" eventType="touchDown" id="lJe-Ke-aQC"/>
+                                    <segue destination="O9Q-Hq-e9D" kind="presentation" identifier="native" id="B32-hy-XuC"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="vdx-5A-JC6" firstAttribute="centerX" secondItem="Hys-3n-pve" secondAttribute="centerX" constant="-52" id="7zv-bO-MOC"/>
-                            <constraint firstItem="1oX-wG-nol" firstAttribute="centerX" secondItem="Hys-3n-pve" secondAttribute="centerX" constant="42.5" id="UGN-8j-k6D"/>
-                            <constraint firstItem="1oX-wG-nol" firstAttribute="centerY" secondItem="Hys-3n-pve" secondAttribute="centerY" id="XNV-Vn-hVK"/>
-                            <constraint firstItem="vdx-5A-JC6" firstAttribute="centerY" secondItem="Hys-3n-pve" secondAttribute="centerY" id="Xe3-Rp-mhb"/>
+                            <constraint firstItem="vdx-5A-JC6" firstAttribute="height" secondItem="Hys-3n-pve" secondAttribute="height" multiplier="0.5" constant="-42" id="BDl-Fe-ggw"/>
+                            <constraint firstItem="YOY-Zj-RWW" firstAttribute="trailing" secondItem="1oX-wG-nol" secondAttribute="trailing" constant="6.6600000000000001" id="CeH-vi-NNm"/>
+                            <constraint firstItem="vdx-5A-JC6" firstAttribute="leading" secondItem="YOY-Zj-RWW" secondAttribute="leading" constant="6.6600000000000001" id="ECa-kN-hve"/>
+                            <constraint firstItem="1oX-wG-nol" firstAttribute="top" secondItem="vdx-5A-JC6" secondAttribute="bottom" constant="6.6600000000000001" id="FmQ-yr-fQT"/>
+                            <constraint firstItem="1oX-wG-nol" firstAttribute="height" secondItem="Hys-3n-pve" secondAttribute="height" multiplier="0.5" constant="-42" id="QOD-Ot-W8s"/>
+                            <constraint firstItem="1oX-wG-nol" firstAttribute="leading" secondItem="YOY-Zj-RWW" secondAttribute="leading" constant="6.6600000000000001" id="Qsz-dL-JAz"/>
+                            <constraint firstItem="YOY-Zj-RWW" firstAttribute="trailing" secondItem="vdx-5A-JC6" secondAttribute="trailing" constant="6.6600000000000001" id="jAh-Nx-jGQ"/>
+                            <constraint firstItem="vdx-5A-JC6" firstAttribute="top" secondItem="YOY-Zj-RWW" secondAttribute="top" constant="6.6600000000000001" id="v7F-jH-zLr"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="YOY-Zj-RWW"/>
                     </view>
+                    <navigationItem key="navigationItem" title="OcO" id="uDa-zH-12R"/>
                     <connections>
-                        <segue destination="LFm-W1-DlO" kind="presentation" identifier="native" id="HIQ-iY-pD9"/>
-                        <segue destination="6kS-yw-nEa" kind="presentation" identifier="web" id="gPb-Rt-P2a"/>
+                        <segue destination="6kS-yw-nEa" kind="presentation" identifier="hybrid" id="gPb-Rt-P2a"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uHO-vJ-Lmy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="119" y="119"/>
+            <point key="canvasLocation" x="-15.199999999999999" y="117.39130434782609"/>
         </scene>
         <!--OcO Web View Controller-->
         <scene sceneID="7DW-DP-EAn">

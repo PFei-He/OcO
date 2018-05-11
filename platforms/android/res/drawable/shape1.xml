@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 
 <!--
   Copyright (c) 2018 faylib.top
@@ -22,12 +22,10 @@
   THE SOFTWARE.
 -->
 
-<resources>
-    <string name="app_name">OcO</string>
-    <string name="launcher_name">@string/app_name</string>
-    <string name="activity_name">@string/launcher_name</string>
-    <string name="native_text">I\'m a native app</string>
-    <string name="hybrid_text">I\'m a hybrid app</string>
-    <string name="close_me">CLOSE ME</string>
-    <string name="request_network">REQUEST NETWORK!</string>
-</resources>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle" >
+
+    <corners android:radius="10dp" />
+    <solid android:color="#006C00" />
+
+</shape>
