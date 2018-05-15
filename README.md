@@ -65,7 +65,8 @@ Mac (macOS 10.13.3)
 Development Tools / 开发工具
 ---
 * `Web`<br>
-[IntelliJ IDEA](https://www.jetbrains.com/idea/)
+[IntelliJ IDEA](https://www.jetbrains.com/idea/)<br>
+[Sublime Text](https://www.sublimetext.com)
 
 * `Android`<br>
 [Android Studio](https://developer.android.com/studio/)
@@ -550,7 +551,6 @@ Root Path / 目录
 
 Library / 类库
 ---
-
 #### Path / 文件路径
 `/OcO/platforms/android/build.gradle`
 
@@ -621,7 +621,7 @@ shell.sed(/package [\w\.]*;/, 'package ' + pkg + '.activity' + ';', java_files[0
 
 Gradle
 ---
-解决 `Android Studio` 使用 `Gradle` 构建工程慢，从 [Gradle官网](https://gradle.org) 下载适用的版本，将zip包放入到 `/Users/username/.gradle/wrapper/dists/gradle-***-all/***/` (*** 表示版本号)目录下，重新打开工程，`Android Studio` 会自行解压安装。
+解决 `Android Studio` 使用 `Gradle` 构建工程慢，从 [Gradle官网](https://gradle.org) 下载适用的版本，将zip包放入到 `/Users/username/.gradle/wrapper/dists/gradle-*-all/*/` (* 表示版本号)目录下，重新打开工程，`Android Studio` 会自行解压安装。
 
 
 Java 8
