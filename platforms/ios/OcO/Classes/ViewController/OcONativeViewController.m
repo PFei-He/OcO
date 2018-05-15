@@ -21,7 +21,6 @@
 //
 
 #import "OcONativeViewController.h"
-#import <AFNetworking/AFNetworking.h>
 
 @interface OcONativeViewController ()
 
@@ -39,42 +38,6 @@
 
 
 #pragma mark - Events Management
-
-- (IBAction)closeMe:(id)sender
-{
-    [self dismissViewControllerAnimated:YES completion:NULL];
-}
-
-- (IBAction)requestNetwork:(id)sender
-{
-    // 创建网络请求
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    
-    // 添加请求超时间隔（30秒）
-    manager.requestSerializer.timeoutInterval = 30;
-    
-    // 添加 text/html 响应类型
-    manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
-    
-    // 发送GET请求
-    [manager GET:@"http://www.weather.com.cn/data/sk/101010100.html" parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-        
-        // 请求结果状态码
-        NSHTTPURLResponse *response = (NSHTTPURLResponse *)task.response;
-        NSInteger statusCode = [response statusCode];
-        NSLog(@"%ld", statusCode);
-        
-        NSLog(@"%@", responseObject);
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        
-        // 请求结果状态码
-        NSHTTPURLResponse *response = (NSHTTPURLResponse *)task.response;
-        NSInteger statusCode = [response statusCode];
-        NSLog(@"%ld", statusCode);
-        
-        NSLog(@"%@", error);
-    }];
-}
 
 
 #pragma mark - Memory Managements

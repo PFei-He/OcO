@@ -77,10 +77,10 @@ Development Tools / 开发工具
 Detail / 说明
 ---
 ### 构建工程必知
-为了方便传输，本工程已进行了简化处理，各种编译包和构建工具都已删除，运行时会报错，所以需要执行如下的 Shell 脚本将工程完善
-1. android-permission  获取构建 Android 工程的权限，需要输入系统管理员密码
-2. npm-install  安装 npm
-3. vue-build  Web 端代码编译及转传至移动端
+为了方便传输，本工程已进行了简化处理，各种编译包和构建工具都已删除，运行时会报错，所以需要执行如下的 Shell 脚本将工程完善。
+1. `android-permission`  获取构建 Android 工程的权限，需要输入系统管理员密码
+2. `npm-install`  安装 npm
+3. `vue-build`  Web 端代码编译及转传至移动端
 
 
 ### Placeholder / 占位符文件
@@ -440,7 +440,7 @@ Vue
 
 Root Path / 目录
 ---
-`/OcO/web`
+`/OcO/web/`
 
 
 Install / 安装
@@ -545,7 +545,7 @@ Android
 
 Root Path / 目录
 ---
-`OcO/platforms/android`
+`OcO/platforms/android/`
 
 
 Library / 类库
@@ -644,7 +644,7 @@ iOS
 
 Root Path / 目录
 ---
-`OcO/platforms/ios`
+`OcO/platforms/ios/`
 
 
 Library / 类库
@@ -738,7 +738,7 @@ Shell
 
 Root Path / 目录
 ---
-`/OcO/shell`
+`/OcO/shell/`
 
 
 Detail / 说明
