@@ -89,7 +89,7 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="openHybrid:" destination="uHO-vJ-Lmy" eventType="touchDown" id="ksD-p1-p5P"/>
+                                    <action selector="openHybrid:" destination="uHO-vJ-Lmy" eventType="touchDown" id="QTh-wO-Kmc"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vdx-5A-JC6">

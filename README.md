@@ -25,9 +25,6 @@ OcO/
     ../hooks/
     LICENSE                     // 开源证书（ MIT ）
     ../node_modules/            // npm 目录，存放构建工程需要的工具
-    ../original/                // 资源文件夹，用于存放工程用到的所有源文件
-        ../image/               // 存放图片
-        ../plugin/              // 存放自定义插件
     package.json                // 工程配置文件，构建工程时会使用此文件更新 config.xml 的内容
     ../platforms/               // 移动端文件夹
         ../android/             // Android 端根目录
@@ -43,6 +40,9 @@ OcO/
     ../res/                     // 资源文件夹，用于存放应用的 icon 图片，splash screen 图片
         ../icon/                // icon 图片
         ../screen/              // splash screen 图片
+    ../resources/               // 资源文件夹，用于存放工程用到的所有源文件
+        ../image/               // 存放图片
+        ../plugin/              // 存放自定义插件
     ../shell/                   // 存放 Shell 脚本文件
     ../web/                     // Web 端根目录（Vue 工程目录）
         ../bulid/               // Vue 的构建工具包

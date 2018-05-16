@@ -27,8 +27,22 @@ path=$(dirname $_)
 path=${path/\./$(pwd)}
 cd $path
 
+# 进入 Cordova 目录（工程根目录）
+cd ../
+
+# 移除占位符文件
+rm -rf original/image/Placeholder
+rm -rf platforms/android/assets/Placeholder
+rm -rf platforms/android/libs/Placeholder
+rm -rf platforms/android/src/top/faylib/oco/base/Placeholder
+rm -rf platforms/android/src/top/faylib/oco/model/Placeholder
+rm -rf platforms/ios/OcO/Classes/Base/Placeholder
+rm -rf platforms/ios/OcO/Classes/Model/Placeholder
+rm -rf web/static/Placeholder
+rm -rf www/Placeholder
+
 # 为 Android 工程获得权限
-sudo chmod -R a+rwx ../
+sudo chmod -R a+rwx .
 
 # 进入 Gradle 目录
 cd /Applications/Android\ Studio.app/Contents/gradle/

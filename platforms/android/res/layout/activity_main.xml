@@ -28,8 +28,6 @@
     android:layout_height="match_parent"
     android:background="#ffffff"
     android:orientation="vertical"
-    android:rowCount="2"
-    android:columnCount="1"
     tools:context="top.faylib.oco.activity.MainActivity">
 
     <Button

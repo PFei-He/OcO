@@ -30,6 +30,17 @@ cd $path
 # 进入 Cordova 目录（工程根目录）
 cd ../
 
+# 移除占位符文件
+rm -rf original/image/Placeholder
+rm -rf platforms/android/assets/Placeholder
+rm -rf platforms/android/libs/Placeholder
+rm -rf platforms/android/src/top/faylib/oco/base/Placeholder
+rm -rf platforms/android/src/top/faylib/oco/model/Placeholder
+rm -rf platforms/ios/OcO/Classes/Base/Placeholder
+rm -rf platforms/ios/OcO/Classes/Model/Placeholder
+rm -rf web/static/Placeholder
+rm -rf www/Placeholder
+
 # 移除所有 npm
 rm -rf node_modules/
 rm -rf package-lock.json

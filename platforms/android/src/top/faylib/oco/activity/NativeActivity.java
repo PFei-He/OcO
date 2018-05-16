@@ -43,9 +43,6 @@ import top.faylib.oco.R;
 
 public class NativeActivity extends Activity {
 
-    // 请求结果状态码
-    private int statusCode;
-
     //region Views Life Cycle
 
     @Override

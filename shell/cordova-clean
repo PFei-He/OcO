@@ -33,17 +33,27 @@ cd ../
 # 清理已生成的包文件
 cordova clean
 
+# 移除占位符文件
+rm -rf original/image/Placeholder
+rm -rf platforms/android/assets/Placeholder
+rm -rf platforms/android/libs/Placeholder
+rm -rf platforms/android/src/top/faylib/oco/base/Placeholder
+rm -rf platforms/android/src/top/faylib/oco/model/Placeholder
+rm -rf platforms/ios/OcO/Classes/Base/Placeholder
+rm -rf platforms/ios/OcO/Classes/Model/Placeholder
+rm -rf web/static/Placeholder
+rm -rf www/Placeholder
+
 # 删除残留文件和文件夹
+rm -rf original/image/Placeholder
 rm -rf platforms/android/android.iml
 rm -rf platforms/android/build/
 rm -rf platforms/android/local.properties
 rm -rf platforms/android/.idea/
 rm -rf platforms/android/.gradle/
-rm -rf .DS_Store
 rm -rf web/.idea/
 rm -rf www/index.html
 rm -rf www/static/
-rm -rf www/Placeholder
 
 # 退出脚本
 exit 0

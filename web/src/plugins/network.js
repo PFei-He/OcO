@@ -33,6 +33,13 @@ export default {
     cordova.exec(null, null, 'Network', 'debug_mode', [openOrNot])
   },
   /**
+   * 设置超时时隔
+   * @param millisecond 时隔（毫秒）
+   */
+  timeoutInterval (millisecond) {
+    cordova.exec(null, null, 'Network', 'timeout_interval', [millisecond])
+  },
+  /**
    * 发送网络请求
    * @param method 请求方法
    * @param url 请求接口
@@ -43,16 +50,16 @@ export default {
   sendWithMethod (method, url, params, successCallback, errorCallback) {
     switch (method) {
       case 'GET':
-        cordova.exec(successCallback, errorCallback, 'Network', 'request_get', [url, params, 60000, 1])
+        cordova.exec(successCallback, errorCallback, 'Network', 'request_get', [url, params, 1])
         break
       case 'POST':
-        cordova.exec(successCallback, errorCallback, 'Network', 'request_post', [url, params, 60, 1])
+        cordova.exec(successCallback, errorCallback, 'Network', 'request_post', [url, params, 1])
         break
-      case 'POST_FILE':
-        cordova.exec(successCallback, errorCallback, 'Network', 'request_post_file', [url, params, 60, 1])
-        break
+      // case 'POST_FILE':
+      //   cordova.exec(successCallback, errorCallback, 'Network', 'request_post_file', [url, params, 60000, 1])
+      //   break
       case 'DELETE':
-        cordova.exec(successCallback, errorCallback, 'Network', 'request_delete', [url, params, 60, 1])
+        cordova.exec(successCallback, errorCallback, 'Network', 'request_delete', [url, params, 1])
         break
     }
   }

@@ -51,6 +51,9 @@ public class NetworkPlugin extends CordovaPlugin {
     // 创建请求队列
     private RequestQueue queue = null;
 
+    // 超时时隔
+    private int timeoutInterval;
+
     // 请求结果状态码
     private int statusCode;
 
@@ -75,7 +78,7 @@ public class NetworkPlugin extends CordovaPlugin {
     private void debugLog(String ... strings) {
         if (debugMode) {
             for (String string : strings) {
-                Log.v("OcO", "[ NETWORK ][ DEBUG ] " + string);
+                Log.i("OcO", "[ NETWORK ][ DEBUG ] " + string);
             }
         }
     }
@@ -86,20 +89,37 @@ public class NetworkPlugin extends CordovaPlugin {
      * @param method 请求方法
      * @param url 请求地址
      * @param params 请求参数
-     * @param timeout 超时间隔
      * @param retryTimes 请求失败重试次数
      * @param callbackContext JavaScript回调
      */
-    private void send(int method, String url, JSONObject params, int timeout, int retryTimes, CallbackContext callbackContext) {
+    private void send(int method, String url, JSONObject params, int retryTimes, CallbackContext callbackContext) {
 
-        if (debugMode) {// 调试信息
+        if (timeoutInterval == 0) {
+            timeoutInterval = 120000;
+        }
+
+        if (debugMode) { // 调试信息
             Log.i("OcO", "[ OcO ][ NETWORK ] Request sending with arguments.");
             Log.i("OcO", "[ OcO ][ FRAMEWORK ] SYSTEM");
-            Log.i("OcO", "[ OcO ][ METHOD ] " + String.valueOf(method));
+
+            switch (method) {
+                case 0:
+                    Log.i("OcO", "[ OcO ][ METHOD ] GET");
+                    break;
+                case 1:
+                    Log.i("OcO", "[ OcO ][ METHOD ] POST");
+                    break;
+                case 3:
+                    Log.i("OcO", "[ OcO ][ METHOD ] DELETE");
+                    break;
+                default:
+                    break;
+            }
+
             Log.i("OcO", "[ OcO ][ URL ] " + url);
             Log.i("OcO", "[ OcO ][ PARAMS ] " + params.toString());
             Log.i("OcO", "[ OcO ][ RETRY ] " + String.valueOf(retryTimes));
-            Log.i("OcO", "[ OcO ][ TIMEOUT ] " + String.valueOf(timeout));
+            Log.i("OcO", "[ OcO ][ TIMEOUT INTERVAL ] " + String.valueOf(timeoutInterval/1000));
         }
 
         retryTimes--;
@@ -110,7 +130,7 @@ public class NetworkPlugin extends CordovaPlugin {
             if (finalRetryTimes < 1) {
                 callback(statusCode, error, callbackContext);
             } else {
-                send(method, url, params, timeout, finalRetryTimes, callbackContext);
+                send(method, url, params, finalRetryTimes, callbackContext);
             }
         }) {// 重写解析服务器返回的数据
             @Override
@@ -121,7 +141,7 @@ public class NetworkPlugin extends CordovaPlugin {
         };
 
         // 添加请求超时间隔
-        request.setRetryPolicy(new DefaultRetryPolicy(timeout,
+        request.setRetryPolicy(new DefaultRetryPolicy(timeoutInterval,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
@@ -190,30 +210,50 @@ public class NetworkPlugin extends CordovaPlugin {
             return true;
         }
 
+        //  Web 调用 -> 设置超时时隔
+        else if ("timeout_interval".equals(action)) {
+            timeoutInterval = args.getInt(0);
+
+            return true;
+        }
+
         // Web 调用 -> 发送 GET 请求
         else if ("request_get".equals(action)) {
-            send(Request.Method.GET, args.getString(0), (args.optJSONObject(1) != null) ? args.getJSONObject(1) : new JSONObject(), args.getInt(2), args.getInt(3), callbackContext);
+            send(Request.Method.GET, args.getString(0),
+                    (args.optJSONObject(1) != null) ? args.getJSONObject(1) : new JSONObject(),
+                    args.getInt(2),
+                    callbackContext);
             
             return true;
         }
 
         // Web 调用 -> 发送 POST 请求
         else if ("request_post".equals(action)) {
-            send(Request.Method.POST, args.getString(0), (args.optJSONObject(1) != null) ? args.getJSONObject(1) : new JSONObject(), args.getInt(2), args.getInt(3), callbackContext);
+            send(Request.Method.POST, args.getString(0),
+                    (args.optJSONObject(1) != null) ? args.getJSONObject(1) : new JSONObject(),
+                    args.getInt(2),
+                    callbackContext);
             
             return true;
         }
 
         // Web 调用 -> 发送 POST 请求带参数
-        else if ("request_post_file".equals(action)) {
-            send(Request.Method.POST, args.getString(0), (args.optJSONObject(1) != null) ? args.getJSONObject(1) : new JSONObject(), args.getInt(2), args.getInt(3), callbackContext);
-            
-            return true;
-        }
+//        else if ("request_post_file".equals(action)) {
+//            send(Request.Method.POST, args.getString(0),
+//                    (args.optJSONObject(1) != null) ? args.getJSONObject(1) : new JSONObject(),
+//                    args.getInt(2),
+//                    args.getInt(3),
+//                    callbackContext);
+//
+//            return true;
+//        }
 
         // Web 调用 -> 发送 DELETE 请求
         else if ("request_delete".equals(action)) {
-            send(Request.Method.DELETE, args.getString(0), (args.optJSONObject(1) != null) ? args.getJSONObject(1) : new JSONObject(), args.getInt(2), args.getInt(3), callbackContext);
+            send(Request.Method.DELETE, args.getString(0),
+                    (args.optJSONObject(1) != null) ? args.getJSONObject(1) : new JSONObject(),
+                    args.getInt(2),
+                    callbackContext);
             
             return true;
         }

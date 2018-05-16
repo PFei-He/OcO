@@ -37,6 +37,8 @@ Vue.config.productionTip = false
 window.document.addEventListener('deviceready', function () { // 监听设备状态，准备好时加载WebApp
   // 打开网络请求调试模式
   Network.debugMode(true)
+  // 设置超时时隔
+  Network.timeoutInterval(60000)
   // 新建Vue实例
   new Vue({
     el: '#app',
