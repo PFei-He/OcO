@@ -37,13 +37,13 @@
 - (void)debugLog:(NSString *)strings, ...
 {
     if (self.debugMode) {
-        NSLog(@"[ ADAPTER ][ DEBUG ] %@", strings);
+        NSLog(@"[ OcO ][ ADAPTER ][ DEBUG ] %@", strings);
         va_list list;
         va_start(list, strings);
         while (strings != nil) {
             NSString *string = va_arg(list, NSString *);
             if (!string) break;
-            NSLog(@"[ ADAPTER ][ DEBUG ] %@", string);
+            NSLog(@"[ OcO ][ ADAPTER ][ DEBUG ] %@", string);
         }
         va_end(list);
     }

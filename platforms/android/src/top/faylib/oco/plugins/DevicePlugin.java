@@ -51,7 +51,7 @@ public class DevicePlugin extends CordovaPlugin {
     private void debugLog(String ... strings) {
         if (debugMode) {
             for (String string : strings) {
-                Log.v("OcO", "[ DEVICE ][ DEBUG ] " + string);
+                Log.v("OcO", "[ OcO ][ DEVICE ][ DEBUG ] " + string);
             }
         }
     }

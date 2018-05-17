@@ -81,7 +81,7 @@ public class NetworkPlugin extends CordovaPlugin {
     private void debugLog(String ... strings) {
         if (debugMode) {
             for (String string : strings) {
-                Log.i("OcO", "[ NETWORK ][ DEBUG ] " + string);
+                Log.i("OcO", "[ OcO ][ NETWORK ][ DEBUG ] " + string);
             }
         }
     }

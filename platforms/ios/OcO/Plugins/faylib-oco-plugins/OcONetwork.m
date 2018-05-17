@@ -83,13 +83,13 @@ typedef NS_ENUM(NSUInteger, OcONetworkRequestMethod) {
 - (void)debugLog:(NSString *)strings, ...
 {
     if (self.debugMode) {
-        NSLog(@"[ NETWORK ][ DEBUG ] %@", strings);
+        NSLog(@"[ OcO ][ NETWORK ][ DEBUG ] %@", strings);
         va_list list;
         va_start(list, strings);
         while (strings != nil) {
             NSString *string = va_arg(list, NSString *);
             if (!string) break;
-            NSLog(@"[ NETWORK ][ DEBUG ] %@", string);
+            NSLog(@"[ OcO ][ NETWORK ][ DEBUG ] %@", string);
         }
         va_end(list);
     }
