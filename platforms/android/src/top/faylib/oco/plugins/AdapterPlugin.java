@@ -49,7 +49,7 @@ public class AdapterPlugin extends CordovaPlugin {
     private void debugLog(String ... strings) {
         if (debugMode) {
             for (String string : strings) {
-                Log.v("OcO", "[ OcO ][ ADAPTER ][ DEBUG ] " + string);
+                Log.i("OcO", "[ OcO ][ ADAPTER ][ DEBUG ] " + string);
             }
         }
     }

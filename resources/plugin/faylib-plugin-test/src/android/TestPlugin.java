@@ -49,7 +49,7 @@ public class TestPlugin extends CordovaPlugin {
     private void debugLog(String ... strings) {
         if (debugMode) {
             for (String string : strings) {
-                Log.v("FAYLIB", "[ FAYLIB ][ DEBUG ] " + string);
+                Log.i("FAYLIB", "[ FAYLIB ][ DEBUG ] " + string);
             }
         }
     }
