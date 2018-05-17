@@ -67,6 +67,7 @@ typedef NS_ENUM(NSUInteger, OcONetworkRequestMethod) {
     _timeoutInterval = timeoutInterval;
 }
 
+// 重试次数
 - (NSInteger)retryTimes
 {
     if (_retryTimes == 0) {
