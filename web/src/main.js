@@ -38,7 +38,9 @@ window.document.addEventListener('deviceready', function () { // 监听设备状
   // 打开网络请求调试模式
   Network.debugMode(true)
   // 设置超时时隔
-  Network.timeoutInterval(60000)
+  // Network.timeoutInterval(60000)
+  // 设置重试次数
+  // Network.retryTimes(1)
   // 新建Vue实例
   new Vue({
     el: '#app',

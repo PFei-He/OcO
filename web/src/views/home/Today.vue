@@ -44,7 +44,7 @@
     },
     created () {
       var global = this
-      Network.sendWithMethod('GET', 'http://www.weather.com.cn/data/sk/101010100.html', null, function (result) {
+      Network.GET('http://www.weather.com.cn/data/sk/101010100.html', null, function (result) {
         global.msg = result
       }, function (error) {
         console.log(error)

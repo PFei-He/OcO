@@ -52,7 +52,10 @@ public class NetworkPlugin extends CordovaPlugin {
     private RequestQueue queue = null;
 
     // 超时时隔
-    private int timeoutInterval;
+    private int timeoutInterval = 120000;
+
+    // 重试次数
+    private int retryTimes = 1;
 
     // 请求结果状态码
     private int statusCode;
@@ -94,13 +97,8 @@ public class NetworkPlugin extends CordovaPlugin {
      */
     private void send(int method, String url, JSONObject params, int retryTimes, CallbackContext callbackContext) {
 
-        if (timeoutInterval == 0) {
-            timeoutInterval = 120000;
-        }
-
         if (debugMode) { // 调试信息
             Log.i("OcO", "[ OcO ][ NETWORK ] Request sending with arguments.");
-            Log.i("OcO", "[ OcO ][ FRAMEWORK ] SYSTEM");
 
             switch (method) {
                 case 0:
@@ -118,19 +116,20 @@ public class NetworkPlugin extends CordovaPlugin {
 
             Log.i("OcO", "[ OcO ][ URL ] " + url);
             Log.i("OcO", "[ OcO ][ PARAMS ] " + params.toString());
-            Log.i("OcO", "[ OcO ][ RETRY ] " + String.valueOf(retryTimes));
+            Log.i("OcO", "[ OcO ][ RETRY TIMES ] " + String.valueOf(retryTimes));
             Log.i("OcO", "[ OcO ][ TIMEOUT INTERVAL ] " + String.valueOf(timeoutInterval/1000));
         }
 
         retryTimes--;
-        int finalRetryTimes = retryTimes;
+        int count = retryTimes;
+
         JsonObjectRequest request = new JsonObjectRequest(method, url, params, response -> {
             callback(statusCode, response, callbackContext);
         }, error -> {
-            if (finalRetryTimes < 1) {
+            if (count < 1) {
                 callback(statusCode, error, callbackContext);
             } else {
-                send(method, url, params, finalRetryTimes, callbackContext);
+                send(method, url, params, count, callbackContext);
             }
         }) {// 重写解析服务器返回的数据
             @Override
@@ -206,14 +205,18 @@ public class NetworkPlugin extends CordovaPlugin {
         if ("debug_mode".equals(action)) {
             debugMode = args.getBoolean(0);
             debugLog("debug_mode run", "Debug Mode Open");
-
             return true;
         }
 
         //  Web 调用 -> 设置超时时隔
         else if ("timeout_interval".equals(action)) {
             timeoutInterval = args.getInt(0);
+            return true;
+        }
 
+        // Web 调用 -> 设置重试次数
+        else if ("retry_times".equals(action)) {
+            retryTimes = args.getInt(0);
             return true;
         }
 
@@ -221,9 +224,8 @@ public class NetworkPlugin extends CordovaPlugin {
         else if ("request_get".equals(action)) {
             send(Request.Method.GET, args.getString(0),
                     (args.optJSONObject(1) != null) ? args.getJSONObject(1) : new JSONObject(),
-                    args.getInt(2),
+                    retryTimes,
                     callbackContext);
-            
             return true;
         }
 
@@ -231,30 +233,17 @@ public class NetworkPlugin extends CordovaPlugin {
         else if ("request_post".equals(action)) {
             send(Request.Method.POST, args.getString(0),
                     (args.optJSONObject(1) != null) ? args.getJSONObject(1) : new JSONObject(),
-                    args.getInt(2),
+                    retryTimes,
                     callbackContext);
-            
             return true;
         }
-
-        // Web 调用 -> 发送 POST 请求带参数
-//        else if ("request_post_file".equals(action)) {
-//            send(Request.Method.POST, args.getString(0),
-//                    (args.optJSONObject(1) != null) ? args.getJSONObject(1) : new JSONObject(),
-//                    args.getInt(2),
-//                    args.getInt(3),
-//                    callbackContext);
-//
-//            return true;
-//        }
 
         // Web 调用 -> 发送 DELETE 请求
         else if ("request_delete".equals(action)) {
             send(Request.Method.DELETE, args.getString(0),
                     (args.optJSONObject(1) != null) ? args.getJSONObject(1) : new JSONObject(),
-                    args.getInt(2),
+                    retryTimes,
                     callbackContext);
-            
             return true;
         }
         
