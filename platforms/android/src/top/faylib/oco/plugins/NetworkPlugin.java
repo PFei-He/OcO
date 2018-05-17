@@ -48,7 +48,7 @@ public class NetworkPlugin extends CordovaPlugin {
     // 调试模式
     private boolean debugMode = false;
 
-    // 创建请求队列
+    // 请求队列
     private RequestQueue queue = null;
 
     // 超时时隔
