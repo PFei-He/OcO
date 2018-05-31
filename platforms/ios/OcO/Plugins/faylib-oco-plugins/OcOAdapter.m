@@ -37,13 +37,13 @@
 - (void)debugLog:(NSString *)strings, ...
 {
     if (self.debugMode) {
-        NSLog(@"[ OcO ][ ADAPTER ][ DEBUG ] %@", strings);
+        NSLog(@"[ OcO ][ ADAPTER ][ DEBUG ]%@.", strings);
         va_list list;
         va_start(list, strings);
         while (strings != nil) {
             NSString *string = va_arg(list, NSString *);
             if (!string) break;
-            NSLog(@"[ OcO ][ ADAPTER ][ DEBUG ] %@", string);
+            NSLog(@"[ OcO ][ ADAPTER ][ DEBUG ]%@.", string);
         }
         va_end(list);
     }
@@ -57,28 +57,12 @@
 {
     [self.commandDelegate runInBackground:^{
         self.debugMode = ([command.arguments[0] isEqual:@0]) ? NO : YES;
-        [self debugLog:@"debug_mode run", @"Debug Mode Open", nil];
-    }];
-}
-
-// Web 调用 -> 关闭 Web 页面
-- (void)dismiss_web:(CDVInvokedUrlCommand *)command
-{
-    [self.viewController dismissViewControllerAnimated:YES completion:NULL];
-    [self.commandDelegate runInBackground:^{
-        [self webDismissed];
-        [self debugLog:@"dismiss_web run", nil];
+        [self debugLog:[NSString stringWithFormat:@" '%@' run", NSStringFromSelector(_cmd)], @" Debug Mode Open", nil];
     }];
 }
 
 
 #pragma mark - Cordova Plugin Methods (Objective-C -> JavaScript)
-
-// iOS 调用 -> Web 页面已关闭
-- (void)webDismissed
-{
-    [self.commandDelegate evalJs:@"web_dismissed()"];
-}
 
 
 #pragma mark - CDVPlugin Methods

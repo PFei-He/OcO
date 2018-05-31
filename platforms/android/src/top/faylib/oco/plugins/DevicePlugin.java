@@ -51,7 +51,7 @@ public class DevicePlugin extends CordovaPlugin {
     private void debugLog(String ... strings) {
         if (debugMode) {
             for (String string : strings) {
-                Log.i("OcO", "[ OcO ][ DEVICE ][ DEBUG ] " + string);
+                Log.i("OcO", "[ OcO ][ NETWORK ][ DEBUG ]" + string + ".");
             }
         }
     }
@@ -65,19 +65,9 @@ public class DevicePlugin extends CordovaPlugin {
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
 
         // Web 调用 -> 调试模式开关
-        if (action.equals("debug_mode")) {
+        if ("debug_mode".equals(action)) {
             debugMode = args.getBoolean(0);
-            debugLog("debug_mode run", "Debug Mode Open");
-
-            return true;
-        }
-
-        // Web 调用 -> 获取设备系统
-        else if (action.equals("device_system")) {
-            callbackContext.success("Android");
-            send(PluginResult.Status.OK, 2, false, callbackContext);
-            debugLog("device_system run");
-
+            debugLog(" '" + action + "' run", " Debug Mode Open");
             return true;
         }
 

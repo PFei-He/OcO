@@ -37,13 +37,13 @@
 - (void)debugLog:(NSString *)strings, ...
 {
     if (self.debugMode) {
-        NSLog(@"[ OcO ][ DEVICE ][ DEBUG ] %@", strings);
+        NSLog(@"[ OcO ][ DEVICE ][ DEBUG ]%@.", strings);
         va_list list;
         va_start(list, strings);
         while (strings != nil) {
             NSString *string = va_arg(list, NSString *);
             if (!string) break;
-            NSLog(@"[ OcO ][ DEVICE ][ DEBUG ] %@", string);
+            NSLog(@"[ OcO ][ DEVICE ][ DEBUG ]%@.", string);
         }
         va_end(list);
     }
@@ -57,16 +57,7 @@
 {
     [self.commandDelegate runInBackground:^{
         self.debugMode = ([command.arguments[0] isEqual:@0]) ? NO : YES;
-        [self debugLog:@"debug_mode run", @"Debug Mode Open", nil];
-    }];
-}
-
-// Web 调用 -> 获取设备系统
-- (void)device_system:(CDVInvokedUrlCommand *)command
-{
-    [self.commandDelegate runInBackground:^{
-        [self sendStatus:CDVCommandStatus_OK message:@"iOS" command:command];
-        [self debugLog:@"device_system run", nil];
+        [self debugLog:[NSString stringWithFormat:@" '%@' run", NSStringFromSelector(_cmd)], @" Debug Mode Open.", nil];
     }];
 }
 

@@ -30,39 +30,39 @@ cd $path
 cd ../
 
 # 移除占位符文件
-sudo rm -rf original/image/Placeholder
-sudo rm -rf platforms/android/assets/Placeholder
-sudo rm -rf platforms/android/libs/Placeholder
-sudo rm -rf platforms/android/res/drawable-land-hdpi/Placeholder
-sudo rm -rf platforms/android/res/drawable-land-ldpi/Placeholder
-sudo rm -rf platforms/android/res/drawable-land-mdpi/Placeholder
-sudo rm -rf platforms/android/res/drawable-land-xhdpi/Placeholder
-sudo rm -rf platforms/android/res/drawable-land-xxhdpi/Placeholder
-sudo rm -rf platforms/android/res/drawable-land-xxxhdpi/Placeholder
-sudo rm -rf platforms/android/res/drawable-port-hdpi/Placeholder
-sudo rm -rf platforms/android/res/drawable-port-ldpi/Placeholder
-sudo rm -rf platforms/android/res/drawable-port-mdpi/Placeholder
-sudo rm -rf platforms/android/res/drawable-port-xhdpi/Placeholder
-sudo rm -rf platforms/android/res/drawable-port-xxhdpi/Placeholder
-sudo rm -rf platforms/android/res/drawable-port-xxxhdpi/Placeholder
-sudo rm -rf platforms/android/res/mipmap-hdpi/Placeholder
-sudo rm -rf platforms/android/res/mipmap-ldpi/Placeholder
-sudo rm -rf platforms/android/res/mipmap-mdpi/Placeholder
-sudo rm -rf platforms/android/res/mipmap-xhdpi/Placeholder
-sudo rm -rf platforms/android/res/mipmap-xxhdpi/Placeholder
-sudo rm -rf platforms/android/res/mipmap-xxxhdpi/Placeholder
-sudo rm -rf platforms/android/src/top/faylib/oco/base/Placeholder
-sudo rm -rf platforms/android/src/top/faylib/oco/model/Placeholder
-sudo rm -rf platforms/ios/OcO/Classes/Base/Placeholder
-sudo rm -rf platforms/ios/OcO/Classes/Model/Placeholder
-sudo rm -rf web/static/Placeholder
-sudo rm -rf www/Placeholder
+rm -rf original/image/Placeholder
+rm -rf platforms/android/assets/Placeholder
+rm -rf platforms/android/libs/Placeholder
+rm -rf platforms/android/res/drawable-land-hdpi/Placeholder
+rm -rf platforms/android/res/drawable-land-ldpi/Placeholder
+rm -rf platforms/android/res/drawable-land-mdpi/Placeholder
+rm -rf platforms/android/res/drawable-land-xhdpi/Placeholder
+rm -rf platforms/android/res/drawable-land-xxhdpi/Placeholder
+rm -rf platforms/android/res/drawable-land-xxxhdpi/Placeholder
+rm -rf platforms/android/res/drawable-port-hdpi/Placeholder
+rm -rf platforms/android/res/drawable-port-ldpi/Placeholder
+rm -rf platforms/android/res/drawable-port-mdpi/Placeholder
+rm -rf platforms/android/res/drawable-port-xhdpi/Placeholder
+rm -rf platforms/android/res/drawable-port-xxhdpi/Placeholder
+rm -rf platforms/android/res/drawable-port-xxxhdpi/Placeholder
+rm -rf platforms/android/res/mipmap-hdpi/Placeholder
+rm -rf platforms/android/res/mipmap-ldpi/Placeholder
+rm -rf platforms/android/res/mipmap-mdpi/Placeholder
+rm -rf platforms/android/res/mipmap-xhdpi/Placeholder
+rm -rf platforms/android/res/mipmap-xxhdpi/Placeholder
+rm -rf platforms/android/res/mipmap-xxxhdpi/Placeholder
+rm -rf platforms/android/src/top/faylib/oco/base/Placeholder
+rm -rf platforms/android/src/top/faylib/oco/model/Placeholder
+rm -rf platforms/ios/OcO/Classes/Base/Placeholder
+rm -rf platforms/ios/OcO/Classes/Model/Placeholder
+rm -rf web/static/Placeholder
+rm -rf www/Placeholder
 
 # 移除所有 npm
-sudo rm -rf node_modules/
-sudo rm -rf package-lock.json
-sudo rm -rf web/node_modules/
-sudo rm -rf web/package-lock.json
+rm -rf node_modules/
+rm -rf package-lock.json
+rm -rf web/node_modules/
+rm -rf web/package-lock.json
 
 # 退出脚本
 exit 0

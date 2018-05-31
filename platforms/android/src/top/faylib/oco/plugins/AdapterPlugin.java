@@ -49,7 +49,7 @@ public class AdapterPlugin extends CordovaPlugin {
     private void debugLog(String ... strings) {
         if (debugMode) {
             for (String string : strings) {
-                Log.i("OcO", "[ OcO ][ ADAPTER ][ DEBUG ] " + string);
+                Log.i("OcO", "[ OcO ][ NETWORK ][ DEBUG ]" + string + ".");
             }
         }
     }
@@ -63,19 +63,9 @@ public class AdapterPlugin extends CordovaPlugin {
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
 
         // Web 调用 -> 调试模式开关
-        if (action.equals("debug_mode")) {
+        if ("debug_mode".equals(action)) {
             debugMode = args.getBoolean(0);
-            debugLog("debug_mode run", "Debug Mode Open");
-
-            return true;
-        }
-
-        // Web 调用 -> 关闭 Web 页面
-        else if (action.equals("dismiss_web")) {
-            cordova.getActivity().finish();
-            webDismissed();
-            debugLog("dismiss_web run");
-
+            debugLog(" '" + action + "' run", " Debug Mode Open");
             return true;
         }
 
@@ -86,11 +76,6 @@ public class AdapterPlugin extends CordovaPlugin {
 
 
     //region Cordova Plugin Methods (Java -> JavaScript)
-
-    // Android 调用 -> Web 页面已关闭
-    private void webDismissed() {
-        cordova.getActivity().runOnUiThread(() -> webView.loadUrl("javascript:web_dismissed()"));
-    }
 
     //endregion
 

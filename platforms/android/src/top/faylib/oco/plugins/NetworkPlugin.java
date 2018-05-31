@@ -81,7 +81,7 @@ public class NetworkPlugin extends CordovaPlugin {
     private void debugLog(String ... strings) {
         if (debugMode) {
             for (String string : strings) {
-                Log.i("OcO", "[ OcO ][ NETWORK ][ DEBUG ] " + string);
+                Log.i("OcO", "[ OcO ][ NETWORK ][ DEBUG ]" + string + ".");
             }
         }
     }
@@ -98,26 +98,23 @@ public class NetworkPlugin extends CordovaPlugin {
     private void send(int method, String url, JSONObject params, int retryTimes, CallbackContext callbackContext) {
 
         if (debugMode) { // 调试信息
-            Log.i("OcO", "[ OcO ][ NETWORK ] Request sending with arguments.");
+            debugLog(" Request sending with arguments");
 
             switch (method) {
                 case 0:
-                    Log.i("OcO", "[ OcO ][ METHOD ] GET");
+                    debugLog("[ METHOD ] GET");
                     break;
                 case 1:
-                    Log.i("OcO", "[ OcO ][ METHOD ] POST");
+                    debugLog("[ METHOD ] POST");
                     break;
                 case 3:
-                    Log.i("OcO", "[ OcO ][ METHOD ] DELETE");
+                    debugLog("[ METHOD ] DELETE");
                     break;
                 default:
                     break;
             }
 
-            Log.i("OcO", "[ OcO ][ URL ] " + url);
-            Log.i("OcO", "[ OcO ][ PARAMS ] " + params.toString());
-            Log.i("OcO", "[ OcO ][ RETRY TIMES ] " + String.valueOf(retryTimes));
-            Log.i("OcO", "[ OcO ][ TIMEOUT INTERVAL ] " + String.valueOf(timeoutInterval/1000));
+            debugLog("[ URL ] " + url, "[ PARAMS ] " + params.toString(), "[ RETRY TIMES ] " + String.valueOf(retryTimes), "[ TIMEOUT INTERVAL ] " + String.valueOf(timeoutInterval/1000));
         }
 
         retryTimes--;
@@ -169,14 +166,14 @@ public class NetworkPlugin extends CordovaPlugin {
         // 回调
         if (statusCode == 200 && result instanceof JSONObject) {
             if (debugMode) {// 调试信息
-                Log.i("OcO", "[ OcO ][ NETWORK ] Request success.");
+                debugLog(" Request success");
             }
 
             // 回调成功
             callbackContext.success(jsonObject.toString());
         } else {
             if (debugMode) {// 调试信息
-                Log.i("OcO", "[ OcO ][ NETWORK ] Request failure.");
+                debugLog(" Request failure");
             }
 
             // 回调失败
@@ -204,19 +201,21 @@ public class NetworkPlugin extends CordovaPlugin {
         // Web 调用 -> 调试模式开关
         if ("debug_mode".equals(action)) {
             debugMode = args.getBoolean(0);
-            debugLog("debug_mode run", "Debug Mode Open");
+            debugLog(" '" + action + "' run", " Debug Mode Open");
             return true;
         }
 
         //  Web 调用 -> 设置超时时隔
         else if ("timeout_interval".equals(action)) {
             timeoutInterval = args.getInt(0);
+            debugLog(" '" + action + "' run");
             return true;
         }
 
         // Web 调用 -> 设置重试次数
         else if ("retry_times".equals(action)) {
             retryTimes = args.getInt(0);
+            debugLog(" '" + action + "' run");
             return true;
         }
 
@@ -226,6 +225,7 @@ public class NetworkPlugin extends CordovaPlugin {
                     (args.optJSONObject(1) != null) ? args.getJSONObject(1) : new JSONObject(),
                     retryTimes,
                     callbackContext);
+            debugLog(" '" + action + "' run");
             return true;
         }
 
@@ -235,6 +235,7 @@ public class NetworkPlugin extends CordovaPlugin {
                     (args.optJSONObject(1) != null) ? args.getJSONObject(1) : new JSONObject(),
                     retryTimes,
                     callbackContext);
+            debugLog(" '" + action + "' run");
             return true;
         }
 
@@ -244,6 +245,7 @@ public class NetworkPlugin extends CordovaPlugin {
                     (args.optJSONObject(1) != null) ? args.getJSONObject(1) : new JSONObject(),
                     retryTimes,
                     callbackContext);
+            debugLog(" '" + action + "' run");
             return true;
         }
         

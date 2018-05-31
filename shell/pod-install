@@ -30,7 +30,7 @@ cd $path
 cd ../platforms/ios/
 
 # 安装 POD 依赖库
-sudo pod install
+pod install
 
 # 退出脚本
 exit 0

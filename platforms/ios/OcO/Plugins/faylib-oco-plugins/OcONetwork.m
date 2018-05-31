@@ -83,13 +83,13 @@ typedef NS_ENUM(NSUInteger, OcONetworkRequestMethod) {
 - (void)debugLog:(NSString *)strings, ...
 {
     if (self.debugMode) {
-        NSLog(@"[ OcO ][ NETWORK ][ DEBUG ] %@", strings);
+        NSLog(@"[ OcO ][ NETWORK ][ DEBUG ]%@.", strings);
         va_list list;
         va_start(list, strings);
         while (strings != nil) {
             NSString *string = va_arg(list, NSString *);
             if (!string) break;
-            NSLog(@"[ OcO ][ NETWORK ][ DEBUG ] %@", string);
+            NSLog(@"[ OcO ][ NETWORK ][ DEBUG ]%@.", string);
         }
         va_end(list);
     }
@@ -99,16 +99,13 @@ typedef NS_ENUM(NSUInteger, OcONetworkRequestMethod) {
 - (void)sendWithMethod:(OcONetworkRequestMethod)method url:(NSString *)url params:(NSDictionary *)params retryTimes:(NSInteger)count response:(CDVInvokedUrlCommand *)command
 {
     if (self.debugMode) { // 调试信息
-        NSLog(@"[ OcO ][ NETWORK ] Request sending with arguments.");
+        [self debugLog:@" Request sending with arguments", nil];
         
-        if (method == OcONetworkRequestMethodGET) NSLog(@"[ OcO ][ METHOD ] GET");
-        else if (method == OcONetworkRequestMethodPOST) NSLog(@"[ OcO ][ METHOD ] POST");
-        else if (method == OcONetworkRequestMethodDELETE) NSLog(@"[ OcO ][ METHOD ] DELETE");
+        if (method == OcONetworkRequestMethodGET) [self debugLog:@"[ METHOD ] GET", nil];
+        else if (method == OcONetworkRequestMethodPOST) [self debugLog:@"[ METHOD ] POST", nil];
+        else if (method == OcONetworkRequestMethodDELETE) [self debugLog:@"[ METHOD ] DELETE", nil];
         
-        NSLog(@"[ OcO ][ URL ] %@", url);
-        NSLog(@"[ OcO ][ PARAMS ] %@", params);
-        NSLog(@"[ OcO ][ RETRY TIMES ] %@", @(count));
-        NSLog(@"[ OcO ][ TIMEOUT INTERVAL ] %@", @(self.manager.requestSerializer.timeoutInterval));
+        [self debugLog:[NSString stringWithFormat:@"[ URL ] %@", url], [NSString stringWithFormat:@"[ PARAMS ] %@", params], [NSString stringWithFormat:@"[ RETRY TIMES ] %@", @(count)], [NSString stringWithFormat:@"[ TIMEOUT INTERVAL ] %@", @(self.manager.requestSerializer.timeoutInterval)], nil];
     }
     
     count--;
@@ -157,14 +154,10 @@ typedef NS_ENUM(NSUInteger, OcONetworkRequestMethod) {
     NSInteger statusCode = [response statusCode];
     
     if (statusCode == 200 && [result isKindOfClass:[NSDictionary class]]) {
-        if (self.debugMode) {// 调试信息
-            NSLog(@"[ OcO ][ NETWORK ] Request success.");
-        }
+        [self debugLog:@" Request success", nil];
         [self sendStatus:CDVCommandStatus_OK message:@{@"statusCode": @(statusCode), @"result": result} command:command];
     } else {
-        if (self.debugMode) {// 调试信息
-            NSLog(@"[ OcO ][ NETWORK ] Request failure.");
-        }
+        [self debugLog:@" Request failure", nil];
         [self sendStatus:CDVCommandStatus_ERROR message:@{@"statusCode": @(statusCode), @"result": result} command:command];
     }
 }
@@ -177,8 +170,7 @@ typedef NS_ENUM(NSUInteger, OcONetworkRequestMethod) {
 {
     [self.commandDelegate runInBackground:^{
         self.debugMode = ([command.arguments[0] isEqual:@0]) ? NO : YES;
-        
-        [self debugLog:@"debug_mode run", @"Debug Mode Open", nil];
+        [self debugLog:[NSString stringWithFormat:@" '%@' run", NSStringFromSelector(_cmd)], @" Debug Mode Open", nil];
     }];
 }
 
@@ -186,12 +178,14 @@ typedef NS_ENUM(NSUInteger, OcONetworkRequestMethod) {
 - (void)timeout_interval:(CDVInvokedUrlCommand *)command
 {
     self.timeoutInterval = [command.arguments[0] integerValue] / 1000;
+    [self debugLog:[NSString stringWithFormat:@" '%@' run", NSStringFromSelector(_cmd)], nil];
 }
 
 // Web 调用 -> 设置重试次数
 - (void)retry_times:(CDVInvokedUrlCommand *)command
 {
     self.retryTimes = [command.arguments[0] integerValue];
+    [self debugLog:[NSString stringWithFormat:@" '%@' run", NSStringFromSelector(_cmd)], nil];
 }
 
 // Web 调用 -> 发送 GET 请求
@@ -200,6 +194,7 @@ typedef NS_ENUM(NSUInteger, OcONetworkRequestMethod) {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [self sendWithMethod:OcONetworkRequestMethodGET url:command.arguments[0] params:command.arguments[1] retryTimes:self.retryTimes response:command];
     });
+    [self debugLog:[NSString stringWithFormat:@" '%@' run", NSStringFromSelector(_cmd)], nil];
 }
 
 // Web 调用 -> 发送 POST 请求
@@ -208,6 +203,7 @@ typedef NS_ENUM(NSUInteger, OcONetworkRequestMethod) {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [self sendWithMethod:OcONetworkRequestMethodPOST url:command.arguments[0] params:command.arguments[1] retryTimes:self.retryTimes response:command];
     });
+    [self debugLog:[NSString stringWithFormat:@" '%@' run", NSStringFromSelector(_cmd)], nil];
 }
 
 // Web 调用 -> 发送 DELETE 请求
@@ -216,6 +212,7 @@ typedef NS_ENUM(NSUInteger, OcONetworkRequestMethod) {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [self sendWithMethod:OcONetworkRequestMethodDELETE url:command.arguments[0] params:command.arguments[1] retryTimes:self.retryTimes response:command];
     });
+    [self debugLog:[NSString stringWithFormat:@" '%@' run", NSStringFromSelector(_cmd)], nil];
 }
 
 

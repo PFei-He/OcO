@@ -39,7 +39,7 @@ if [ ! -n "$name" ] || [ ! $name ] || [ $name = "" ] || [ $name = " " ]; then
 	exit 0
 else
 	# 添加插件
-	sudo cordova plugin add $name
+	cordova plugin add $name
 fi
 
 # 退出脚本

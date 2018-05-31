@@ -30,7 +30,7 @@ cd $path
 cd ../
 
 # 将 iOS 的 web 框架从 UIWebView 换成 WKWebView
-sudo cordova plugin add cordova-plugin-wkwebview-engine
+cordova plugin add cordova-plugin-wkwebview-engine
 
 # 退出脚本
 exit 0
