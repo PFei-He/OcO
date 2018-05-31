@@ -61,8 +61,24 @@
     }];
 }
 
+// Web 调用 -> 关闭 Web 页面
+- (void)dismiss_web:(CDVInvokedUrlCommand *)command
+{
+    [self.viewController dismissViewControllerAnimated:YES completion:NULL];
+    [self.commandDelegate runInBackground:^{
+        [self webDismissed];
+        [self debugLog:[NSString stringWithFormat:@" '%@' run", NSStringFromSelector(_cmd)], nil];
+    }];
+}
+
 
 #pragma mark - Cordova Plugin Methods (Objective-C -> JavaScript)
+
+// iOS 调用 -> Web 页面已关闭
+- (void)webDismissed
+{
+    [self.commandDelegate evalJs:@"web_dismissed()"];
+}
 
 
 #pragma mark - CDVPlugin Methods

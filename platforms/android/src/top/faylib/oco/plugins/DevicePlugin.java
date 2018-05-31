@@ -71,6 +71,14 @@ public class DevicePlugin extends CordovaPlugin {
             return true;
         }
 
+        // Web 调用 -> 获取设备系统
+        else if ("device_system".equals(action)) {
+            callbackContext.success("Android");
+            send(PluginResult.Status.OK, 2, false, callbackContext);
+            debugLog(" '" + action + "' run");
+            return true;
+        }
+
         return super.execute(action, args, callbackContext);
     }
 

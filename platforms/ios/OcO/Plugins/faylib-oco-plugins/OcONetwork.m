@@ -177,15 +177,19 @@ typedef NS_ENUM(NSUInteger, OcONetworkRequestMethod) {
 // Web 调用 -> 设置超时时隔
 - (void)timeout_interval:(CDVInvokedUrlCommand *)command
 {
-    self.timeoutInterval = [command.arguments[0] integerValue] / 1000;
-    [self debugLog:[NSString stringWithFormat:@" '%@' run", NSStringFromSelector(_cmd)], nil];
+    [self.commandDelegate runInBackground:^{
+        self.timeoutInterval = [command.arguments[0] integerValue] / 1000;
+        [self debugLog:[NSString stringWithFormat:@" '%@' run", NSStringFromSelector(_cmd)], nil];
+    }];
 }
 
 // Web 调用 -> 设置重试次数
 - (void)retry_times:(CDVInvokedUrlCommand *)command
 {
-    self.retryTimes = [command.arguments[0] integerValue];
-    [self debugLog:[NSString stringWithFormat:@" '%@' run", NSStringFromSelector(_cmd)], nil];
+    [self.commandDelegate runInBackground:^{
+        self.retryTimes = [command.arguments[0] integerValue];
+        [self debugLog:[NSString stringWithFormat:@" '%@' run", NSStringFromSelector(_cmd)], nil];
+    }];
 }
 
 // Web 调用 -> 发送 GET 请求

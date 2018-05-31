@@ -69,6 +69,14 @@ public class AdapterPlugin extends CordovaPlugin {
             return true;
         }
 
+        // Web 调用 -> 关闭 Web 页面
+        else if ("dismiss_web".equals(action)) {
+            cordova.getActivity().finish();
+            webDismissed();
+            debugLog(" '" + action + "' run");
+            return true;
+        }
+
         return super.execute(action, args, callbackContext);
     }
 
@@ -76,6 +84,11 @@ public class AdapterPlugin extends CordovaPlugin {
 
 
     //region Cordova Plugin Methods (Java -> JavaScript)
+
+    // Android 调用 -> Web 页面已关闭
+    private void webDismissed() {
+        cordova.getActivity().runOnUiThread(() -> webView.loadUrl("javascript:web_dismissed()"));
+    }
 
     //endregion
 
