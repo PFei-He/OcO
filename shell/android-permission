@@ -59,7 +59,7 @@ rm -rf web/static/Placeholder
 rm -rf www/Placeholder
 
 # 为 Android 工程获得权限
-sudo chmod -R a+rwx .
+chmod -R a+rwx .
 
 # 进入 Gradle 目录
 cd /Applications/Android\ Studio.app/Contents/gradle/
@@ -68,7 +68,7 @@ cd /Applications/Android\ Studio.app/Contents/gradle/
 for gradle in `find . -name gradle-*`
 do
 	# 为 Android 工程获得使用 Gradle 的权限
-	sudo chmod 755 $gradle/bin/gradle
+	chmod 755 $gradle/bin/gradle
 done
 
 # 退出脚本
