@@ -24,14 +24,13 @@
 
 # 进入 Shell 脚本所在目录
 path=$(dirname $_)
-path=${path/\./$(pwd)}
 cd $path
 
 # 进入 Cordova 目录（工程根目录）
-cd ..
+cd ../
 
 # 将 iOS 的 web 框架从 UIWebView 换成 WKWebView
-cordova plugin add cordova-plugin-wkwebview-engine
+sudo cordova plugin add cordova-plugin-wkwebview-engine
 
 # 退出脚本
 exit 0

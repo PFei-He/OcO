@@ -24,14 +24,13 @@
 
 # 进入 Shell 脚本所在目录
 path=$(dirname $_)
-path=${path/\./$(pwd)}
 cd $path
 
 # 进入 iOS 工程目录
 cd ../platforms/ios/
 
 # 安装 POD 依赖库
-pod install
+sudo pod install
 
 # 退出脚本
 exit 0

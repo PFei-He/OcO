@@ -24,11 +24,10 @@
 
 # 进入 Shell 脚本所在目录
 path=$(dirname $_)
-path=${path/\./$(pwd)}
 cd $path
 
 # 进入 Cordova 目录（工程根目录）
-cd ..
+cd ../
 
 # 键入插件名
 echo "Which plugin do you want to remove?"
@@ -40,7 +39,7 @@ if [ ! -n "$name" ] || [ ! $name ] || [ $name = "" ] || [ $name = " " ]; then
 	exit 0
 else
 	# 添加插件
-	cordova plugin remove $name
+	sudo cordova plugin remove $name
 fi
 
 # 退出脚本

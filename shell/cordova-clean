@@ -24,54 +24,53 @@
 
 # 进入 Shell 脚本所在目录
 path=$(dirname $_)
-path=${path/\./$(pwd)}
 cd $path
 
 # 进入 Cordova 目录（工程根目录）
 cd ../
 
 # 清理已生成的包文件
-cordova clean
+sudo cordova clean
 
 # 移除占位符文件
-rm -rf original/image/Placeholder
-rm -rf platforms/android/assets/Placeholder
-rm -rf platforms/android/libs/Placeholder
-rm -rf platforms/android/res/drawable-land-hdpi/Placeholder
-rm -rf platforms/android/res/drawable-land-ldpi/Placeholder
-rm -rf platforms/android/res/drawable-land-mdpi/Placeholder
-rm -rf platforms/android/res/drawable-land-xhdpi/Placeholder
-rm -rf platforms/android/res/drawable-land-xxhdpi/Placeholder
-rm -rf platforms/android/res/drawable-land-xxxhdpi/Placeholder
-rm -rf platforms/android/res/drawable-port-hdpi/Placeholder
-rm -rf platforms/android/res/drawable-port-ldpi/Placeholder
-rm -rf platforms/android/res/drawable-port-mdpi/Placeholder
-rm -rf platforms/android/res/drawable-port-xhdpi/Placeholder
-rm -rf platforms/android/res/drawable-port-xxhdpi/Placeholder
-rm -rf platforms/android/res/drawable-port-xxxhdpi/Placeholder
-rm -rf platforms/android/res/mipmap-hdpi/Placeholder
-rm -rf platforms/android/res/mipmap-ldpi/Placeholder
-rm -rf platforms/android/res/mipmap-mdpi/Placeholder
-rm -rf platforms/android/res/mipmap-xhdpi/Placeholder
-rm -rf platforms/android/res/mipmap-xxhdpi/Placeholder
-rm -rf platforms/android/res/mipmap-xxxhdpi/Placeholder
-rm -rf platforms/android/src/top/faylib/oco/base/Placeholder
-rm -rf platforms/android/src/top/faylib/oco/model/Placeholder
-rm -rf platforms/ios/OcO/Classes/Base/Placeholder
-rm -rf platforms/ios/OcO/Classes/Model/Placeholder
-rm -rf web/static/Placeholder
-rm -rf www/Placeholder
+sudo rm -rf original/image/Placeholder
+sudo rm -rf platforms/android/assets/Placeholder
+sudo rm -rf platforms/android/libs/Placeholder
+sudo rm -rf platforms/android/res/drawable-land-hdpi/Placeholder
+sudo rm -rf platforms/android/res/drawable-land-ldpi/Placeholder
+sudo rm -rf platforms/android/res/drawable-land-mdpi/Placeholder
+sudo rm -rf platforms/android/res/drawable-land-xhdpi/Placeholder
+sudo rm -rf platforms/android/res/drawable-land-xxhdpi/Placeholder
+sudo rm -rf platforms/android/res/drawable-land-xxxhdpi/Placeholder
+sudo rm -rf platforms/android/res/drawable-port-hdpi/Placeholder
+sudo rm -rf platforms/android/res/drawable-port-ldpi/Placeholder
+sudo rm -rf platforms/android/res/drawable-port-mdpi/Placeholder
+sudo rm -rf platforms/android/res/drawable-port-xhdpi/Placeholder
+sudo rm -rf platforms/android/res/drawable-port-xxhdpi/Placeholder
+sudo rm -rf platforms/android/res/drawable-port-xxxhdpi/Placeholder
+sudo rm -rf platforms/android/res/mipmap-hdpi/Placeholder
+sudo rm -rf platforms/android/res/mipmap-ldpi/Placeholder
+sudo rm -rf platforms/android/res/mipmap-mdpi/Placeholder
+sudo rm -rf platforms/android/res/mipmap-xhdpi/Placeholder
+sudo rm -rf platforms/android/res/mipmap-xxhdpi/Placeholder
+sudo rm -rf platforms/android/res/mipmap-xxxhdpi/Placeholder
+sudo rm -rf platforms/android/src/top/faylib/oco/base/Placeholder
+sudo rm -rf platforms/android/src/top/faylib/oco/model/Placeholder
+sudo rm -rf platforms/ios/OcO/Classes/Base/Placeholder
+sudo rm -rf platforms/ios/OcO/Classes/Model/Placeholder
+sudo rm -rf web/static/Placeholder
+sudo rm -rf www/Placeholder
 
 # 删除残留文件和文件夹
-rm -rf original/image/Placeholder
-rm -rf platforms/android/android.iml
-rm -rf platforms/android/build/
-rm -rf platforms/android/local.properties
-rm -rf platforms/android/.idea/
-rm -rf platforms/android/.gradle/
-rm -rf web/.idea/
-rm -rf www/index.html
-rm -rf www/static/
+sudo rm -rf original/image/Placeholder
+sudo rm -rf platforms/android/android.iml
+sudo rm -rf platforms/android/build/
+sudo rm -rf platforms/android/local.properties
+sudo rm -rf platforms/android/.idea/
+sudo rm -rf platforms/android/.gradle/
+sudo rm -rf web/.idea/
+sudo rm -rf www/index.html
+sudo rm -rf www/static/
 
 # 退出脚本
 exit 0
