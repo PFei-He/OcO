@@ -95,38 +95,36 @@ public class NetworkPlugin extends CordovaPlugin {
      * @param retryTimes 请求失败重试次数
      * @param callbackContext JavaScript回调
      */
-    private void send(int method, String url, JSONObject params, int retryTimes, CallbackContext callbackContext) {
+    private void request(int method, String url, JSONObject params, int retryTimes, CallbackContext callbackContext) {
 
-        if (debugMode) { // 调试信息
-            debugLog(" Request sending with arguments");
+        debugLog(" Request sending with arguments");
 
-            switch (method) {
-                case 0:
-                    debugLog("[ METHOD ] GET");
-                    break;
-                case 1:
-                    debugLog("[ METHOD ] POST");
-                    break;
-                case 3:
-                    debugLog("[ METHOD ] DELETE");
-                    break;
-                default:
-                    break;
-            }
-
-            debugLog("[ URL ] " + url, "[ PARAMS ] " + params.toString(), "[ RETRY TIMES ] " + String.valueOf(retryTimes), "[ TIMEOUT INTERVAL ] " + String.valueOf(timeoutInterval/1000));
+        switch (method) {
+            case 0:
+                debugLog("[ METHOD ] GET");
+                break;
+            case 1:
+                debugLog("[ METHOD ] POST");
+                break;
+            case 3:
+                debugLog("[ METHOD ] DELETE");
+                break;
+            default:
+                break;
         }
+
+        debugLog("[ URL ] " + url, "[ PARAMS ] " + params.toString(), "[ RETRY TIMES ] " + String.valueOf(retryTimes), "[ TIMEOUT INTERVAL ] " + String.valueOf(timeoutInterval/1000));
 
         retryTimes--;
         int count = retryTimes;
 
         JsonObjectRequest request = new JsonObjectRequest(method, url, params, response -> {
-            callback(statusCode, response, callbackContext);
+            callback(url, statusCode, response, callbackContext);
         }, error -> {
             if (count < 1) {
-                callback(statusCode, error, callbackContext);
+                callback(url, statusCode, error, callbackContext);
             } else {
-                send(method, url, params, count, callbackContext);
+                request(method, url, params, count, callbackContext);
             }
         }) {// 重写解析服务器返回的数据
             @Override
@@ -148,11 +146,12 @@ public class NetworkPlugin extends CordovaPlugin {
     /**
      * 处理请求结果并回调到 Web
      *
+     * @param url 请求地址
      * @param statusCode 请求结果状态码
      * @param result 请求结果
      * @param callbackContext 回调信息
      */
-    private void callback(int statusCode, Object result, CallbackContext callbackContext) {
+    private void callback(String url, int statusCode, Object result, CallbackContext callbackContext) {
 
         // 处理请求结果
         JSONObject jsonObject = new JSONObject();
@@ -164,19 +163,16 @@ public class NetworkPlugin extends CordovaPlugin {
         }
 
         // 回调
-        if (statusCode == 200 && result instanceof JSONObject) {
-            if (debugMode) {// 调试信息
-                debugLog(" Request success");
+        if (statusCode == 200) {
+            if (result instanceof JSONObject) {
+                debugLog(" Request success", "[ URL ] " + url);
+                callbackContext.success(jsonObject.toString());
+            } else {
+                debugLog(" Request success but not JSON data", "[ URL ] " + url);
+                callbackContext.error(jsonObject.toString());
             }
-
-            // 回调成功
-            callbackContext.success(jsonObject.toString());
         } else {
-            if (debugMode) {// 调试信息
-                debugLog(" Request failure");
-            }
-
-            // 回调失败
+            debugLog(" Request failure", "[ URL ] " + url);
             callbackContext.error(jsonObject.toString());
         }
     }
@@ -221,7 +217,7 @@ public class NetworkPlugin extends CordovaPlugin {
 
         // Web 调用 -> 发送 GET 请求
         else if ("request_get".equals(action)) {
-            send(Request.Method.GET, args.getString(0),
+            request(Request.Method.GET, args.getString(0),
                     (args.optJSONObject(1) != null) ? args.getJSONObject(1) : new JSONObject(),
                     retryTimes,
                     callbackContext);
@@ -231,7 +227,7 @@ public class NetworkPlugin extends CordovaPlugin {
 
         // Web 调用 -> 发送 POST 请求
         else if ("request_post".equals(action)) {
-            send(Request.Method.POST, args.getString(0),
+            request(Request.Method.POST, args.getString(0),
                     (args.optJSONObject(1) != null) ? args.getJSONObject(1) : new JSONObject(),
                     retryTimes,
                     callbackContext);
@@ -241,7 +237,7 @@ public class NetworkPlugin extends CordovaPlugin {
 
         // Web 调用 -> 发送 DELETE 请求
         else if ("request_delete".equals(action)) {
-            send(Request.Method.DELETE, args.getString(0),
+            request(Request.Method.DELETE, args.getString(0),
                     (args.optJSONObject(1) != null) ? args.getJSONObject(1) : new JSONObject(),
                     retryTimes,
                     callbackContext);

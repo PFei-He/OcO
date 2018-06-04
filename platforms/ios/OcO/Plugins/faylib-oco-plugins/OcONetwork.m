@@ -98,15 +98,13 @@ typedef NS_ENUM(NSUInteger, OcONetworkRequestMethod) {
 // 发送请求
 - (void)sendWithMethod:(OcONetworkRequestMethod)method url:(NSString *)url params:(NSDictionary *)params retryTimes:(NSInteger)count response:(CDVInvokedUrlCommand *)command
 {
-    if (self.debugMode) { // 调试信息
-        [self debugLog:@" Request sending with arguments", nil];
-        
-        if (method == OcONetworkRequestMethodGET) [self debugLog:@"[ METHOD ] GET", nil];
-        else if (method == OcONetworkRequestMethodPOST) [self debugLog:@"[ METHOD ] POST", nil];
-        else if (method == OcONetworkRequestMethodDELETE) [self debugLog:@"[ METHOD ] DELETE", nil];
-        
-        [self debugLog:[NSString stringWithFormat:@"[ URL ] %@", url], [NSString stringWithFormat:@"[ PARAMS ] %@", params], [NSString stringWithFormat:@"[ RETRY TIMES ] %@", @(count)], [NSString stringWithFormat:@"[ TIMEOUT INTERVAL ] %@", @(self.manager.requestSerializer.timeoutInterval)], nil];
-    }
+    [self debugLog:@" Request sending with arguments", nil];
+    
+    if (method == OcONetworkRequestMethodGET) [self debugLog:@"[ METHOD ] GET", nil];
+    else if (method == OcONetworkRequestMethodPOST) [self debugLog:@"[ METHOD ] POST", nil];
+    else if (method == OcONetworkRequestMethodDELETE) [self debugLog:@"[ METHOD ] DELETE", nil];
+    
+    [self debugLog:[NSString stringWithFormat:@"[ URL ] %@", url], [NSString stringWithFormat:@"[ PARAMS ] %@", params], [NSString stringWithFormat:@"[ RETRY TIMES ] %@", @(count)], [NSString stringWithFormat:@"[ TIMEOUT INTERVAL ] %@", @(self.manager.requestSerializer.timeoutInterval)], nil];
     
     count--;
     
@@ -114,9 +112,9 @@ typedef NS_ENUM(NSUInteger, OcONetworkRequestMethod) {
         case OcONetworkRequestMethodGET:
         {
             [self.manager GET:url parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id _Nonnull responseObject) {
-                [self callback:task result:responseObject command:command];
+                [self callbackWithURL:url task:task result:responseObject command:command];
             } failure:^(NSURLSessionDataTask * _Nonnull task, NSError * _Nonnull error) {
-                if (count < 1) [self callback:task result:[NSString stringWithFormat:@"%@", error] command:command];
+                if (count < 1) [self callbackWithURL:url task:task result:[NSString stringWithFormat:@"%@", error] command:command];
                 else [self sendWithMethod:OcONetworkRequestMethodGET url:url params:params retryTimes:count response:command];
             }];
         }
@@ -124,9 +122,9 @@ typedef NS_ENUM(NSUInteger, OcONetworkRequestMethod) {
         case OcONetworkRequestMethodPOST:
         {
             [self.manager POST:url parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id _Nonnull responseObject) {
-                [self callback:task result:responseObject command:command];
+                [self callbackWithURL:url task:task result:responseObject command:command];
             } failure:^(NSURLSessionDataTask * _Nonnull task, NSError * _Nonnull error) {
-                if (count < 1) [self callback:task result:[NSString stringWithFormat:@"%@", error] command:command];
+                if (count < 1) [self callbackWithURL:url task:task result:[NSString stringWithFormat:@"%@", error] command:command];
                 else [self sendWithMethod:OcONetworkRequestMethodPOST url:url params:params retryTimes:count response:command];
             }];
         }
@@ -134,9 +132,9 @@ typedef NS_ENUM(NSUInteger, OcONetworkRequestMethod) {
         case OcONetworkRequestMethodDELETE:
         {
             [self.manager DELETE:url parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-                [self callback:task result:responseObject command:command];
+                [self callbackWithURL:url task:task result:responseObject command:command];
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-                if (count < 1) [self callback:task result:[NSString stringWithFormat:@"%@", error] command:command];
+                if (count < 1) [self callbackWithURL:url task:task result:[NSString stringWithFormat:@"%@", error] command:command];
                 else [self sendWithMethod:OcONetworkRequestMethodDELETE url:url params:params retryTimes:count response:command];
             }];
         }
@@ -147,17 +145,23 @@ typedef NS_ENUM(NSUInteger, OcONetworkRequestMethod) {
 }
 
 // 处理请求结果并回调到 Web
-- (void)callback:(NSURLSessionTask *)task result:(id)result command:(CDVInvokedUrlCommand *)command
+- (void)callbackWithURL:(NSString *)url task:(NSURLSessionTask *)task result:(id)result command:(CDVInvokedUrlCommand *)command
 {
     // 请求结果状态码
     NSHTTPURLResponse *response = (NSHTTPURLResponse *)task.response;
     NSInteger statusCode = [response statusCode];
     
-    if (statusCode == 200 && [result isKindOfClass:[NSDictionary class]]) {
-        [self debugLog:@" Request success", nil];
-        [self sendStatus:CDVCommandStatus_OK message:@{@"statusCode": @(statusCode), @"result": result} command:command];
+    // 回调
+    if (statusCode == 200) {
+        if ([result isKindOfClass:[NSDictionary class]]) {
+            [self debugLog:@" Request success", [NSString stringWithFormat:@"[ URL ] %@", url], nil];
+            [self sendStatus:CDVCommandStatus_OK message:@{@"statusCode": @(statusCode), @"result": result} command:command];
+        } else {
+            [self debugLog:@" Request success but not JSON data", [NSString stringWithFormat:@"[ URL ] %@", url], nil];
+            [self sendStatus:CDVCommandStatus_ERROR message:@{@"statusCode": @(statusCode), @"result": result} command:command];
+        }
     } else {
-        [self debugLog:@" Request failure", nil];
+        [self debugLog:@" Request failure", [NSString stringWithFormat:@"[ URL ] %@", url], nil];
         [self sendStatus:CDVCommandStatus_ERROR message:@{@"statusCode": @(statusCode), @"result": result} command:command];
     }
 }
