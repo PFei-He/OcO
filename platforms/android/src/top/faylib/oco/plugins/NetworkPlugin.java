@@ -86,15 +86,7 @@ public class NetworkPlugin extends CordovaPlugin {
         }
     }
 
-    /**
-     * 发送请求
-     *
-     * @param method 请求方法
-     * @param url 请求地址
-     * @param params 请求参数
-     * @param retryTimes 请求失败重试次数
-     * @param callbackContext JavaScript回调
-     */
+    // 发送请求
     private void request(int method, String url, JSONObject params, int retryTimes, CallbackContext callbackContext) {
 
         debugLog(" Request sending with arguments");
@@ -119,10 +111,10 @@ public class NetworkPlugin extends CordovaPlugin {
         int count = retryTimes;
 
         JsonObjectRequest request = new JsonObjectRequest(method, url, params, response -> {
-            callback(url, statusCode, response, callbackContext);
+            parse(url, statusCode, response, callbackContext);
         }, error -> {
             if (count < 1) {
-                callback(url, statusCode, error, callbackContext);
+                parse(url, statusCode, error, callbackContext);
             } else {
                 request(method, url, params, count, callbackContext);
             }
@@ -134,7 +126,7 @@ public class NetworkPlugin extends CordovaPlugin {
             }
         };
 
-        // 添加请求超时间隔
+        // 添加请求超时时隔
         request.setRetryPolicy(new DefaultRetryPolicy(timeoutInterval,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
@@ -143,15 +135,8 @@ public class NetworkPlugin extends CordovaPlugin {
         queue.add(request);
     }
 
-    /**
-     * 处理请求结果并回调到 Web
-     *
-     * @param url 请求地址
-     * @param statusCode 请求结果状态码
-     * @param result 请求结果
-     * @param callbackContext 回调信息
-     */
-    private void callback(String url, int statusCode, Object result, CallbackContext callbackContext) {
+    // 数据处理
+    private void parse(String url, int statusCode, Object result, CallbackContext callbackContext) {
 
         // 处理请求结果
         JSONObject jsonObject = new JSONObject();
@@ -162,7 +147,7 @@ public class NetworkPlugin extends CordovaPlugin {
 //            e.printStackTrace();
         }
 
-        // 回调
+        // 回调结果到 Web 端
         if (statusCode == 200) {
             if (result instanceof JSONObject) {
                 debugLog(" Request success", "[ URL ] " + url);
@@ -196,52 +181,52 @@ public class NetworkPlugin extends CordovaPlugin {
 
         // Web 调用 -> 调试模式开关
         if ("debug_mode".equals(action)) {
-            debugMode = args.getBoolean(0);
             debugLog(" '" + action + "' run", " Debug Mode Open");
+            debugMode = args.getBoolean(0);
             return true;
         }
 
         //  Web 调用 -> 设置超时时隔
         else if ("timeout_interval".equals(action)) {
-            timeoutInterval = args.getInt(0);
             debugLog(" '" + action + "' run");
+            timeoutInterval = args.getInt(0);
             return true;
         }
 
         // Web 调用 -> 设置重试次数
         else if ("retry_times".equals(action)) {
-            retryTimes = args.getInt(0);
             debugLog(" '" + action + "' run");
+            retryTimes = args.getInt(0);
             return true;
         }
 
         // Web 调用 -> 发送 GET 请求
         else if ("request_get".equals(action)) {
+            debugLog(" '" + action + "' run");
             request(Request.Method.GET, args.getString(0),
                     (args.optJSONObject(1) != null) ? args.getJSONObject(1) : new JSONObject(),
                     retryTimes,
                     callbackContext);
-            debugLog(" '" + action + "' run");
             return true;
         }
 
         // Web 调用 -> 发送 POST 请求
         else if ("request_post".equals(action)) {
+            debugLog(" '" + action + "' run");
             request(Request.Method.POST, args.getString(0),
                     (args.optJSONObject(1) != null) ? args.getJSONObject(1) : new JSONObject(),
                     retryTimes,
                     callbackContext);
-            debugLog(" '" + action + "' run");
             return true;
         }
 
         // Web 调用 -> 发送 DELETE 请求
         else if ("request_delete".equals(action)) {
+            debugLog(" '" + action + "' run");
             request(Request.Method.DELETE, args.getString(0),
                     (args.optJSONObject(1) != null) ? args.getJSONObject(1) : new JSONObject(),
                     retryTimes,
                     callbackContext);
-            debugLog(" '" + action + "' run");
             return true;
         }
         
