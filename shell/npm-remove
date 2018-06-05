@@ -61,6 +61,8 @@ rm -rf www/Placeholder
 # 移除所有 npm
 rm -rf node_modules/
 rm -rf package-lock.json
+rm -rf $path/../platforms/android/cordova/node_modules/
+rm -rf $path/../platforms/ios/cordova/node_modules/
 rm -rf web/node_modules/
 rm -rf web/package-lock.json
 

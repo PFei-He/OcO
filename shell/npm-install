@@ -67,5 +67,9 @@ cd web/
 # 为 Vue 安装 npm
 npm install
 
+# 复制 npm 工具包到 Android 和 iOS 目录
+cp -rf $path/../node_modules/cordova-android/node_modules/ $path/../platforms/android/cordova/node_modules/
+cp -rf $path/../node_modules/cordova-ios/node_modules/ $path/../platforms/ios/cordova/node_modules/
+
 # 退出脚本
 exit 0

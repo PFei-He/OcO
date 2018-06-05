@@ -181,8 +181,8 @@ public class NetworkPlugin extends CordovaPlugin {
 
         // Web 调用 -> 调试模式开关
         if ("debug_mode".equals(action)) {
-            debugLog(" '" + action + "' run", " Debug Mode Open");
             debugMode = args.getBoolean(0);
+            debugLog(" '" + action + "' run", " Debug Mode Open");
             return true;
         }
 

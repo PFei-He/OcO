@@ -183,8 +183,8 @@ typedef NS_ENUM(NSUInteger, OcONetworkRequestMethod) {
 - (void)debug_mode:(CDVInvokedUrlCommand *)command
 {
     [self.commandDelegate runInBackground:^{
-        [self debugLog:[NSString stringWithFormat:@" '%@' run", NSStringFromSelector(_cmd)], @" Debug Mode Open", nil];
         self.debugMode = ([command.arguments[0] isEqual:@0]) ? NO : YES;
+        [self debugLog:[NSString stringWithFormat:@" '%@' run", NSStringFromSelector(_cmd)], @" Debug Mode Open", nil];
     }];
 }
 
