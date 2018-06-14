@@ -65,8 +65,8 @@
 - (void)device_system:(CDVInvokedUrlCommand *)command
 {
     [self.commandDelegate runInBackground:^{
-        [self sendStatus:CDVCommandStatus_OK message:@"iOS" command:command];
         [self debugLog:[NSString stringWithFormat:@" '%@' run", NSStringFromSelector(_cmd)], nil];
+        [self sendStatus:CDVCommandStatus_OK message:@"iOS" command:command];
     }];
 }
 

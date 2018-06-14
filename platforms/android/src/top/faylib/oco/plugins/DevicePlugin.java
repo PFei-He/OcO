@@ -66,16 +66,21 @@ public class DevicePlugin extends CordovaPlugin {
 
         // Web 调用 -> 调试模式开关
         if ("debug_mode".equals(action)) {
-            debugMode = args.getBoolean(0);
-            debugLog(" '" + action + "' run", " Debug Mode Open");
+            cordova.getThreadPool().execute(() -> {
+                try {
+                    debugMode = args.getBoolean(0);
+                    debugLog(" '" + action + "' run", " Debug Mode Open");
+                } catch (JSONException e) { e.printStackTrace(); }
+            });
             return true;
         }
 
         // Web 调用 -> 获取设备系统
         else if ("device_system".equals(action)) {
-            callbackContext.success("Android");
-            send(PluginResult.Status.OK, 2, false, callbackContext);
-            debugLog(" '" + action + "' run");
+            cordova.getThreadPool().execute(() -> {
+                debugLog(" '" + action + "' run");
+                send(PluginResult.Status.OK, "Android", false, callbackContext);
+            });
             return true;
         }
 

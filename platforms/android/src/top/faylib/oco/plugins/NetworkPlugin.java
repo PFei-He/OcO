@@ -181,52 +181,67 @@ public class NetworkPlugin extends CordovaPlugin {
 
         // Web 调用 -> 调试模式开关
         if ("debug_mode".equals(action)) {
-            debugMode = args.getBoolean(0);
-            debugLog(" '" + action + "' run", " Debug Mode Open");
+            cordova.getThreadPool().execute(() -> {
+                try {
+                    debugMode = args.getBoolean(0);
+                    debugLog(" '" + action + "' run", " Debug Mode Open");
+                } catch (JSONException e) { e.printStackTrace(); }
+            });
             return true;
         }
 
         //  Web 调用 -> 设置超时时隔
         else if ("timeout_interval".equals(action)) {
-            debugLog(" '" + action + "' run");
-            timeoutInterval = args.getInt(0);
+            cordova.getThreadPool().execute(() -> {
+                try {
+                    debugLog(" '" + action + "' run");
+                    timeoutInterval = args.getInt(0);
+                } catch (JSONException e) { e.printStackTrace(); }
+            });
             return true;
         }
 
         // Web 调用 -> 设置重试次数
         else if ("retry_times".equals(action)) {
-            debugLog(" '" + action + "' run");
-            retryTimes = args.getInt(0);
+            cordova.getThreadPool().execute(() -> {
+                try {
+                    debugLog(" '" + action + "' run");
+                    retryTimes = args.getInt(0);
+                } catch (JSONException e) { e.printStackTrace(); }
+            });
             return true;
         }
 
         // Web 调用 -> 发送 GET 请求
         else if ("request_get".equals(action)) {
-            debugLog(" '" + action + "' run");
-            request(Request.Method.GET, args.getString(0),
-                    (args.optJSONObject(1) != null) ? args.getJSONObject(1) : new JSONObject(),
-                    retryTimes,
-                    callbackContext);
+            cordova.getThreadPool().execute(() -> {
+                try {
+                    debugLog(" '" + action + "' run");
+                    request(Request.Method.GET, args.getString(0), (args.optJSONObject(1) != null) ? args.getJSONObject(1) : new JSONObject(), retryTimes, callbackContext);
+                } catch (JSONException e) { e.printStackTrace(); }
+            });
             return true;
         }
 
         // Web 调用 -> 发送 POST 请求
         else if ("request_post".equals(action)) {
-            debugLog(" '" + action + "' run");
-            request(Request.Method.POST, args.getString(0),
-                    (args.optJSONObject(1) != null) ? args.getJSONObject(1) : new JSONObject(),
-                    retryTimes,
-                    callbackContext);
+            cordova.getThreadPool().execute(() -> {
+                try {
+                    debugLog(" '" + action + "' run");
+                    request(Request.Method.POST, args.getString(0), (args.optJSONObject(1) != null) ? args.getJSONObject(1) : new JSONObject(), retryTimes, callbackContext);
+                } catch (JSONException e) { e.printStackTrace(); }
+            });
             return true;
         }
 
         // Web 调用 -> 发送 DELETE 请求
         else if ("request_delete".equals(action)) {
-            debugLog(" '" + action + "' run");
-            request(Request.Method.DELETE, args.getString(0),
-                    (args.optJSONObject(1) != null) ? args.getJSONObject(1) : new JSONObject(),
-                    retryTimes,
-                    callbackContext);
+            cordova.getThreadPool().execute(() -> {
+                try {
+                    debugLog(" '" + action + "' run");
+                    request(Request.Method.DELETE, args.getString(0), (args.optJSONObject(1) != null) ? args.getJSONObject(1) : new JSONObject(), retryTimes, callbackContext);
+                } catch (JSONException e) { e.printStackTrace(); }
+            });
             return true;
         }
         
