@@ -43,19 +43,19 @@ class Adapter: CDVPlugin {
     
     // Web 调用 -> 调试模式开关
     func debug_mode(_ command: CDVInvokedUrlCommand) {
-        commandDelegate.run {
+        commandDelegate.run(inBackground: {
             self.debugMode = command.arguments[0] as! Bool
             self.debugLog(" '\(#function)' run", " Debug Mode Open")
-        }
+        })
     }
     
     // Web 调用 -> 关闭 Web 页面
     func dismiss_web(_ command: CDVInvokedUrlCommand) {
         viewController.dismiss(animated: true, completion: nil)
-        commandDelegate.run {
+        commandDelegate.run(inBackground: {
             self.webDismissed()
             self.debugLog(" '\(#function)' run", " Debug Mode Open")
-        }
+        })
     }
     
     
