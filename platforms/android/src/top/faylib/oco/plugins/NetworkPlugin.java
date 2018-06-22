@@ -24,6 +24,7 @@
 
 package top.faylib.oco.plugins;
 
+import android.net.Uri;
 import android.util.Log;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -40,6 +41,13 @@ import org.apache.cordova.PluginResult;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 public class NetworkPlugin extends CordovaPlugin {
 
@@ -77,6 +85,46 @@ public class NetworkPlugin extends CordovaPlugin {
 
     //region Private Methods
 
+    // JSONObject 格式转 Map 格式
+    private static Map<String, Object> toMap(JSONObject jsonobj) throws JSONException {
+        Map<String, Object> map = new HashMap<String, Object>();
+        Iterator<String> keys = jsonobj.keys();
+        while(keys.hasNext()) {
+            String key = keys.next();
+            Object value = jsonobj.get(key);
+            if (value instanceof JSONArray) {
+                value = toList((JSONArray) value);
+            } else if (value instanceof JSONObject) {
+                value = toMap((JSONObject) value);
+            }
+            map.put(key, value);
+        }   return map;
+    }
+
+    // JSONArray 格式转 List 格式
+    private static List<Object> toList(JSONArray array) throws JSONException {
+        List<Object> list = new ArrayList<Object>();
+        for(int i = 0; i < array.length(); i++) {
+            Object value = array.get(i);
+            if (value instanceof JSONArray) {
+                value = toList((JSONArray) value);
+            } else if (value instanceof JSONObject) {
+                value = toMap((JSONObject) value);
+            }
+            list.add(value);
+        }   return list;
+    }
+
+    // 拼接参数
+    private String appendParameter(String url, Map<String, String> params) {
+        Uri uri = Uri.parse(url);
+        Uri.Builder builder = uri.buildUpon();
+        for(Map.Entry<String, String> entry : params.entrySet()) {
+            builder.appendQueryParameter(entry.getKey(), entry.getValue());
+        }
+        return builder.build().getQuery();
+    }
+
     // 打印调试信息
     private void debugLog(String ... strings) {
         if (debugMode) {
@@ -87,7 +135,7 @@ public class NetworkPlugin extends CordovaPlugin {
     }
 
     // 发送请求
-    private void request(int method, String url, JSONObject params, int retryTimes, CallbackContext callbackContext) {
+    private void request(int method, String url, Map params, int retryTimes, CallbackContext callbackContext) {
 
         debugLog(" Request sending with arguments");
 
@@ -110,7 +158,7 @@ public class NetworkPlugin extends CordovaPlugin {
         retryTimes--;
         int count = retryTimes;
 
-        JsonObjectRequest request = new JsonObjectRequest(method, url, params, response -> {
+        JsonObjectRequest request = new JsonObjectRequest(method, url, null, response -> {
             parse(url, statusCode, response, callbackContext);
         }, error -> {
             if (count < 1) {
@@ -118,11 +166,29 @@ public class NetworkPlugin extends CordovaPlugin {
             } else {
                 request(method, url, params, count, callbackContext);
             }
-        }) {// 重写解析服务器返回的数据
+        }) {
+            // 重写解析服务器返回的数据
             @Override
             protected Response<JSONObject> parseNetworkResponse(NetworkResponse response) {
                 statusCode = response.statusCode;
                 return super.parseNetworkResponse(response);
+            }
+
+            // 重写请求体的内容类型
+            @Override
+            public String getBodyContentType() {
+                return "application/x-www-form-urlencoded; charset=" + getParamsEncoding();
+            }
+
+            // 重写请求体
+            @Override
+            public byte[] getBody() {
+                try {
+                    final String string = appendParameter(url, params);
+                    return string.getBytes(PROTOCOL_CHARSET);
+                } catch (UnsupportedEncodingException uee) {
+                    return null;
+                }
             }
         };
 
@@ -217,7 +283,8 @@ public class NetworkPlugin extends CordovaPlugin {
             cordova.getThreadPool().execute(() -> {
                 try {
                     debugLog(" '" + action + "' run");
-                    request(Request.Method.GET, args.getString(0), (args.optJSONObject(1) != null) ? args.getJSONObject(1) : new JSONObject(), retryTimes, callbackContext);
+                    Map map = toMap(args.optJSONObject(1));
+                    request(Request.Method.GET, args.getString(0), map, retryTimes, callbackContext);
                 } catch (JSONException e) { e.printStackTrace(); }
             });
             return true;
@@ -228,7 +295,8 @@ public class NetworkPlugin extends CordovaPlugin {
             cordova.getThreadPool().execute(() -> {
                 try {
                     debugLog(" '" + action + "' run");
-                    request(Request.Method.POST, args.getString(0), (args.optJSONObject(1) != null) ? args.getJSONObject(1) : new JSONObject(), retryTimes, callbackContext);
+                    Map map = toMap(args.optJSONObject(1));
+                    request(Request.Method.POST, args.getString(0), map, retryTimes, callbackContext);
                 } catch (JSONException e) { e.printStackTrace(); }
             });
             return true;
@@ -239,7 +307,8 @@ public class NetworkPlugin extends CordovaPlugin {
             cordova.getThreadPool().execute(() -> {
                 try {
                     debugLog(" '" + action + "' run");
-                    request(Request.Method.DELETE, args.getString(0), (args.optJSONObject(1) != null) ? args.getJSONObject(1) : new JSONObject(), retryTimes, callbackContext);
+                    Map map = toMap(args.optJSONObject(1));
+                    request(Request.Method.DELETE, args.getString(0), map, retryTimes, callbackContext);
                 } catch (JSONException e) { e.printStackTrace(); }
             });
             return true;
