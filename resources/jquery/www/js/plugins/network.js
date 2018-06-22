@@ -101,7 +101,6 @@ var network = (function() {
 
     /**
      * 调试模式开关
-     *
      * @param openOrNot 是否打开
      */
     n.debugMode = function (openOrNot) {
@@ -115,7 +114,6 @@ var network = (function() {
 
     /**
      * 设置超时时隔
-     *
      * @param millisecond 时隔（毫秒）
      */
     n.timeoutInterval = function (millisecond) {
@@ -129,7 +127,6 @@ var network = (function() {
 
     /**
      * 设置重试次数
-     *
      * @param count 次数
      */
     n.retryTimes = function (count) {
@@ -143,7 +140,6 @@ var network = (function() {
 
     /**
      * 发送GET请求
-     *
      * @param url 请求地址
      * @param params 请求参数
      * @param successCallback 请求成功回调
@@ -161,7 +157,6 @@ var network = (function() {
 
     /**
      * 发送POST请求
-     *
      * @param url 请求地址
      * @param params 请求参数
      * @param successCallback 请求成功回调
@@ -179,7 +174,6 @@ var network = (function() {
 
     /**
      * 发送DELETE请求
-     *
      * @param url 请求地址
      * @param params 请求参数
      * @param successCallback 请求成功回调

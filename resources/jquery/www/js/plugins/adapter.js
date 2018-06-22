@@ -31,6 +31,10 @@
 
     /* Public Methods */
 
+	/**
+     * 调试模式开关
+     * @param openOrNot 是否打开
+     */
     a.debugMode = function (openOrNot) {
         cordova.exec(null, null, 'Adapter', 'debug_mode', [openOrNot]);
     }

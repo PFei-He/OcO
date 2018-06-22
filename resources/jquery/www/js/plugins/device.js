@@ -33,10 +33,8 @@ var device = (function () {
 
     /**
      * 判断设备系统
-     *
      * @property Android
      * @property iOS
-     *
      * @type {{Android: device.system.Android, iOS: device.system.iOS}}
      */
     d.system = {
@@ -51,6 +49,10 @@ var device = (function () {
 
     /* Public Methods */
 
+    /**
+     * 调试模式开关
+     * @param openOrNot 是否打开
+     */
     d.debugMode = function (openOrNot) {
         cordova.exec(null, null, 'Device', 'debug_mode', [openOrNot]);
     }

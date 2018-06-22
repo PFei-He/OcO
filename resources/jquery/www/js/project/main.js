@@ -31,6 +31,9 @@ var main = (function () {
 
 	/* Public Methods */
 
+	/**
+	 * Main 方法，程序从这里进入
+	 */
 	m.main = function() {
 
 		// 打开调试模式
