@@ -144,7 +144,6 @@ var network = (function() {
      * @param params 请求参数
      * @param successCallback 请求成功回调
      * @param errorCallback 请求失败回调
-     * @constructor GET
      */
     n.GET = function (url, params, successCallback, errorCallback) {
         if (n.native) {
@@ -161,7 +160,6 @@ var network = (function() {
      * @param params 请求参数
      * @param successCallback 请求成功回调
      * @param errorCallback 请求失败回调
-     * @constructor POST
      */
     n.POST = function (url, params, successCallback, errorCallback) {
         if (n.native) {
@@ -178,7 +176,6 @@ var network = (function() {
      * @param params 请求参数
      * @param successCallback 请求成功回调
      * @param errorCallback 请求失败回调
-     * @constructor DELETE
      */
     n.DELETE = function (url, params, successCallback, errorCallback) {
         if (n.native) {
