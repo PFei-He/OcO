@@ -59,6 +59,14 @@ public class AdapterPlugin extends CordovaPlugin {
 
     //region Cordova Plugin Methods (JavaScript -> Java)
 
+    /**
+     * 执行 Web 端发送来的请求
+     * @param action          The action to execute.
+     * @param args            The exec() arguments.
+     * @param callbackContext The callback context used when calling back into JavaScript.
+     * @return 是否执行成功
+     * @throws JSONException 解析异常
+     */
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
 
@@ -103,7 +111,6 @@ public class AdapterPlugin extends CordovaPlugin {
 
     /**
      * 发送到 Web 的回调
-     *
      * @param status 响应状态
      * @param message 回调参数
      * @param keepCallback 保持回调持续可用
