@@ -50,7 +50,7 @@
 }
 
 
-#pragma mark - Cordova Plugin Methods (JavaScript -> Objective-C)
+#pragma mark - Cordova Plugin Methods (Web -> Native)
 
 // Web 调用 -> 调试模式开关
 - (void)debug_mode:(CDVInvokedUrlCommand *)command
@@ -71,7 +71,7 @@
 }
 
 
-#pragma mark - Cordova Plugin Methods (Objective-C -> JavaScript)
+#pragma mark - Cordova Plugin Methods (Native -> Web)
 
 
 #pragma mark - Cordova Plugin Result Methods

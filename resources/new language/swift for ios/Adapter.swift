@@ -39,7 +39,7 @@ class Adapter: CDVPlugin {
     }
     
     
-    // MARK: Cordova Plugin Methods (JavaScript -> Objective-C)
+    // MARK: Cordova Plugin Methods (Web -> Native)
     
     // Web 调用 -> 调试模式开关
     func debug_mode(_ command: CDVInvokedUrlCommand) {
@@ -59,7 +59,7 @@ class Adapter: CDVPlugin {
     }
     
     
-    // MARK: Cordova Plugin Methods (Objective-C -> JavaScript)
+    // MARK: Cordova Plugin Methods (Native -> Web)
     
     // iOS 调用 -> Web 页面已关闭
     func webDismissed() {

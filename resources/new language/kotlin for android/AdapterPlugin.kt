@@ -56,7 +56,7 @@ class AdapterPlugin : CordovaPlugin() {
     //endregion
 
 
-    //region Cordova Plugin Methods (JavaScript -> Java)
+    //region Cordova Plugin Methods (Web -> Native)
 
     override fun execute(action: String?, args: JSONArray?, callbackContext: CallbackContext?): Boolean {
 
@@ -81,7 +81,7 @@ class AdapterPlugin : CordovaPlugin() {
     //endregion
 
 
-    //region Cordova Plugin Methods (Java -> JavaScript)
+    //region Cordova Plugin Methods (Native -> Web)
 
     // Android 调用 -> Web 页面已关闭
     private fun webDismissed() {

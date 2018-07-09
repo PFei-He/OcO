@@ -231,7 +231,7 @@ public class NetworkPlugin extends CordovaPlugin {
     //endregion
 
 
-    //region Cordova Plugin Methods (JavaScript -> Java)
+    //region Cordova Plugin Methods (Web -> Native)
 
     /**
      * 执行 Web 端发送来的请求
@@ -319,7 +319,7 @@ public class NetworkPlugin extends CordovaPlugin {
     //endregion
 
 
-    //region Cordova Plugin Methods (Java -> JavaScript)
+    //region Cordova Plugin Methods (Native -> Web)
 
     //endregion
 

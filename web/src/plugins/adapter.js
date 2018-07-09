@@ -24,7 +24,7 @@
 
 /* eslint-disable no-undef */
 export default {
-  // region Cordova Plugin Methods (JavaScript -> Java / Objective-C)
+  // region Cordova Plugin Methods (Web -> Native)
   /**
    * 调试模式
    * @param openOrNot 是否打开
@@ -36,7 +36,7 @@ export default {
     cordova.exec(null, null, 'Adapter', 'dismiss_web', [])
   },
   // endregion
-  // region Cordova Plugin Methods (Java / Objective-C -> JavaScript)
+  // region Cordova Plugin Methods (Native -> Web)
   web_dismissed () {
   }
   // endregion
