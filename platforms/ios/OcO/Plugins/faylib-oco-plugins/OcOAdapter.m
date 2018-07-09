@@ -81,7 +81,7 @@
 }
 
 
-#pragma mark - CDVPlugin Methods
+#pragma mark - Cordova Plugin Result Methods
 
 // 发送到 Web 的回调
 - (void)sendStatus:(CDVCommandStatus)status message:(NSObject *)message command:(CDVInvokedUrlCommand *)command

@@ -107,7 +107,7 @@ public class AdapterPlugin extends CordovaPlugin {
     //endregion
 
 
-    //region CordovaPlugin Methods
+    //region Cordova Plugin Result Methods
 
     /**
      * 发送到 Web 的回调
