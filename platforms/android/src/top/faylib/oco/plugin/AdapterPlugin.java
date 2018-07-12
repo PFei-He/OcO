@@ -22,7 +22,7 @@
  *
  */
 
-package top.faylib.oco.plugins;
+package top.faylib.oco.plugin;
 
 import android.util.Log;
 
