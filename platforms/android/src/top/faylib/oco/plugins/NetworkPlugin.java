@@ -336,15 +336,15 @@ public class NetworkPlugin extends CordovaPlugin {
     private void send(PluginResult.Status status, Object message, boolean keepCallback, CallbackContext callbackContext) {
         PluginResult pluginResult = null;
         if (message instanceof String) {
-            pluginResult = new PluginResult(status, (String) message);
+            pluginResult = new PluginResult(status, (String)message);
         } else if (message instanceof JSONArray) {
-            pluginResult = new PluginResult(status, (JSONArray) message);
+            pluginResult = new PluginResult(status, (JSONArray)message);
         } else if (message instanceof JSONObject) {
-            pluginResult = new PluginResult(status, (JSONObject) message);
+            pluginResult = new PluginResult(status, (JSONObject)message);
         } else if (message instanceof Integer) {
-            pluginResult = new PluginResult(status, (int) message);
+            pluginResult = new PluginResult(status, (int)message);
         } else if (message instanceof Float) {
-            pluginResult = new PluginResult(status, (float) message);
+            pluginResult = new PluginResult(status, (float)message);
         }
         assert pluginResult != null;
         pluginResult.setKeepCallback(keepCallback);
