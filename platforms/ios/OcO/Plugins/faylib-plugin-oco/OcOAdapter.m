@@ -22,7 +22,7 @@
 
 #import "OcOAdapter.h"
 
-#define DLog(args ...)\
+#define DLog(args...)\
 [self debugLog:args, nil]
 
 @interface OcOAdapter ()

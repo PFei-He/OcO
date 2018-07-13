@@ -23,7 +23,7 @@
 #import "OcONetwork.h"
 #import <AFNetworking/AFNetworking.h>
 
-#define DLog(args ...)\
+#define DLog(args...)\
 [self debugLog:args, nil]
 
 typedef NS_ENUM(NSUInteger, OcONetworkRequestMethod) {

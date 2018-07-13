@@ -22,7 +22,7 @@
 
 #import "OcODevice.h"
 
-#define DLog(args ...)\
+#define DLog(args...)\
 [self debugLog:args, nil]
 
 @interface OcODevice ()
