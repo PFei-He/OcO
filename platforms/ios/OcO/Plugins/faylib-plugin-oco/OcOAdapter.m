@@ -22,6 +22,9 @@
 
 #import "OcOAdapter.h"
 
+#define DLog(args ...)\
+[self debugLog:args, nil]
+
 @interface OcOAdapter ()
 
 // 调试模式
@@ -57,7 +60,7 @@
 {
     [self.commandDelegate runInBackground:^{
         self.debugMode = ([command.arguments[0] isEqual:@0]) ? NO : YES;
-        [self debugLog:[NSString stringWithFormat:@" '%@' run", NSStringFromSelector(_cmd)], @" Debug Mode Open", nil];
+        DLog([NSString stringWithFormat:@" '%@' run", NSStringFromSelector(_cmd)], @" Debug Mode Open");
     }];
 }
 
@@ -67,7 +70,7 @@
     [self.viewController dismissViewControllerAnimated:YES completion:NULL];
     [self.commandDelegate runInBackground:^{
         [self webDismissed];
-        [self debugLog:[NSString stringWithFormat:@" '%@' run", NSStringFromSelector(_cmd)], nil];
+        DLog([NSString stringWithFormat:@" '%@' run", NSStringFromSelector(_cmd)]);
     }];
 }
 

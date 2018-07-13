@@ -22,6 +22,9 @@
 
 #import "OcODevice.h"
 
+#define DLog(args ...)\
+[self debugLog:args, nil]
+
 @interface OcODevice ()
 
 // 调试模式
@@ -57,7 +60,7 @@
 {
     [self.commandDelegate runInBackground:^{
         self.debugMode = ([command.arguments[0] isEqual:@0]) ? NO : YES;
-        [self debugLog:[NSString stringWithFormat:@" '%@' run", NSStringFromSelector(_cmd)], @" Debug Mode Open.", nil];
+        DLog([NSString stringWithFormat:@" '%@' run", NSStringFromSelector(_cmd)], @" Debug Mode Open.");
     }];
 }
 
@@ -65,7 +68,7 @@
 - (void)device_system:(CDVInvokedUrlCommand *)command
 {
     [self.commandDelegate runInBackground:^{
-        [self debugLog:[NSString stringWithFormat:@" '%@' run", NSStringFromSelector(_cmd)], nil];
+        DLog([NSString stringWithFormat:@" '%@' run", NSStringFromSelector(_cmd)]);
         [self sendStatus:CDVCommandStatus_OK message:@"iOS" command:command];
     }];
 }
