@@ -13,6 +13,10 @@
                             "count": 1
                         },
                         {
+                            "xml": "<feature name=\"Network\"><param name=\"ios-package\" value=\"OcONetwork\" /></feature>",
+                            "count": 1
+                        },
+                        {
                             "xml": "<feature name=\"CDVWKWebViewEngine\"><param name=\"ios-package\" value=\"CDVWKWebViewEngine\" /></feature>",
                             "count": 1
                         },
@@ -21,15 +25,11 @@
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"Adapter\"><param name=\"ios-package\" value=\"OcOAdapter\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "xml": "<feature name=\"Adapter\"><param name=\"ios-package\" value=\"OcOAdapter\" /></feature>",
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"Device\"><param name=\"ios-package\" value=\"OcODevice\" /><param name=\"onload\" value=\"true\" /></feature>",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<feature name=\"Network\"><param name=\"ios-package\" value=\"OcONetwork\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "xml": "<feature name=\"Device\"><param name=\"ios-package\" value=\"OcODevice\" /></feature>",
                             "count": 1
                         }
                     ]

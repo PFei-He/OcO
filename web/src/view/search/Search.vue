@@ -29,7 +29,7 @@
 </template>
 
 <script>
-  import NavigationBar from '../../components/NavigationBar'
+  import NavigationBar from '../../component/NavigationBar'
   export default {
     components: {NavigationBar}, // 添加导航栏
     name: 'search',

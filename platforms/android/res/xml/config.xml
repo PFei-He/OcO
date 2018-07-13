@@ -27,16 +27,16 @@
         <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin" />
         <param name="onload" value="true" />
     </feature>
+    <feature name="Network">
+        <param name="android-package" value="top.faylib.plugin.network.NetworkPlugin" />
+        <param name="onload" value="true" />
+    </feature>
     <feature name="Adapter">
-        <param name="android-package" value="top.faylib.oco.plugins.AdapterPlugin" />
+        <param name="android-package" value="top.faylib.oco.plugin.AdapterPlugin" />
         <param name="onload" value="true" />
     </feature>
     <feature name="Device">
-        <param name="android-package" value="top.faylib.oco.plugins.DevicePlugin" />
-        <param name="onload" value="true" />
-    </feature>
-    <feature name="Network">
-        <param name="android-package" value="top.faylib.oco.plugins.NetworkPlugin" />
+        <param name="android-package" value="top.faylib.oco.plugin.DevicePlugin" />
         <param name="onload" value="true" />
     </feature>
     <name>OcO</name>

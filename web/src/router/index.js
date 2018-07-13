@@ -25,12 +25,12 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import Home from '../views/home/home.vue'
-import Today from '../views/home/today.vue'
+import Home from '../view/home/home.vue'
+import Today from '../view/home/today.vue'
 
-import Search from '../views/search/search.vue'
+import Search from '../view/search/search.vue'
 
-import Mine from '../views/mine/mine.vue'
+import Mine from '../view/mine/mine.vue'
 
 // 路由则为界面跳转的流程图
 // `Vue` 使用路由 `Route`

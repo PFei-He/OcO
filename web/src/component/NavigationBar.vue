@@ -43,7 +43,7 @@
 </template>
 
 <script>
-  import device from '../plugins/device'
+  import device from '../plugin/device'
   export default {
     name: 'NavigationBar',
     props: {

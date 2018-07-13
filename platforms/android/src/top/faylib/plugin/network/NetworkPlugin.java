@@ -22,7 +22,7 @@
  *
  */
 
-package top.faylib.oco.plugin;
+package top.faylib.plugin.network;
 
 import android.net.Uri;
 import android.util.Log;
@@ -282,7 +282,7 @@ public class NetworkPlugin extends CordovaPlugin {
             cordova.getThreadPool().execute(() -> {
                 try {
                     debugLog(" '" + action + "' run");
-                    Map map = toMap(args.optJSONObject(1));
+                    Map map = toMap(args.optJSONObject(1)!=null ? args.optJSONObject(1) : new JSONObject("{}"));
                     request(Request.Method.GET, args.getString(0), map, retryTimes, callbackContext);
                 } catch (JSONException e) { e.printStackTrace(); }
             });
@@ -294,7 +294,7 @@ public class NetworkPlugin extends CordovaPlugin {
             cordova.getThreadPool().execute(() -> {
                 try {
                     debugLog(" '" + action + "' run");
-                    Map map = toMap(args.optJSONObject(1));
+                    Map map = toMap(args.optJSONObject(1)!=null ? args.optJSONObject(1) : new JSONObject("{}"));
                     request(Request.Method.POST, args.getString(0), map, retryTimes, callbackContext);
                 } catch (JSONException e) { e.printStackTrace(); }
             });
@@ -306,7 +306,7 @@ public class NetworkPlugin extends CordovaPlugin {
             cordova.getThreadPool().execute(() -> {
                 try {
                     debugLog(" '" + action + "' run");
-                    Map map = toMap(args.optJSONObject(1));
+                    Map map = toMap(args.optJSONObject(1)!=null ? args.optJSONObject(1) : new JSONObject("{}"));
                     request(Request.Method.DELETE, args.getString(0), map, retryTimes, callbackContext);
                 } catch (JSONException e) { e.printStackTrace(); }
             });

@@ -23,52 +23,51 @@
 */
 
 <template>
-  <div class="home">
-    <navigation-bar>Hybrid</navigation-bar>
+  <div class="today">
+    <navigation-bar>
+      <img id="back_item" src="../../assets/image/ic_arrow_gray_back.png" slot="navigation-bar-left-item" />
+    </navigation-bar>
     <h1>{{ msg }}</h1>
-    <button id="next" @click="pushNext">Next Page</button>
   </div>
 </template>
 
 <script>
-  import NavigationBar from '../../components/NavigationBar'
+  import NavigationBar from '../../component/NavigationBar'
+  import Network from '../../plugin/network'
   export default {
     components: {NavigationBar}, // 添加导航栏
-    name: 'home',
-    methods: {
-      pushNext () { // 按钮 `next` 的点击事件
-        this.$router.push({ // 下一页
-          name: 'today' // 跳转到路径 `/today` ，则进入 `Today.vue`
-        })
-      }
-    },
+    name: 'today',
     data () { // 页面数据
       return {
-        msg: 'Welcome to Your Vue.js App'
+        msg: 'Thanks!'
       }
     },
-    mounted () { // 页面挂载后
-      // 显示TabBar
-      this.$parent.tabBarHidden = false
+    created () {
+      var global = this
+      Network.GET('http://www.weather.com.cn/data/sk/101010100.html', null, function (result) {
+        global.msg = result
+      }, function (error) {
+        console.log(error)
+      })
     },
-    destroyed () { // 页面销毁后
-      // 隐藏TabBar
-      this.$parent.tabBarHidden = true
+    leftItemEvent () {
+      console.log('1')
     }
   }
 </script>
 
 <style>
-  .home { /* 背景样式 */
+  .today { /* 背景样式 */
     background-color: white;
+  }
+
+  #back_item { /* 返回按钮样式 */
+    width: 10px;
+    height: 30px;
+    position: absolute;
   }
 
   h1 {
     font-weight: normal;
-    color: #2f3f4f;
-  }
-
-  #next {
-
   }
 </style>

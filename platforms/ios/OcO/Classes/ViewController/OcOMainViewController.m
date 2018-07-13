@@ -38,7 +38,7 @@
 }
 
 
-#pragma mark - Events Managements
+#pragma mark - Events Management
 
 - (IBAction)openNative:(id)sender
 {
@@ -51,7 +51,7 @@
 }
 
 
-#pragma mark - Memory Managements
+#pragma mark - Memory Management
 
 - (void)didReceiveMemoryWarning
 {

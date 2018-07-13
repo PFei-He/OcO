@@ -23,51 +23,27 @@
 */
 
 <template>
-  <div class="today">
-    <navigation-bar>
-      <img id="back_item" src="../../assets/images/ic_arrow_gray_back.png" slot="navigation-bar-left-item" />
-    </navigation-bar>
-    <h1>{{ msg }}</h1>
+  <div class="mine">
+    <navigation-bar :showBackItem="false">我的</navigation-bar>
   </div>
 </template>
 
 <script>
-  import NavigationBar from '../../components/NavigationBar'
-  import Network from '../../plugins/network'
+  import NavigationBar from '../../component/NavigationBar'
   export default {
     components: {NavigationBar}, // 添加导航栏
-    name: 'today',
-    data () { // 页面数据
-      return {
-        msg: 'Thanks!'
-      }
+    name: 'mine',
+    mounted () { // 页面挂载后
+      // 显示TabBar
+      this.$parent.tabBarHidden = false
     },
-    created () {
-      var global = this
-      Network.GET('http://www.weather.com.cn/data/sk/101010100.html', null, function (result) {
-        global.msg = result
-      }, function (error) {
-        console.log(error)
-      })
-    },
-    leftItemEvent () {
-      console.log('1')
+    destroyed () { // 页面销毁后
+      // 隐藏TabBar
+      this.$parent.tabBarHidden = true
     }
   }
 </script>
 
 <style>
-  .today { /* 背景样式 */
-    background-color: white;
-  }
 
-  #back_item { /* 返回按钮样式 */
-    width: 10px;
-    height: 30px;
-    position: absolute;
-  }
-
-  h1 {
-    font-weight: normal;
-  }
 </style>

@@ -40,7 +40,7 @@
 #pragma mark - Events Management
 
 
-#pragma mark - Memory Managements
+#pragma mark - Memory Management
 
 - (void)didReceiveMemoryWarning
 {

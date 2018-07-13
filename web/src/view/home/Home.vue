@@ -23,16 +23,30 @@
 */
 
 <template>
-  <div class="mine">
-    <navigation-bar :showBackItem="false">我的</navigation-bar>
+  <div class="home">
+    <navigation-bar>Hybrid</navigation-bar>
+    <h1>{{ msg }}</h1>
+    <button id="next" @click="pushNext">Next Page</button>
   </div>
 </template>
 
 <script>
-  import NavigationBar from '../../components/NavigationBar'
+  import NavigationBar from '../../component/NavigationBar'
   export default {
     components: {NavigationBar}, // 添加导航栏
-    name: 'mine',
+    name: 'home',
+    methods: {
+      pushNext () { // 按钮 `next` 的点击事件
+        this.$router.push({ // 下一页
+          name: 'today' // 跳转到路径 `/today` ，则进入 `Today.vue`
+        })
+      }
+    },
+    data () { // 页面数据
+      return {
+        msg: 'Welcome to Your Vue.js App'
+      }
+    },
     mounted () { // 页面挂载后
       // 显示TabBar
       this.$parent.tabBarHidden = false
@@ -45,5 +59,16 @@
 </script>
 
 <style>
+  .home { /* 背景样式 */
+    background-color: white;
+  }
 
+  h1 {
+    font-weight: normal;
+    color: #2f3f4f;
+  }
+
+  #next {
+
+  }
 </style>

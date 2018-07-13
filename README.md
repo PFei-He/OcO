@@ -282,11 +282,11 @@ faylib.plugin.test          // 插件包名
         </js-module>
         <config-file target="config.xml" parent="/*">
             <feature name="Test" >
-                <param name="android-package" value="top.faylib.test.TestPlugin"/>
+                <param name="android-package" value="top.faylib.plugin.test.TestPlugin"/>
                 <param name="onload" value="true" />
             </feature>
         </config-file>
-        <source-file src="src/android/TestPlugin.java" target-dir="src/top/faylib/test" />
+        <source-file src="src/android/TestPlugin.java" target-dir="src/top/faylib/plugin/test" />
     </platform>
 
     <!-- ios -->
@@ -297,7 +297,7 @@ faylib.plugin.test          // 插件包名
         </js-module>
         <config-file target="config.xml" parent="/*">
             <feature name="Test">
-                <param name="ios-package" value="Test" onload="true" />
+                <param name="ios-package" value="Test" />
             </feature>
         </config-file>
         <header-file src="src/ios/FLTest.h" />
@@ -317,7 +317,6 @@ test.testMethod = function(arguments, successCallback, failureCallback) {
 
     /**
     * 发送 'test_method' 消息（Web 端与移动端通信的方法）
-    *
     * successCallback: 移动端响应 '成功' 时执行的方法
     * failureCallback: 移动端响应 '失败' 时执行的方法
     * 'Test': 移动端用于接收消息的类的标识码
@@ -332,7 +331,7 @@ p.s. 关于 '移动端用于接收消息的类的标识码' 的意思，是表�
 ### Android
 * `TestPlugin.java`
 ```
-package top.faylib.test;
+package top.faylib.plugin.test;
 
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
@@ -577,15 +576,15 @@ Add Plugin / 添加插件
 声明用于 `JavaScript` 与 `Java` 通信的接口文件。
 ```
 {
-    "xml": "<feature name=\"Adapter\"><param name=\"android-package\" value=\"top.faylib.oco.plugins.AdapterPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
+    "xml": "<feature name=\"Adapter\"><param name=\"android-package\" value=\"top.faylib.oco.plugin.AdapterPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
     "count": 1
 },
 {
-    "xml": "<feature name=\"Device\"><param name=\"android-package\" value=\"top.faylib.oco.plugins.DevicePlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
+    "xml": "<feature name=\"Device\"><param name=\"android-package\" value=\"top.faylib.oco.plugin.DevicePlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
     "count": 1
 },
 {
-    "xml": "<feature name=\"Network\"><param name=\"android-package\" value=\"top.faylib.oco.plugins.NetworkPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
+    "xml": "<feature name=\"Network\"><param name=\"android-package\" value=\"top.faylib.plugin.network.NetworkPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
     "count": 1
 }
 ```
@@ -668,17 +667,16 @@ Add Plugin / 添加插件
 #### Edit / 编写
 声明用于 `JavaScript` 与 `Objective-C` 通信的接口文件。
 ```
-// line 15-26 / 15-26行
 {
-    "xml": "<feature name=\"Adapter\"><param name=\"ios-package\" value=\"OcOAdapter\" /><param name=\"onload\" value=\"true\" /></feature>",
+    "xml": "<feature name=\"Adapter\"><param name=\"ios-package\" value=\"OcOAdapter\" /></feature>",
     "count": 1
 },
 {
-    "xml": "<feature name=\"Device\"><param name=\"ios-package\" value=\"OcODevice\" /><param name=\"onload\" value=\"true\" /></feature>",
+    "xml": "<feature name=\"Device\"><param name=\"ios-package\" value=\"OcODevice\" /></feature>",
     "count": 1
 },
 {
-    "xml": "<feature name=\"Network\"><param name=\"ios-package\" value=\"OcONetwork\" /><param name=\"onload\" value=\"true\" /></feature>",
+    "xml": "<feature name=\"Network\"><param name=\"ios-package\" value=\"OcONetwork\" /></feature>",
     "count": 1
 }
 ```

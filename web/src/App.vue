@@ -29,20 +29,20 @@
 
     <tab-bar v-model="tab" v-show="!tabBarHidden">
       <tab-bar-item id="home" isRoute>
-        <img src="./assets/images/ic_tab_home_normal.png" slot="tab-bar-item-icon-normal">
-        <img src="./assets/images/ic_tab_home_active.png" slot="tab-bar-item-icon-active">
+        <img src="./assets/image/ic_tab_home_normal.png" slot="tab-bar-item-icon-normal">
+        <img src="./assets/image/ic_tab_home_active.png" slot="tab-bar-item-icon-active">
         首页
       </tab-bar-item>
 
       <tab-bar-item id="search" isRoute>
-        <img src="./assets/images/ic_tab_group_normal.png" slot="tab-bar-item-icon-normal">
-        <img src="./assets/images/ic_tab_group_active.png" slot="tab-bar-item-icon-active">
+        <img src="./assets/image/ic_tab_group_normal.png" slot="tab-bar-item-icon-normal">
+        <img src="./assets/image/ic_tab_group_active.png" slot="tab-bar-item-icon-active">
         搜索
       </tab-bar-item>
 
       <tab-bar-item id="mine" isRoute>
-        <img src="./assets/images/ic_tab_profile_normal.png" slot="tab-bar-item-icon-normal">
-        <img src="./assets/images/ic_tab_profile_active.png" slot="tab-bar-item-icon-active">
+        <img src="./assets/image/ic_tab_profile_normal.png" slot="tab-bar-item-icon-normal">
+        <img src="./assets/image/ic_tab_profile_active.png" slot="tab-bar-item-icon-active">
         我的
       </tab-bar-item>
     </tab-bar>
@@ -50,8 +50,8 @@
 </template>
 
 <script>
-  import TabBar from './components/TabBar'
-  import TabBarItem from './components/TabBarItem'
+  import TabBar from './component/TabBar'
+  import TabBarItem from './component/TabBarItem'
   export default {
     components: {
       TabBarItem,

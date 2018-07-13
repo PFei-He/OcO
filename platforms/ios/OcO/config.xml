@@ -41,20 +41,17 @@
     <feature name="Console">
         <param name="ios-package" value="CDVLogger" />
     </feature>
+    <feature name="Network">
+        <param name="ios-package" value="OcONetwork" />
+    </feature>
     <feature name="CDVWKWebViewEngine">
         <param name="ios-package" value="CDVWKWebViewEngine" />
     </feature>
     <feature name="Adapter">
         <param name="ios-package" value="OcOAdapter" />
-        <param name="onload" value="true" />
     </feature>
     <feature name="Device">
         <param name="ios-package" value="OcODevice" />
-        <param name="onload" value="true" />
-    </feature>
-    <feature name="Network">
-        <param name="ios-package" value="OcONetwork" />
-        <param name="onload" value="true" />
     </feature>
     <name>OcO</name>
     <description>
