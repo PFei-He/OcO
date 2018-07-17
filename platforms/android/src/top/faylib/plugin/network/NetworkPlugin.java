@@ -86,12 +86,12 @@ public class NetworkPlugin extends CordovaPlugin {
     //region Private Methods
 
     // JSONObject 格式转 Map 格式
-    private static Map<String, Object> toMap(JSONObject jsonobj) throws JSONException {
+    private static Map<String, Object> toMap(JSONObject jsonObject) throws JSONException {
         Map<String, Object> map = new HashMap<String, Object>();
-        Iterator<String> keys = jsonobj.keys();
+        Iterator<String> keys = jsonObject.keys();
         while(keys.hasNext()) {
             String key = keys.next();
-            Object value = jsonobj.get(key);
+            Object value = jsonObject.get(key);
             if (value instanceof JSONArray) {
                 value = toList((JSONArray) value);
             } else if (value instanceof JSONObject) {
@@ -102,10 +102,10 @@ public class NetworkPlugin extends CordovaPlugin {
     }
 
     // JSONArray 格式转 List 格式
-    private static List<Object> toList(JSONArray array) throws JSONException {
+    private static List<Object> toList(JSONArray jsonArray) throws JSONException {
         List<Object> list = new ArrayList<Object>();
-        for(int i = 0; i < array.length(); i++) {
-            Object value = array.get(i);
+        for(int i = 0; i < jsonArray.length(); i++) {
+            Object value = jsonArray.get(i);
             if (value instanceof JSONArray) {
                 value = toList((JSONArray) value);
             } else if (value instanceof JSONObject) {
