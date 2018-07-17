@@ -22,6 +22,9 @@
  *
  */
 
+// 网络框架
+var Network = 'Network'
+
 /* eslint-disable no-undef */
 export default {
   // region Cordova Plugin Methods (Web -> Native)
@@ -30,21 +33,21 @@ export default {
    * @param openOrNot 是否打开
    */
   debugMode (openOrNot) {
-    cordova.exec(null, null, 'Network', 'debug_mode', [openOrNot])
+    cordova.exec(null, null, Network, 'debug_mode', [openOrNot])
   },
   /**
    * 设置超时时隔
    * @param millisecond 时隔（毫秒）
    */
   timeoutInterval (millisecond) {
-    cordova.exec(null, null, 'Network', 'timeout_interval', [millisecond])
+    cordova.exec(null, null, Network, 'timeout_interval', [millisecond])
   },
   /**
    * 设置重试次数
    * @param count 次数
    */
   retryTimes (count) {
-    cordova.exec(null, null, 'Network', 'retry_times', [count])
+    cordova.exec(null, null, Network, 'retry_times', [count])
   },
   /**
    * 发送 GET 请求
@@ -54,7 +57,7 @@ export default {
    * @param errorCallback 请求失败回调
    */
   GET (url, params, successCallback, errorCallback) {
-    cordova.exec(successCallback, errorCallback, 'Network', 'request_get', [url, params])
+    cordova.exec(successCallback, errorCallback, Network, 'request_get', [url, params])
   },
   /**
    * 发送 POST 请求
@@ -64,7 +67,7 @@ export default {
    * @param errorCallback 请求失败回调
    */
   POST (url, params, successCallback, errorCallback) {
-    cordova.exec(successCallback, errorCallback, 'Network', 'request_post', [url, params])
+    cordova.exec(successCallback, errorCallback, Network, 'request_post', [url, params])
   },
   /**
    * 发送 DELETE 请求
@@ -74,7 +77,13 @@ export default {
    * @param errorCallback 请求失败回调
    */
   DELETE (url, params, successCallback, errorCallback) {
-    cordova.exec(successCallback, errorCallback, 'Network', 'request_delete', [url, params])
+    cordova.exec(successCallback, errorCallback, Network, 'request_delete', [url, params])
+  },
+  /**
+   * 重置请求
+   */
+  reset () {
+    cordova.exec(null, null, Network, 'reset_request', [])
   }
   // endregion
   // region Cordova Plugin Methods (Native -> Web)

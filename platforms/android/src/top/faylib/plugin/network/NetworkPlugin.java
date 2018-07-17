@@ -312,6 +312,16 @@ public class NetworkPlugin extends CordovaPlugin {
             });
             return true;
         }
+
+        // Web 调用 -> 重置请求
+        else if ("reset_request".equals(action)) {
+            cordova.getThreadPool().execute(() -> {
+                debugLog(" '" + action + "' run");
+                timeoutInterval = 120000;
+                retryTimes = 1;
+            });
+            return true;
+        }
         
         return super.execute(action, args, callbackContext);
     }

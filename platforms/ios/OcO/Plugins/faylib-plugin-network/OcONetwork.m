@@ -236,6 +236,16 @@ typedef NS_ENUM(NSUInteger, OcONetworkRequestMethod) {
     }];
 }
 
+// Web 调用 -> 重置请求
+- (void)reset_request:(CDVInvokedUrlCommand *)command
+{
+    [self.commandDelegate runInBackground:^{
+        DLog([NSString stringWithFormat:@" '%@' run", NSStringFromSelector(_cmd)]);
+        self.timeoutInterval = 120;
+        self.retryTimes = 1;
+    }];
+}
+
 
 #pragma mark - Cordova Plugin Methods (Native -> Web)
 

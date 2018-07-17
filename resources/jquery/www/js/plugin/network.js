@@ -28,6 +28,9 @@ var network = (function() {
 
     var n = {};
 
+    // 网络框架
+    var Network = 'Network';
+
     // 调试模式
     var debugMode = false;
 
@@ -105,7 +108,7 @@ var network = (function() {
      */
     n.debugMode = function (openOrNot) {
         if (n.native) {
-            cordova.exec(null, null, 'Network', 'debug_mode', [openOrNot]);
+            cordova.exec(null, null, Network, 'debug_mode', [openOrNot]);
         } else {
             debugMode = openOrNot;
             debugLog(" 'debugMode' run", " Debug Mode Open");
@@ -118,7 +121,7 @@ var network = (function() {
      */
     n.timeoutInterval = function (millisecond) {
         if (n.native) {
-            cordova.exec(null, null, 'Network', 'timeout_interval', [sec]);
+            cordova.exec(null, null, Network, 'timeout_interval', [sec]);
         } else {
             debugLog(" 'timeoutInterval' run");
             timeoutInterval = sec;
@@ -131,7 +134,7 @@ var network = (function() {
      */
     n.retryTimes = function (count) {
         if (n.native) {
-            cordova.exec(null, null, 'Network', 'retry_times', [count]);
+            cordova.exec(null, null, Network, 'retry_times', [count]);
         } else {
             debugLog(" 'retryTimes' run");
             retryTimes = count;
@@ -147,7 +150,7 @@ var network = (function() {
      */
     n.GET = function (url, params, successCallback, errorCallback) {
         if (n.native) {
-            cordova.exec(successCallback, errorCallback, 'Network', 'request_get', [url, params]);
+            cordova.exec(successCallback, errorCallback, Network, 'request_get', [url, params]);
         } else {
             debugLog(" 'GET' run");
             request('GET', url, params, retryTimes, successCallback, errorCallback);
@@ -163,7 +166,7 @@ var network = (function() {
      */
     n.POST = function (url, params, successCallback, errorCallback) {
         if (n.native) {
-            cordova.exec(successCallback, errorCallback, 'Network', 'request_post', [url, params]);
+            cordova.exec(successCallback, errorCallback, Network, 'request_post', [url, params]);
         } else {
             debugLog(" 'POST' run");
             request('POST', url, params, retryTimes, successCallback, errorCallback);
@@ -179,10 +182,23 @@ var network = (function() {
      */
     n.DELETE = function (url, params, successCallback, errorCallback) {
         if (n.native) {
-            cordova.exec(successCallback, errorCallback, 'Network', 'request_delete', [url, params]);
+            cordova.exec(successCallback, errorCallback, Network, 'request_delete', [url, params]);
         } else {
             debugLog(" 'DELETE' run");
             request('DELETE', url, params, retryTimes, successCallback, errorCallback);
+        }
+    }
+
+    /**
+     * 重置请求
+     */
+    n.reset = function () {
+        if (n.native) {
+            cordova.exec(null, null, Network, 'reset_request', [])
+        } else {
+            debugLog(" 'reset' run");
+            timeoutInterval = 120000;
+            retryTimes = 1;
         }
     }
 
