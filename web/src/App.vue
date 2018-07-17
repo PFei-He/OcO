@@ -53,9 +53,7 @@
   import TabBar from './component/TabBar'
   import TabBarItem from './component/TabBarItem'
   export default {
-    components: {
-      TabBarItem,
-      TabBar},
+    components: { TabBarItem, TabBar },
     name: 'app',
     props: { // 动态绑定TabBar是否隐藏的属性，默认隐藏
       tabBarHidden: {

@@ -31,7 +31,7 @@
 <script>
   import NavigationBar from '../../component/NavigationBar'
   export default {
-    components: {NavigationBar}, // 添加导航栏
+    components: { NavigationBar }, // 添加导航栏
     name: 'search',
     mounted () { // 页面挂载后
       // 显示TabBar

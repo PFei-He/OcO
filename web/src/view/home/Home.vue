@@ -33,7 +33,7 @@
 <script>
   import NavigationBar from '../../component/NavigationBar'
   export default {
-    components: {NavigationBar}, // 添加导航栏
+    components: { NavigationBar }, // 添加导航栏
     name: 'home',
     methods: {
       pushNext () { // 按钮 `next` 的点击事件

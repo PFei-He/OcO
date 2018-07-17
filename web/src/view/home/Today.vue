@@ -35,7 +35,7 @@
   import NavigationBar from '../../component/NavigationBar'
   import Network from '../../plugin/network'
   export default {
-    components: {NavigationBar}, // 添加导航栏
+    components: { NavigationBar }, // 添加导航栏
     name: 'today',
     data () { // 页面数据
       return {
