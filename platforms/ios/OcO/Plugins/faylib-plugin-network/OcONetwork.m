@@ -110,12 +110,10 @@ typedef NS_ENUM(NSUInteger, OcONetworkRequestMethod) {
 
 // 发送请求
 - (void)sendWithMethod:(OcONetworkRequestMethod)method url:(NSString *)url params:(NSDictionary *)params retryTimes:(NSInteger)count response:(CDVInvokedUrlCommand *)command
-{
-    DLog(@"[ REQUEST ] Start sending");
-    
-    if (method == OcONetworkRequestMethodGET) DLog([NSString stringWithFormat:@"[ URL ] %@", url], @"[ METHOD ] GET", [NSString stringWithFormat:@"[ PARAMS ] %@", params], [NSString stringWithFormat:@"[ RETRY TIMES ] %@", @(count)], [NSString stringWithFormat:@"[ TIMEOUT INTERVAL ] %@", @(self.manager.requestSerializer.timeoutInterval)]);
-    else if (method == OcONetworkRequestMethodPOST) DLog([NSString stringWithFormat:@"[ URL ] %@", url], @"[ METHOD ] POST", [NSString stringWithFormat:@"[ PARAMS ] %@", params], [NSString stringWithFormat:@"[ RETRY TIMES ] %@", @(count)], [NSString stringWithFormat:@"[ TIMEOUT INTERVAL ] %@", @(self.manager.requestSerializer.timeoutInterval)]);
-    else if (method == OcONetworkRequestMethodDELETE) DLog([NSString stringWithFormat:@"[ URL ] %@", url], @"[ METHOD ] DELETE", [NSString stringWithFormat:@"[ PARAMS ] %@", params], [NSString stringWithFormat:@"[ RETRY TIMES ] %@", @(count)], [NSString stringWithFormat:@"[ TIMEOUT INTERVAL ] %@", @(self.manager.requestSerializer.timeoutInterval)]);
+{    
+    if (method == OcONetworkRequestMethodGET) DLog(@"[ REQUEST ] Start sending", [NSString stringWithFormat:@"[ URL ] %@", url], @"[ METHOD ] GET", [NSString stringWithFormat:@"[ PARAMS ] %@", params], [NSString stringWithFormat:@"[ RETRY TIMES ] %@", @(count)], [NSString stringWithFormat:@"[ TIMEOUT INTERVAL ] %@", @(self.manager.requestSerializer.timeoutInterval)]);
+    else if (method == OcONetworkRequestMethodPOST) DLog(@"[ REQUEST ] Start sending", [NSString stringWithFormat:@"[ URL ] %@", url], @"[ METHOD ] POST", [NSString stringWithFormat:@"[ PARAMS ] %@", params], [NSString stringWithFormat:@"[ RETRY TIMES ] %@", @(count)], [NSString stringWithFormat:@"[ TIMEOUT INTERVAL ] %@", @(self.manager.requestSerializer.timeoutInterval)]);
+    else if (method == OcONetworkRequestMethodDELETE) DLog(@"[ REQUEST ] Start sending", [NSString stringWithFormat:@"[ URL ] %@", url], @"[ METHOD ] DELETE", [NSString stringWithFormat:@"[ PARAMS ] %@", params], [NSString stringWithFormat:@"[ RETRY TIMES ] %@", @(count)], [NSString stringWithFormat:@"[ TIMEOUT INTERVAL ] %@", @(self.manager.requestSerializer.timeoutInterval)]);
     
     count--;
     
