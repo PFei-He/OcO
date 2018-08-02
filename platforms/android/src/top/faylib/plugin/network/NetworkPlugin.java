@@ -137,23 +137,21 @@ public class NetworkPlugin extends CordovaPlugin {
     // 发送请求
     private void request(int method, String url, Map params, int retryTimes, CallbackContext callbackContext) {
 
-        debugLog(" Request sending with arguments");
+        debugLog("[ REQUEST ] Start sending");
 
         switch (method) {
             case 0:
-                debugLog("[ METHOD ] GET");
+                debugLog("[ URL ] " + url, "[ METHOD ] GET", "[ PARAMS ] " + params.toString(), "[ RETRY TIMES ] " + String.valueOf(retryTimes), "[ TIMEOUT INTERVAL ] " + String.valueOf(timeoutInterval/1000));
                 break;
             case 1:
-                debugLog("[ METHOD ] POST");
+                debugLog("[ URL ] " + url, "[ METHOD ] POST", "[ PARAMS ] " + params.toString(), "[ RETRY TIMES ] " + String.valueOf(retryTimes), "[ TIMEOUT INTERVAL ] " + String.valueOf(timeoutInterval/1000));
                 break;
             case 3:
-                debugLog("[ METHOD ] DELETE");
+                debugLog("[ URL ] " + url, "[ METHOD ] DELETE", "[ PARAMS ] " + params.toString(), "[ RETRY TIMES ] " + String.valueOf(retryTimes), "[ TIMEOUT INTERVAL ] " + String.valueOf(timeoutInterval/1000));
                 break;
             default:
                 break;
         }
-
-        debugLog("[ URL ] " + url, "[ PARAMS ] " + params.toString(), "[ RETRY TIMES ] " + String.valueOf(retryTimes), "[ TIMEOUT INTERVAL ] " + String.valueOf(timeoutInterval/1000));
 
         retryTimes--;
         int count = retryTimes;

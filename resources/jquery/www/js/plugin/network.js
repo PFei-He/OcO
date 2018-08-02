@@ -56,7 +56,7 @@ var network = (function() {
     function debugLog() {
         if (debugMode) {
             for (var i in arguments) {
-                console.log("[ OcO ][ NETWORK ][ DEBUG ]" + arguments[i] + ".");
+                console.log("[ OcO ][ NETWORK ]" + arguments[i] + ".");
             }
         }
     }
@@ -64,7 +64,7 @@ var network = (function() {
     // 发送请求
     function request(method, url, params, retryTimes, successCallback, errorCallback) {
 
-        debugLog(" Request sending with arguments", "[ METHOD ] " + method, "[ URL ] " + url, "[ PARAMS ] " + JSON.stringify(params), "[ RETRY TIMES ] " + retryTimes, "[ TIMEOUT INTERVAL ] " + timeoutInterval/1000);
+        debugLog("[ REQUEST ] Start sending", "[ URL ] " + url, "[ METHOD ] " + method, "[ PARAMS ] " + JSON.stringify(params), "[ RETRY TIMES ] " + retryTimes, "[ TIMEOUT INTERVAL ] " + timeoutInterval/1000);
 
         retryTimes--;
 
@@ -79,10 +79,10 @@ var network = (function() {
             // 回调成功
             success: function (xhr, status, result) {
                 if (typeof xhr == 'object') {
-                    debugLog(" Request success");
+                    debugLog("[ REQUEST ] Success", "[ URL ] " + url);
                     successCallback({'statusCode': result.status, 'result': xhr});
                 } else {
-                    debugLog(" Request success but not JSON data");
+                    debugLog("[ REQUEST ] Success but not JSON data", "[ URL ] " + url);
                     errorCallback({'statusCode': result.status, 'result': xhr});
                 }
             },
@@ -90,10 +90,10 @@ var network = (function() {
             // 回调失败
             error: function (xhr, status, error) {
                 if (retryTimes < 1) {
-                    debugLog(" Request failure");
+                    debugLog("[ REQUEST ] Failure", "[ URL ] " + url);
                     errorCallback({'statusCode': error.status, 'result': xhr});
                 } else {
-                    request(url, params, timeout, retryTimes, dataType, successCallback, errorCallback);
+                    request(method, url, params, retryTimes, successCallback, errorCallback);
                 }
             }
         });
@@ -111,7 +111,7 @@ var network = (function() {
             cordova.exec(null, null, Network, 'debug_mode', [openOrNot]);
         } else {
             debugMode = openOrNot;
-            debugLog(" 'debugMode' run", " Debug Mode Open");
+            debugLog("[ FUNCTION ] 'debugMode' run", " Debug Mode Open");
         }
     }
 
@@ -123,7 +123,7 @@ var network = (function() {
         if (n.native) {
             cordova.exec(null, null, Network, 'timeout_interval', [sec]);
         } else {
-            debugLog(" 'timeoutInterval' run");
+            debugLog("[ FUNCTION ] 'timeoutInterval' run");
             timeoutInterval = sec;
         }
     }
@@ -136,7 +136,7 @@ var network = (function() {
         if (n.native) {
             cordova.exec(null, null, Network, 'retry_times', [count]);
         } else {
-            debugLog(" 'retryTimes' run");
+            debugLog("[ FUNCTION ] 'retryTimes' run");
             retryTimes = count;
         }
     }
@@ -152,7 +152,7 @@ var network = (function() {
         if (n.native) {
             cordova.exec(successCallback, errorCallback, Network, 'request_get', [url, params]);
         } else {
-            debugLog(" 'GET' run");
+            debugLog("[ FUNCTION ] 'GET' run");
             request('GET', url, params, retryTimes, successCallback, errorCallback);
         }
     }
@@ -168,7 +168,7 @@ var network = (function() {
         if (n.native) {
             cordova.exec(successCallback, errorCallback, Network, 'request_post', [url, params]);
         } else {
-            debugLog(" 'POST' run");
+            debugLog("[ FUNCTION ] 'POST' run");
             request('POST', url, params, retryTimes, successCallback, errorCallback);
         }
     }
@@ -184,7 +184,7 @@ var network = (function() {
         if (n.native) {
             cordova.exec(successCallback, errorCallback, Network, 'request_delete', [url, params]);
         } else {
-            debugLog(" 'DELETE' run");
+            debugLog("[ FUNCTION ] 'DELETE' run");
             request('DELETE', url, params, retryTimes, successCallback, errorCallback);
         }
     }
@@ -196,7 +196,7 @@ var network = (function() {
         if (n.native) {
             cordova.exec(null, null, Network, 'reset_request', [])
         } else {
-            debugLog(" 'reset' run");
+            debugLog("[ FUNCTION ] 'reset' run");
             timeoutInterval = 120000;
             retryTimes = 1;
         }
