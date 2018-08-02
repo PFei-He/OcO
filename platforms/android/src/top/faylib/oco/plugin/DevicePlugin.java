@@ -51,7 +51,7 @@ public class DevicePlugin extends CordovaPlugin {
     private void debugLog(String ... strings) {
         if (debugMode) {
             for (String string : strings) {
-                Log.i("OcO", "[ OcO ][ NETWORK ][ DEBUG ]" + string + ".");
+                Log.i("OcO", "[ OcO ][ NETWORK ]" + string + ".");
             }
         }
     }
@@ -77,7 +77,7 @@ public class DevicePlugin extends CordovaPlugin {
             cordova.getThreadPool().execute(() -> {
                 try {
                     debugMode = args.getBoolean(0);
-                    debugLog(" '" + action + "' run", " Debug Mode Open");
+                    debugLog("[ FUNCTION ] '" + action + "' run", " Debug Mode Open");
                 } catch (JSONException e) { e.printStackTrace(); }
             });
             return true;
@@ -86,7 +86,7 @@ public class DevicePlugin extends CordovaPlugin {
         // Web 调用 -> 获取设备系统
         else if ("device_system".equals(action)) {
             cordova.getThreadPool().execute(() -> {
-                debugLog(" '" + action + "' run");
+                debugLog("[ FUNCTION ] '" + action + "' run");
                 send(PluginResult.Status.OK, "Android", false, callbackContext);
             });
             return true;

@@ -40,13 +40,13 @@
 - (void)debugLog:(NSString *)strings, ...
 {
     if (self.debugMode) {
-        NSLog(@"[ OcO ][ DEVICE ][ DEBUG ]%@.", strings);
+        NSLog(@"[ OcO ][ DEVICE ]%@.", strings);
         va_list list;
         va_start(list, strings);
         while (strings != nil) {
             NSString *string = va_arg(list, NSString *);
             if (!string) break;
-            NSLog(@"[ OcO ][ DEVICE ][ DEBUG ]%@.", string);
+            NSLog(@"[ OcO ][ DEVICE ]%@.", string);
         }
         va_end(list);
     }
@@ -60,7 +60,7 @@
 {
     [self.commandDelegate runInBackground:^{
         self.debugMode = ([command.arguments[0] isEqual:@0]) ? NO : YES;
-        DLog([NSString stringWithFormat:@" '%@' run", NSStringFromSelector(_cmd)], @" Debug Mode Open.");
+        DLog([NSString stringWithFormat:@"[ FUNCTION ] '%@' run", NSStringFromSelector(_cmd)], @" Debug Mode Open.");
     }];
 }
 
@@ -68,7 +68,7 @@
 - (void)device_system:(CDVInvokedUrlCommand *)command
 {
     [self.commandDelegate runInBackground:^{
-        DLog([NSString stringWithFormat:@" '%@' run", NSStringFromSelector(_cmd)]);
+        DLog([NSString stringWithFormat:@"[ FUNCTION ] '%@' run", NSStringFromSelector(_cmd)]);
         [self sendStatus:CDVCommandStatus_OK message:@"iOS" command:command];
     }];
 }

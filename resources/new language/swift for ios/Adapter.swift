@@ -33,7 +33,7 @@ class Adapter: CDVPlugin {
     private func debugLog(_ strings: String ...) {
         if debugMode {
             for string in strings {
-                print("[ OcO ][ ADAPTER ][ DEBUG ]\(string).")
+                print("[ OcO ][ ADAPTER ]\(string).")
             }
         }
     }
@@ -45,7 +45,7 @@ class Adapter: CDVPlugin {
     func debug_mode(_ command: CDVInvokedUrlCommand) {
         commandDelegate.run(inBackground: {
             self.debugMode = command.arguments[0] as! Bool
-            self.debugLog(" '\(#function)' run", " Debug Mode Open")
+            self.debugLog("[ FUNCTION ] '\(#function)' run", " Debug Mode Open")
         })
     }
     
@@ -54,7 +54,7 @@ class Adapter: CDVPlugin {
         viewController.dismiss(animated: true, completion: nil)
         commandDelegate.run(inBackground: {
             self.webDismissed()
-            self.debugLog(" '\(#function)' run", " Debug Mode Open")
+            self.debugLog("[ FUNCTION ] '\(#function)' run", " Debug Mode Open")
         })
     }
     

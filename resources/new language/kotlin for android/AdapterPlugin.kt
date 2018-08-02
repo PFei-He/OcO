@@ -48,7 +48,7 @@ class AdapterPlugin : CordovaPlugin() {
     private fun debugLog(vararg strings: String) {
         if (debugMode) {
             for (string in strings) {
-                Log.i("OcO", "[ OcO ][ NETWORK ][ DEBUG ]$string.")
+                Log.i("OcO", "[ OcO ][ NETWORK ]$string.")
             }
         }
     }
@@ -63,7 +63,7 @@ class AdapterPlugin : CordovaPlugin() {
         // Web 调用 -> 调试模式开关
         if ("debug_mode" == action) {
             debugMode = args!![0] as Boolean
-            debugLog(" '$action' run", " Debug Mode Open")
+            debugLog("[ FUNCTION ] '$action' run", " Debug Mode Open")
             return true
         }
 
@@ -71,7 +71,7 @@ class AdapterPlugin : CordovaPlugin() {
         else if ("dismiss_web" == action) {
             cordova.activity.finish()
             webDismissed()
-            debugLog(" '$action' run")
+            debugLog("[ FUNCTION ] '$action' run")
             return true
         }
 

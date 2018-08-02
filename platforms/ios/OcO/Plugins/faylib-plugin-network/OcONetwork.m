@@ -86,13 +86,13 @@ typedef NS_ENUM(NSUInteger, OcONetworkRequestMethod) {
 - (void)debugLog:(NSString *)strings, ...
 {
     if (self.debugMode) {
-        NSLog(@"[ OcO ][ NETWORK ][ DEBUG ]%@.", strings);
+        NSLog(@"[ OcO ][ NETWORK ]%@.", strings);
         va_list list;
         va_start(list, strings);
         while (strings != nil) {
             NSString *string = va_arg(list, NSString *);
             if (!string) break;
-            NSLog(@"[ OcO ][ NETWORK ][ DEBUG ]%@.", string);
+            NSLog(@"[ OcO ][ NETWORK ]%@.", string);
         }
         va_end(list);
     }
@@ -111,7 +111,7 @@ typedef NS_ENUM(NSUInteger, OcONetworkRequestMethod) {
 // 发送请求
 - (void)sendWithMethod:(OcONetworkRequestMethod)method url:(NSString *)url params:(NSDictionary *)params retryTimes:(NSInteger)count response:(CDVInvokedUrlCommand *)command
 {
-    DLog(@" Request sending with arguments");
+    DLog(@"[ REQUEST ] Start sending.");
     
     if (method == OcONetworkRequestMethodGET) DLog(@"[ METHOD ] GET");
     else if (method == OcONetworkRequestMethodPOST) DLog(@"[ METHOD ] POST");
@@ -167,14 +167,14 @@ typedef NS_ENUM(NSUInteger, OcONetworkRequestMethod) {
     // 回调结果到 Web 端
     if (statusCode == 200) {
         if ([result isKindOfClass:[NSDictionary class]]) {
-            DLog(@" Request success", [NSString stringWithFormat:@"[ URL ] %@", url]);
+            DLog(@"[ REQUEST ] Success", [NSString stringWithFormat:@"[ URL ] %@", url]);
             [self sendStatus:CDVCommandStatus_OK message:@{@"statusCode": @(statusCode), @"result": result} command:command];
         } else {
-            DLog(@" Request success but not JSON data", [NSString stringWithFormat:@"[ URL ] %@", url]);
+            DLog(@"[ REQUEST ] Success but not JSON data", [NSString stringWithFormat:@"[ URL ] %@", url]);
             [self sendStatus:CDVCommandStatus_ERROR message:@{@"statusCode": @(statusCode), @"result": result} command:command];
         }
     } else {
-        DLog(@" Request failure", [NSString stringWithFormat:@"[ URL ] %@", url]);
+        DLog(@"[ REQUEST ] Failure", [NSString stringWithFormat:@"[ URL ] %@", url]);
         [self sendStatus:CDVCommandStatus_ERROR message:@{@"statusCode": @(statusCode), @"result": result} command:command];
     }
 }
@@ -187,7 +187,7 @@ typedef NS_ENUM(NSUInteger, OcONetworkRequestMethod) {
 {
     [self.commandDelegate runInBackground:^{
         self.debugMode = ([command.arguments[0] isEqual:@0]) ? NO : YES;
-        DLog([NSString stringWithFormat:@" '%@' run", NSStringFromSelector(_cmd)], @" Debug Mode Open");
+        DLog([NSString stringWithFormat:@"[ FUNCTION ] '%@' run", NSStringFromSelector(_cmd)], @" Debug Mode Open");
     }];
 }
 
@@ -195,7 +195,7 @@ typedef NS_ENUM(NSUInteger, OcONetworkRequestMethod) {
 - (void)timeout_interval:(CDVInvokedUrlCommand *)command
 {
     [self.commandDelegate runInBackground:^{
-        DLog([NSString stringWithFormat:@" '%@' run", NSStringFromSelector(_cmd)]);
+        DLog([NSString stringWithFormat:@"[ FUNCTION ] '%@' run", NSStringFromSelector(_cmd)]);
         self.timeoutInterval = [command.arguments[0] integerValue] / 1000;
     }];
 }
@@ -204,7 +204,7 @@ typedef NS_ENUM(NSUInteger, OcONetworkRequestMethod) {
 - (void)retry_times:(CDVInvokedUrlCommand *)command
 {
     [self.commandDelegate runInBackground:^{
-        DLog([NSString stringWithFormat:@" '%@' run", NSStringFromSelector(_cmd)]);
+        DLog([NSString stringWithFormat:@"[ FUNCTION ] '%@' run", NSStringFromSelector(_cmd)]);
         self.retryTimes = [command.arguments[0] integerValue];
     }];
 }
@@ -213,7 +213,7 @@ typedef NS_ENUM(NSUInteger, OcONetworkRequestMethod) {
 - (void)request_get:(CDVInvokedUrlCommand *)command
 {
     [self.commandDelegate runInBackground:^{
-        DLog([NSString stringWithFormat:@" '%@' run", NSStringFromSelector(_cmd)]);
+        DLog([NSString stringWithFormat:@"[ FUNCTION ] '%@' run", NSStringFromSelector(_cmd)]);
         [self sendWithMethod:OcONetworkRequestMethodGET url:command.arguments[0] params:command.arguments[1] retryTimes:self.retryTimes response:command];
     }];
 }
@@ -222,7 +222,7 @@ typedef NS_ENUM(NSUInteger, OcONetworkRequestMethod) {
 - (void)request_post:(CDVInvokedUrlCommand *)command
 {
     [self.commandDelegate runInBackground:^{
-        DLog([NSString stringWithFormat:@" '%@' run", NSStringFromSelector(_cmd)]);
+        DLog([NSString stringWithFormat:@"[ FUNCTION ] '%@' run", NSStringFromSelector(_cmd)]);
         [self sendWithMethod:OcONetworkRequestMethodPOST url:command.arguments[0] params:command.arguments[1] retryTimes:self.retryTimes response:command];
     }];
 }
@@ -231,7 +231,7 @@ typedef NS_ENUM(NSUInteger, OcONetworkRequestMethod) {
 - (void)request_delete:(CDVInvokedUrlCommand *)command
 {
     [self.commandDelegate runInBackground:^{
-        DLog([NSString stringWithFormat:@" '%@' run", NSStringFromSelector(_cmd)]);
+        DLog([NSString stringWithFormat:@"[ FUNCTION ] '%@' run", NSStringFromSelector(_cmd)]);
         [self sendWithMethod:OcONetworkRequestMethodDELETE url:command.arguments[0] params:command.arguments[1] retryTimes:self.retryTimes response:command];
     }];
 }
@@ -240,7 +240,7 @@ typedef NS_ENUM(NSUInteger, OcONetworkRequestMethod) {
 - (void)reset_request:(CDVInvokedUrlCommand *)command
 {
     [self.commandDelegate runInBackground:^{
-        DLog([NSString stringWithFormat:@" '%@' run", NSStringFromSelector(_cmd)]);
+        DLog([NSString stringWithFormat:@"[ FUNCTION ] '%@' run", NSStringFromSelector(_cmd)]);
         self.timeoutInterval = 120;
         self.retryTimes = 1;
     }];

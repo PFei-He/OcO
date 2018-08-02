@@ -129,7 +129,7 @@ public class NetworkPlugin extends CordovaPlugin {
     private void debugLog(String ... strings) {
         if (debugMode) {
             for (String string : strings) {
-                Log.i("OcO", "[ OcO ][ NETWORK ][ DEBUG ]" + string + ".");
+                Log.i("OcO", "[ OcO ][ NETWORK ]" + string + ".");
             }
         }
     }
@@ -216,14 +216,14 @@ public class NetworkPlugin extends CordovaPlugin {
         // 回调结果到 Web 端
         if (statusCode == 200) {
             if (result instanceof JSONObject) {
-                debugLog(" Request success", "[ URL ] " + url);
+                debugLog("[ REQUEST ] Success", "[ URL ] " + url);
                 callbackContext.success(jsonObject.toString());
             } else {
-                debugLog(" Request success but not JSON data", "[ URL ] " + url);
+                debugLog("[ REQUEST ] Success but not JSON data", "[ URL ] " + url);
                 callbackContext.error(jsonObject.toString());
             }
         } else {
-            debugLog(" Request failure", "[ URL ] " + url);
+            debugLog("[ REQUEST ] Failure", "[ URL ] " + url);
             callbackContext.error(jsonObject.toString());
         }
     }
@@ -249,7 +249,7 @@ public class NetworkPlugin extends CordovaPlugin {
             cordova.getThreadPool().execute(() -> {
                 try {
                     debugMode = args.getBoolean(0);
-                    debugLog(" '" + action + "' run", " Debug Mode Open");
+                    debugLog("[ FUNCTION ] '" + action + "' run", " Debug Mode Open");
                 } catch (JSONException e) { e.printStackTrace(); }
             });
             return true;
@@ -259,7 +259,7 @@ public class NetworkPlugin extends CordovaPlugin {
         else if ("timeout_interval".equals(action)) {
             cordova.getThreadPool().execute(() -> {
                 try {
-                    debugLog(" '" + action + "' run");
+                    debugLog("[ FUNCTION ] '" + action + "' run");
                     timeoutInterval = args.getInt(0);
                 } catch (JSONException e) { e.printStackTrace(); }
             });
@@ -270,7 +270,7 @@ public class NetworkPlugin extends CordovaPlugin {
         else if ("retry_times".equals(action)) {
             cordova.getThreadPool().execute(() -> {
                 try {
-                    debugLog(" '" + action + "' run");
+                    debugLog("[ FUNCTION ] '" + action + "' run");
                     retryTimes = args.getInt(0);
                 } catch (JSONException e) { e.printStackTrace(); }
             });
@@ -281,7 +281,7 @@ public class NetworkPlugin extends CordovaPlugin {
         else if ("request_get".equals(action)) {
             cordova.getThreadPool().execute(() -> {
                 try {
-                    debugLog(" '" + action + "' run");
+                    debugLog("[ FUNCTION ] '" + action + "' run");
                     Map map = toMap(args.optJSONObject(1)!=null ? args.optJSONObject(1) : new JSONObject("{}"));
                     request(Request.Method.GET, args.getString(0), map, retryTimes, callbackContext);
                 } catch (JSONException e) { e.printStackTrace(); }
@@ -293,7 +293,7 @@ public class NetworkPlugin extends CordovaPlugin {
         else if ("request_post".equals(action)) {
             cordova.getThreadPool().execute(() -> {
                 try {
-                    debugLog(" '" + action + "' run");
+                    debugLog("[ FUNCTION ] '" + action + "' run");
                     Map map = toMap(args.optJSONObject(1)!=null ? args.optJSONObject(1) : new JSONObject("{}"));
                     request(Request.Method.POST, args.getString(0), map, retryTimes, callbackContext);
                 } catch (JSONException e) { e.printStackTrace(); }
@@ -305,7 +305,7 @@ public class NetworkPlugin extends CordovaPlugin {
         else if ("request_delete".equals(action)) {
             cordova.getThreadPool().execute(() -> {
                 try {
-                    debugLog(" '" + action + "' run");
+                    debugLog("[ FUNCTION ] '" + action + "' run");
                     Map map = toMap(args.optJSONObject(1)!=null ? args.optJSONObject(1) : new JSONObject("{}"));
                     request(Request.Method.DELETE, args.getString(0), map, retryTimes, callbackContext);
                 } catch (JSONException e) { e.printStackTrace(); }
@@ -316,7 +316,7 @@ public class NetworkPlugin extends CordovaPlugin {
         // Web 调用 -> 重置请求
         else if ("reset_request".equals(action)) {
             cordova.getThreadPool().execute(() -> {
-                debugLog(" '" + action + "' run");
+                debugLog("[ FUNCTION ] '" + action + "' run");
                 timeoutInterval = 120000;
                 retryTimes = 1;
             });
