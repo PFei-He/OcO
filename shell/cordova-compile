@@ -1,0 +1,65 @@
+#
+# Copyright (c) 2018 faylib.top
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
+#
+
+#!/bin/bash
+
+# 进入 Shell 脚本所在目录
+path=$(dirname $_)
+cd $path
+
+# 移除占位符文件
+rm -rf original/image/Placeholder
+rm -rf platforms/android/assets/Placeholder
+rm -rf platforms/android/libs/Placeholder
+rm -rf platforms/android/res/drawable-land-hdpi/Placeholder
+rm -rf platforms/android/res/drawable-land-ldpi/Placeholder
+rm -rf platforms/android/res/drawable-land-mdpi/Placeholder
+rm -rf platforms/android/res/drawable-land-xhdpi/Placeholder
+rm -rf platforms/android/res/drawable-land-xxhdpi/Placeholder
+rm -rf platforms/android/res/drawable-land-xxxhdpi/Placeholder
+rm -rf platforms/android/res/drawable-port-hdpi/Placeholder
+rm -rf platforms/android/res/drawable-port-ldpi/Placeholder
+rm -rf platforms/android/res/drawable-port-mdpi/Placeholder
+rm -rf platforms/android/res/drawable-port-xhdpi/Placeholder
+rm -rf platforms/android/res/drawable-port-xxhdpi/Placeholder
+rm -rf platforms/android/res/drawable-port-xxxhdpi/Placeholder
+rm -rf platforms/android/res/mipmap-hdpi/Placeholder
+rm -rf platforms/android/res/mipmap-ldpi/Placeholder
+rm -rf platforms/android/res/mipmap-mdpi/Placeholder
+rm -rf platforms/android/res/mipmap-xhdpi/Placeholder
+rm -rf platforms/android/res/mipmap-xxhdpi/Placeholder
+rm -rf platforms/android/res/mipmap-xxxhdpi/Placeholder
+rm -rf platforms/android/src/top/faylib/oco/base/Placeholder
+rm -rf platforms/android/src/top/faylib/oco/model/Placeholder
+rm -rf platforms/ios/OcO/Classes/Base/Placeholder
+rm -rf platforms/ios/OcO/Classes/Model/Placeholder
+rm -rf web/static/Placeholder
+rm -rf www/Placeholder
+
+# 进入 Cordova 目录（工程根目录）
+cd ../
+
+# 编译项目
+cordova compile
+
+# 退出脚本
+exit 0

@@ -9,7 +9,7 @@
     "start": "node build/dev-server.js",
     "build": "node build/build.js",
     "lint": "eslint --ext .js,.vue src",
-    "cordova": "npm run build && cordova build"
+    "cordova": "npm run build && cordova prepare"
   },
   "dependencies": {
     "less": "^2.7.2",
