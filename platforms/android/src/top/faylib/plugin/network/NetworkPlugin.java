@@ -1,5 +1,4 @@
 /**
- *
  * Copyright (c) 2018 faylib.top
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -19,7 +18,6 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- *
  */
 
 package top.faylib.plugin.network;
@@ -139,13 +137,13 @@ public class NetworkPlugin extends CordovaPlugin {
 
         switch (method) {
             case 0:
-                debugLog("[ REQUEST ] Start sending", "[ URL ] " + url, "[ METHOD ] GET", "[ PARAMS ] " + params.toString(), "[ RETRY TIMES ] " + String.valueOf(retryTimes), "[ TIMEOUT INTERVAL ] " + String.valueOf(timeoutInterval/1000));
+                debugLog(retryTimes == this.retryTimes ? "[ REQUEST ] Start sending" : "[ REQUEST ] Retrying", "[ URL ] " + url, "[ METHOD ] GET", "[ PARAMS ] " + params.toString(), "[ RETRY TIMES ] " + String.valueOf(retryTimes), "[ TIMEOUT INTERVAL ] " + String.valueOf(timeoutInterval/1000));
                 break;
             case 1:
-                debugLog("[ REQUEST ] Start sending", "[ URL ] " + url, "[ METHOD ] POST", "[ PARAMS ] " + params.toString(), "[ RETRY TIMES ] " + String.valueOf(retryTimes), "[ TIMEOUT INTERVAL ] " + String.valueOf(timeoutInterval/1000));
+                debugLog(retryTimes == this.retryTimes ? "[ REQUEST ] Start sending" : "[ REQUEST ] Retrying", "[ URL ] " + url, "[ METHOD ] POST", "[ PARAMS ] " + params.toString(), "[ RETRY TIMES ] " + String.valueOf(retryTimes), "[ TIMEOUT INTERVAL ] " + String.valueOf(timeoutInterval/1000));
                 break;
             case 3:
-                debugLog("[ REQUEST ] Start sending", "[ URL ] " + url, "[ METHOD ] DELETE", "[ PARAMS ] " + params.toString(), "[ RETRY TIMES ] " + String.valueOf(retryTimes), "[ TIMEOUT INTERVAL ] " + String.valueOf(timeoutInterval/1000));
+                debugLog(retryTimes == this.retryTimes ? "[ REQUEST ] Start sending" : "[ REQUEST ] Retrying", "[ URL ] " + url, "[ METHOD ] DELETE", "[ PARAMS ] " + params.toString(), "[ RETRY TIMES ] " + String.valueOf(retryTimes), "[ TIMEOUT INTERVAL ] " + String.valueOf(timeoutInterval/1000));
                 break;
             default:
                 break;
