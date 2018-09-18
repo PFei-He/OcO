@@ -168,7 +168,11 @@ public class NetworkPlugin extends CordovaPlugin {
             // 重写请求头
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
-                return headers;
+                if (headers != null && !headers.isEmpty()) {
+                    return headers;
+                } else {
+                    return super.getHeaders();
+                }
             }
 
             // 重写请求体的内容类型
