@@ -25,6 +25,7 @@ package top.faylib.plugin.network;
 import android.net.Uri;
 import android.util.Log;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
@@ -56,6 +57,9 @@ public class NetworkPlugin extends CordovaPlugin {
 
     // 请求队列
     private RequestQueue queue = null;
+
+    // 请求头
+    private Map headers;
 
     // 超时时隔
     private int timeoutInterval = 120000;
@@ -161,11 +165,10 @@ public class NetworkPlugin extends CordovaPlugin {
                 request(method, url, params, count, callbackContext);
             }
         }) {
-            // 重写解析服务器返回的数据
+            // 重写请求头
             @Override
-            protected Response<JSONObject> parseNetworkResponse(NetworkResponse response) {
-                statusCode = response.statusCode;
-                return super.parseNetworkResponse(response);
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                return headers;
             }
 
             // 重写请求体的内容类型
@@ -183,6 +186,13 @@ public class NetworkPlugin extends CordovaPlugin {
                 } catch (UnsupportedEncodingException uee) {
                     return null;
                 }
+            }
+
+            // 重写解析服务器返回的数据
+            @Override
+            protected Response<JSONObject> parseNetworkResponse(NetworkResponse response) {
+                statusCode = response.statusCode;
+                return super.parseNetworkResponse(response);
             }
         };
 
@@ -202,7 +212,7 @@ public class NetworkPlugin extends CordovaPlugin {
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put("statusCode", statusCode);
-            jsonObject.put("result", result);
+            jsonObject.put("response", result.toString());
         } catch (JSONException e) {
 //            e.printStackTrace();
         }
@@ -269,6 +279,16 @@ public class NetworkPlugin extends CordovaPlugin {
                 } catch (JSONException e) { e.printStackTrace(); }
             });
             return true;
+        }
+
+        // Web 调用 -> 设置请求头
+        else if ("set_headers".equals(action)) {
+            cordova.getThreadPool().execute(() -> {
+                try {
+                    debugLog("[ FUNCTION ] '" + action + "' run");
+                    headers = toMap(args.optJSONObject(0)!=null ? args.optJSONObject(0) : new JSONObject("{}"));
+                } catch (JSONException e) { e.printStackTrace(); }
+            });
         }
 
         // Web 调用 -> 发送 GET 请求

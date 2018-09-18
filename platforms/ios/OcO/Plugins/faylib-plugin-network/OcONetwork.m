@@ -57,8 +57,8 @@ typedef NS_ENUM(NSUInteger, OcONetworkRequestMethod) {
 {
     if (!_manager) {
         _manager = [AFHTTPSessionManager manager];
-        _manager.responseSerializer.acceptableContentTypes = [_manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
         _manager.requestSerializer.timeoutInterval = 120;
+        _manager.responseSerializer.acceptableContentTypes = [_manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
     }
     return _manager;
 }
@@ -164,14 +164,14 @@ typedef NS_ENUM(NSUInteger, OcONetworkRequestMethod) {
     if (statusCode == 200) {
         if ([result isKindOfClass:[NSDictionary class]]) {
             DLog(@"[ REQUEST ] Success", [NSString stringWithFormat:@"[ URL ] %@", url]);
-            [self sendStatus:CDVCommandStatus_OK message:@{@"statusCode": @(statusCode), @"result": result} command:command];
+            [self sendStatus:CDVCommandStatus_OK message:@{@"statusCode": @(statusCode), @"response": result} command:command];
         } else {
             DLog(@"[ REQUEST ] Success but not JSON data", [NSString stringWithFormat:@"[ URL ] %@", url]);
-            [self sendStatus:CDVCommandStatus_ERROR message:@{@"statusCode": @(statusCode), @"result": result} command:command];
+            [self sendStatus:CDVCommandStatus_ERROR message:@{@"statusCode": @(statusCode), @"response": [NSString stringWithFormat:@"%@", result]} command:command];
         }
     } else {
         DLog(@"[ REQUEST ] Failure", [NSString stringWithFormat:@"[ URL ] %@", url]);
-        [self sendStatus:CDVCommandStatus_ERROR message:@{@"statusCode": @(statusCode), @"result": result} command:command];
+        [self sendStatus:CDVCommandStatus_ERROR message:@{@"statusCode": @(statusCode), @"response": result} command:command];
     }
 }
 
@@ -205,6 +205,16 @@ typedef NS_ENUM(NSUInteger, OcONetworkRequestMethod) {
     }];
 }
 
+// Web 调用 -> 设置请求头
+- (void)set_headers:(CDVInvokedUrlCommand *)command
+{
+    [self.commandDelegate runInBackground:^{
+        DLog([NSString stringWithFormat:@"[ FUNCTION ] '%@' run", NSStringFromSelector(_cmd)]);
+        [command.arguments[0] enumerateKeysAndObjectsUsingBlock:^(id _Nonnull key, id _Nonnull obj, BOOL * _Nonnull stop) {
+            [self.manager.requestSerializer setValue:obj forHTTPHeaderField:key];
+        }];
+    }];
+}
 // Web 调用 -> 发送 GET 请求
 - (void)request_get:(CDVInvokedUrlCommand *)command
 {

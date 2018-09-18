@@ -48,6 +48,13 @@ export default {
     cordova.exec(null, null, Network, 'retry_times', [count])
   },
   /**
+   * 设置请求头
+   * @param headers 请求头参数
+   */
+  setHeaders (headers) {
+    cordova.exec(null, null, Network, 'set_headers', [headers])
+  },
+  /**
    * 发送 GET 请求
    * @param url 请求接口
    * @param params 请求参数
