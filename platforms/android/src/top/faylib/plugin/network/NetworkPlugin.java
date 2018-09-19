@@ -58,14 +58,14 @@ public class NetworkPlugin extends CordovaPlugin {
     // 请求队列
     private RequestQueue queue = null;
 
-    // 请求头
-    private Map headers;
-
     // 超时时隔
     private int timeoutInterval = 120000;
 
     // 重试次数
     private int retryTimes = 1;
+
+    // 请求头
+    private Map<String, String> headers;
 
     // 请求结果状态码
     private int statusCode;
@@ -87,9 +87,19 @@ public class NetworkPlugin extends CordovaPlugin {
 
     //region Private Methods
 
-    // JSONObject 格式转 Map 格式
-    private static Map<String, Object> toMap(JSONObject jsonObject) throws JSONException {
-        Map<String, Object> map = new HashMap<String, Object>();
+    // JSONObject 格式转 Map<String, String> 格式
+    private static Map<String, String> toStringMap(JSONObject jsonObject) throws JSONException {
+        Map<String, String> map = new HashMap<>();
+        Iterator<String> keys = jsonObject.keys();
+        while(keys.hasNext()) {
+            String key = keys.next();
+            map.put(key, jsonObject.getString(key));
+        }   return map;
+    }
+
+    // JSONObject 格式转 Map<String, Object> 格式
+    private static Map<String, Object> toObjectMap(JSONObject jsonObject) throws JSONException {
+        Map<String, Object> map = new HashMap<>();
         Iterator<String> keys = jsonObject.keys();
         while(keys.hasNext()) {
             String key = keys.next();
@@ -97,7 +107,7 @@ public class NetworkPlugin extends CordovaPlugin {
             if (value instanceof JSONArray) {
                 value = toList((JSONArray) value);
             } else if (value instanceof JSONObject) {
-                value = toMap((JSONObject) value);
+                value = toObjectMap((JSONObject) value);
             }
             map.put(key, value);
         }   return map;
@@ -105,13 +115,13 @@ public class NetworkPlugin extends CordovaPlugin {
 
     // JSONArray 格式转 List 格式
     private static List<Object> toList(JSONArray jsonArray) throws JSONException {
-        List<Object> list = new ArrayList<Object>();
+        List<Object> list = new ArrayList<>();
         for(int i = 0; i < jsonArray.length(); i++) {
             Object value = jsonArray.get(i);
             if (value instanceof JSONArray) {
                 value = toList((JSONArray) value);
             } else if (value instanceof JSONObject) {
-                value = toMap((JSONObject) value);
+                value = toObjectMap((JSONObject) value);
             }
             list.add(value);
         }   return list;
@@ -168,11 +178,12 @@ public class NetworkPlugin extends CordovaPlugin {
             // 重写请求头
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> finalHeaders = new HashMap<>();
+                finalHeaders.putAll(super.getHeaders());
                 if (headers != null && !headers.isEmpty()) {
-                    return headers;
-                } else {
-                    return super.getHeaders();
+                    finalHeaders.putAll(headers);
                 }
+                return finalHeaders;
             }
 
             // 重写请求体的内容类型
@@ -217,9 +228,7 @@ public class NetworkPlugin extends CordovaPlugin {
         try {
             jsonObject.put("statusCode", statusCode);
             jsonObject.put("response", result.toString());
-        } catch (JSONException e) {
-//            e.printStackTrace();
-        }
+        } catch (JSONException e) { e.printStackTrace(); }
 
         // 回调结果到 Web 端
         if (statusCode == 200) {
@@ -290,7 +299,7 @@ public class NetworkPlugin extends CordovaPlugin {
             cordova.getThreadPool().execute(() -> {
                 try {
                     debugLog("[ FUNCTION ] '" + action + "' run");
-                    headers = toMap(args.optJSONObject(0)!=null ? args.optJSONObject(0) : new JSONObject("{}"));
+                    headers = toStringMap(args.optJSONObject(0)!=null ? args.optJSONObject(0) : new JSONObject("{}"));
                 } catch (JSONException e) { e.printStackTrace(); }
             });
         }
@@ -300,7 +309,7 @@ public class NetworkPlugin extends CordovaPlugin {
             cordova.getThreadPool().execute(() -> {
                 try {
                     debugLog("[ FUNCTION ] '" + action + "' run");
-                    Map map = toMap(args.optJSONObject(1)!=null ? args.optJSONObject(1) : new JSONObject("{}"));
+                    Map map = toObjectMap(args.optJSONObject(1)!=null ? args.optJSONObject(1) : new JSONObject("{}"));
                     request(Request.Method.GET, args.getString(0), map, retryTimes, callbackContext);
                 } catch (JSONException e) { e.printStackTrace(); }
             });
@@ -312,7 +321,7 @@ public class NetworkPlugin extends CordovaPlugin {
             cordova.getThreadPool().execute(() -> {
                 try {
                     debugLog("[ FUNCTION ] '" + action + "' run");
-                    Map map = toMap(args.optJSONObject(1)!=null ? args.optJSONObject(1) : new JSONObject("{}"));
+                    Map map = toObjectMap(args.optJSONObject(1)!=null ? args.optJSONObject(1) : new JSONObject("{}"));
                     request(Request.Method.POST, args.getString(0), map, retryTimes, callbackContext);
                 } catch (JSONException e) { e.printStackTrace(); }
             });
@@ -324,7 +333,7 @@ public class NetworkPlugin extends CordovaPlugin {
             cordova.getThreadPool().execute(() -> {
                 try {
                     debugLog("[ FUNCTION ] '" + action + "' run");
-                    Map map = toMap(args.optJSONObject(1)!=null ? args.optJSONObject(1) : new JSONObject("{}"));
+                    Map map = toObjectMap(args.optJSONObject(1)!=null ? args.optJSONObject(1) : new JSONObject("{}"));
                     request(Request.Method.DELETE, args.getString(0), map, retryTimes, callbackContext);
                 } catch (JSONException e) { e.printStackTrace(); }
             });
