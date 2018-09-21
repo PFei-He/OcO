@@ -65,7 +65,7 @@ public class NetworkPlugin extends CordovaPlugin {
     private int retryTimes = 1;
 
     // 请求头
-    private Map<String, String> headers;
+    private Map<String, String> headers = new HashMap<>();
 
     // 请求结果状态码
     private int statusCode;
@@ -151,13 +151,28 @@ public class NetworkPlugin extends CordovaPlugin {
 
         switch (method) {
             case 0:
-                debugLog(retryTimes == this.retryTimes ? "[ REQUEST ] Start sending" : "[ REQUEST ] Retrying", "[ URL ] " + url, "[ METHOD ] GET", "[ PARAMS ] " + params.toString(), "[ RETRY TIMES ] " + String.valueOf(retryTimes), "[ TIMEOUT INTERVAL ] " + String.valueOf(timeoutInterval/1000));
+                debugLog(retryTimes == this.retryTimes ? "[ REQUEST ] Start sending" : "[ REQUEST ] Retrying",
+                        "[ URL ] " + url,
+                        "[ METHOD ] GET",
+                        "[ PARAMS ] " + params.toString(),
+                        "[ RETRY TIMES ] " + String.valueOf(retryTimes),
+                        "[ TIMEOUT INTERVAL ] " + String.valueOf(timeoutInterval/1000));
                 break;
             case 1:
-                debugLog(retryTimes == this.retryTimes ? "[ REQUEST ] Start sending" : "[ REQUEST ] Retrying", "[ URL ] " + url, "[ METHOD ] POST", "[ PARAMS ] " + params.toString(), "[ RETRY TIMES ] " + String.valueOf(retryTimes), "[ TIMEOUT INTERVAL ] " + String.valueOf(timeoutInterval/1000));
+                debugLog(retryTimes == this.retryTimes ? "[ REQUEST ] Start sending" : "[ REQUEST ] Retrying",
+                        "[ URL ] " + url,
+                        "[ METHOD ] POST",
+                        "[ PARAMS ] " + params.toString(),
+                        "[ RETRY TIMES ] " + String.valueOf(retryTimes),
+                        "[ TIMEOUT INTERVAL ] " + String.valueOf(timeoutInterval/1000));
                 break;
             case 3:
-                debugLog(retryTimes == this.retryTimes ? "[ REQUEST ] Start sending" : "[ REQUEST ] Retrying", "[ URL ] " + url, "[ METHOD ] DELETE", "[ PARAMS ] " + params.toString(), "[ RETRY TIMES ] " + String.valueOf(retryTimes), "[ TIMEOUT INTERVAL ] " + String.valueOf(timeoutInterval/1000));
+                debugLog(retryTimes == this.retryTimes ? "[ REQUEST ] Start sending" : "[ REQUEST ] Retrying",
+                        "[ URL ] " + url,
+                        "[ METHOD ] DELETE",
+                        "[ PARAMS ] " + params.toString(),
+                        "[ RETRY TIMES ] " + String.valueOf(retryTimes),
+                        "[ TIMEOUT INTERVAL ] " + String.valueOf(timeoutInterval/1000));
                 break;
             default:
                 break;
@@ -178,12 +193,9 @@ public class NetworkPlugin extends CordovaPlugin {
             // 重写请求头
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> finalHeaders = new HashMap<>();
-                finalHeaders.putAll(super.getHeaders());
-                if (headers != null && !headers.isEmpty()) {
-                    finalHeaders.putAll(headers);
-                }
-                return finalHeaders;
+                headers.putAll(super.getHeaders());
+                debugLog("[ HEADERS ] " + headers.toString());
+                return headers;
             }
 
             // 重写请求体的内容类型
@@ -299,7 +311,7 @@ public class NetworkPlugin extends CordovaPlugin {
             cordova.getThreadPool().execute(() -> {
                 try {
                     debugLog("[ FUNCTION ] '" + action + "' run");
-                    headers = toStringMap(args.optJSONObject(0)!=null ? args.optJSONObject(0) : new JSONObject("{}"));
+                    headers.putAll(toStringMap(args.optJSONObject(0)!=null ? args.optJSONObject(0) : new JSONObject("{}")));
                 } catch (JSONException e) { e.printStackTrace(); }
             });
         }
