@@ -239,7 +239,7 @@ public class NetworkPlugin extends CordovaPlugin {
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put("statusCode", statusCode);
-            jsonObject.put("response", result.toString());
+            jsonObject.put("result", result.toString());
         } catch (JSONException e) { e.printStackTrace(); }
 
         // 回调结果到 Web 端

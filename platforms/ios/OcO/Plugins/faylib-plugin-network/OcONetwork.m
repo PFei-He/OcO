@@ -186,10 +186,10 @@ typedef NS_ENUM(NSUInteger, OcONetworkRequestMethod) {
             {
                 if ([result isKindOfClass:[NSDictionary class]]) {
                     DLog(@"[ REQUEST ] Success", [NSString stringWithFormat:@"[ URL ] %@", command.arguments[0]]);
-                    [self sendStatus:CDVCommandStatus_OK message:@{@"statusCode": @(response.statusCode), @"response": result} command:command];
+                    [self sendStatus:CDVCommandStatus_OK message:@{@"statusCode": @(response.statusCode), @"result": result} command:command];
                 } else {
                     DLog(@"[ REQUEST ] Success but not JSON data", [NSString stringWithFormat:@"[ URL ] %@", command.arguments[0]]);
-                    [self sendStatus:CDVCommandStatus_ERROR message:@{@"statusCode": @(response.statusCode), @"response": [NSString stringWithFormat:@"%@", result]} command:command];
+                    [self sendStatus:CDVCommandStatus_ERROR message:@{@"statusCode": @(response.statusCode), @"result": [NSString stringWithFormat:@"%@", result]} command:command];
                 }
             }
                 break;
@@ -198,7 +198,7 @@ typedef NS_ENUM(NSUInteger, OcONetworkRequestMethod) {
         }
     } else {
         DLog(@"[ REQUEST ] Failure", [NSString stringWithFormat:@"[ URL ] %@", command.arguments[0]]);
-        [self sendStatus:CDVCommandStatus_ERROR message:@{@"statusCode": @(response.statusCode), @"response": result} command:command];
+        [self sendStatus:CDVCommandStatus_ERROR message:@{@"statusCode": @(response.statusCode), @"result": [NSString stringWithFormat:@"%@", result]} command:command];
     }
 }
 
