@@ -278,8 +278,8 @@ public class NetworkPlugin extends CordovaPlugin {
             cordova.getThreadPool().execute(() -> {
                 try {
                     debugMode = args.getBoolean(0);
-                    debugLog("[ FUNCTION ] '" + action + "' run", " Debug Mode Open");
                 } catch (JSONException e) { e.printStackTrace(); }
+                debugLog("[ FUNCTION ] '" + action + "' run", " Debug Mode Open");
             });
             return true;
         }
@@ -287,8 +287,8 @@ public class NetworkPlugin extends CordovaPlugin {
         //  Web 调用 -> 设置超时时隔
         else if ("timeout_interval".equals(action)) {
             cordova.getThreadPool().execute(() -> {
+                debugLog("[ FUNCTION ] '" + action + "' run");
                 try {
-                    debugLog("[ FUNCTION ] '" + action + "' run");
                     timeoutInterval = args.getInt(0);
                 } catch (JSONException e) { e.printStackTrace(); }
             });
@@ -298,8 +298,8 @@ public class NetworkPlugin extends CordovaPlugin {
         // Web 调用 -> 设置重试次数
         else if ("retry_times".equals(action)) {
             cordova.getThreadPool().execute(() -> {
+                debugLog("[ FUNCTION ] '" + action + "' run");
                 try {
-                    debugLog("[ FUNCTION ] '" + action + "' run");
                     retryTimes = args.getInt(0);
                 } catch (JSONException e) { e.printStackTrace(); }
             });
@@ -309,8 +309,8 @@ public class NetworkPlugin extends CordovaPlugin {
         // Web 调用 -> 设置请求头
         else if ("set_headers".equals(action)) {
             cordova.getThreadPool().execute(() -> {
+                debugLog("[ FUNCTION ] '" + action + "' run");
                 try {
-                    debugLog("[ FUNCTION ] '" + action + "' run");
                     headers.putAll(toStringMap(args.optJSONObject(0)!=null ? args.optJSONObject(0) : new JSONObject("{}")));
                 } catch (JSONException e) { e.printStackTrace(); }
             });
@@ -319,8 +319,8 @@ public class NetworkPlugin extends CordovaPlugin {
         // Web 调用 -> 发送 GET 请求
         else if ("request_get".equals(action)) {
             cordova.getThreadPool().execute(() -> {
+                debugLog("[ FUNCTION ] '" + action + "' run");
                 try {
-                    debugLog("[ FUNCTION ] '" + action + "' run");
                     Map map = toObjectMap(args.optJSONObject(1)!=null ? args.optJSONObject(1) : new JSONObject("{}"));
                     request(Request.Method.GET, args.getString(0), map, retryTimes, callbackContext);
                 } catch (JSONException e) { e.printStackTrace(); }
@@ -331,8 +331,8 @@ public class NetworkPlugin extends CordovaPlugin {
         // Web 调用 -> 发送 POST 请求
         else if ("request_post".equals(action)) {
             cordova.getThreadPool().execute(() -> {
+                debugLog("[ FUNCTION ] '" + action + "' run");
                 try {
-                    debugLog("[ FUNCTION ] '" + action + "' run");
                     Map map = toObjectMap(args.optJSONObject(1)!=null ? args.optJSONObject(1) : new JSONObject("{}"));
                     request(Request.Method.POST, args.getString(0), map, retryTimes, callbackContext);
                 } catch (JSONException e) { e.printStackTrace(); }
@@ -343,8 +343,8 @@ public class NetworkPlugin extends CordovaPlugin {
         // Web 调用 -> 发送 DELETE 请求
         else if ("request_delete".equals(action)) {
             cordova.getThreadPool().execute(() -> {
+                debugLog("[ FUNCTION ] '" + action + "' run");
                 try {
-                    debugLog("[ FUNCTION ] '" + action + "' run");
                     Map map = toObjectMap(args.optJSONObject(1)!=null ? args.optJSONObject(1) : new JSONObject("{}"));
                     request(Request.Method.DELETE, args.getString(0), map, retryTimes, callbackContext);
                 } catch (JSONException e) { e.printStackTrace(); }
