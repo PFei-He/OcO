@@ -27,7 +27,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import Network from './plugin/network'
+import Network from './vendor/plugin/network'
 
 Vue.config.productionTip = false
 

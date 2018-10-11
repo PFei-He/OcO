@@ -31,7 +31,7 @@
 
 <script>
   import NavigationBar from '../../component/NavigationBar'
-  import Network from '../../plugin/network'
+  import Network from '../../vendor/plugin/network'
   export default {
     components: { NavigationBar }, // 添加导航栏
     name: 'today',
