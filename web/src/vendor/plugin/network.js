@@ -23,6 +23,18 @@
 // 网络框架
 var Network = 'Network'
 
+// 定义方法名
+var Method = {
+  debugMode: 'debug_mode',
+  timeoutInterval: 'timeout_interval',
+  retryTimes: 'retry_times',
+  setHeaders: 'set_headers',
+  requestGet: 'request_get',
+  requestPost: 'request_post',
+  requestDelete: 'request_delete',
+  resetRequest: 'reset_request'
+}
+
 /* eslint-disable no-undef */
 export default {
   // region Cordova Plugin Methods (Web -> Native)
@@ -31,28 +43,28 @@ export default {
    * @param openOrNot 是否打开
    */
   debugMode (openOrNot) {
-    cordova.exec(null, null, Network, 'debug_mode', [openOrNot])
+    cordova.exec(null, null, Network, Method.debugMode, [openOrNot])
   },
   /**
    * 设置超时时隔
    * @param millisecond 时隔（毫秒）
    */
   timeoutInterval (millisecond) {
-    cordova.exec(null, null, Network, 'timeout_interval', [millisecond])
+    cordova.exec(null, null, Network, Method.timeoutInterval, [millisecond])
   },
   /**
    * 设置重试次数
    * @param count 次数
    */
   retryTimes (count) {
-    cordova.exec(null, null, Network, 'retry_times', [count])
+    cordova.exec(null, null, Network, Method.retryTimes, [count])
   },
   /**
    * 设置请求头
    * @param headers 请求头参数
    */
   setHeaders (headers) {
-    cordova.exec(null, null, Network, 'set_headers', [headers])
+    cordova.exec(null, null, Network, Method.setHeaders, [headers])
   },
   /**
    * 发送 GET 请求
@@ -62,7 +74,7 @@ export default {
    * @param errorCallback 请求失败回调
    */
   GET (url, params, successCallback, errorCallback) {
-    cordova.exec(successCallback, errorCallback, Network, 'request_get', [url, params])
+    cordova.exec(successCallback, errorCallback, Network, Method.requestGet, [url, params])
   },
   /**
    * 发送 POST 请求
@@ -72,7 +84,7 @@ export default {
    * @param errorCallback 请求失败回调
    */
   POST (url, params, successCallback, errorCallback) {
-    cordova.exec(successCallback, errorCallback, Network, 'request_post', [url, params])
+    cordova.exec(successCallback, errorCallback, Network, Method.requestPost, [url, params])
   },
   /**
    * 发送 DELETE 请求
@@ -82,13 +94,23 @@ export default {
    * @param errorCallback 请求失败回调
    */
   DELETE (url, params, successCallback, errorCallback) {
-    cordova.exec(successCallback, errorCallback, Network, 'request_delete', [url, params])
+    cordova.exec(successCallback, errorCallback, Network, Method.requestDelete, [url, params])
+  },
+  /**
+   * 发送 download 请求
+   * @param url 请求接口
+   * @param filePath 文件保存路径
+   * @param successCallback 请求成功回调
+   * @param errorCallback 请求失败回调
+   */
+  download (url, filePath, successCallback, errorCallback) {
+    cordova.exec(successCallback, errorCallback, Network, Method.requestDownload, [url, filePath])
   },
   /**
    * 重置请求
    */
   reset () {
-    cordova.exec(null, null, Network, 'reset_request', [])
+    cordova.exec(null, null, Network, Method.resetRequest, [])
   }
   // endregion
   // region Cordova Plugin Methods (Native -> Web)

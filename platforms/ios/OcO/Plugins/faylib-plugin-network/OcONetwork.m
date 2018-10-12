@@ -23,6 +23,18 @@
 #import "OcONetwork.h"
 #import <AFNetworking/AFNetworking.h>
 
+// 定义方法名
+#define debug_mode debug_mode
+#define timeout_interval timeout_interval
+#define retry_times retry_times
+#define set_headers set_headers
+#define request_get request_get
+#define request_post request_post
+#define request_delete request_delete
+#define request_download request_download
+#define reset_request reset_request
+
+// 调试打印
 #define DLog(args...)\
 [self debugLog:args, nil]
 
@@ -30,6 +42,7 @@ typedef NS_ENUM(NSUInteger, OcONetworkRequestMethod) {
     OcONetworkRequestMethodGET,
     OcONetworkRequestMethodPOST,
     OcONetworkRequestMethodDELETE,
+    OcONetworkRequestMethodDownload
 };
 
 @interface OcONetwork ()
@@ -135,6 +148,14 @@ typedef NS_ENUM(NSUInteger, OcONetworkRequestMethod) {
              [NSString stringWithFormat:@"[ RETRY TIMES ] %@", @(count)],
              [NSString stringWithFormat:@"[ TIMEOUT INTERVAL ] %@", @(self.sessionManager.requestSerializer.timeoutInterval)],
              [NSString stringWithFormat:@"[ HEADERS ] %@", self.sessionManager.requestSerializer.HTTPRequestHeaders]);
+    else if (method == OcONetworkRequestMethodDownload)
+        DLog(count == self.retryTimes ? @"[ REQUEST ] Start sending" : @"[ REQUEST ] Retrying",
+             [NSString stringWithFormat:@"[ URL ] %@", command.arguments[0]],
+             @"[ METHOD ] Download",
+             [NSString stringWithFormat:@"[ FILE PATH ] %@", command.arguments[1]],
+             [NSString stringWithFormat:@"[ RETRY TIMES ] %@", @(count)],
+             [NSString stringWithFormat:@"[ TIMEOUT INTERVAL ] %@", @(self.sessionManager.requestSerializer.timeoutInterval)],
+             [NSString stringWithFormat:@"[ HEADERS ] %@", self.sessionManager.requestSerializer.HTTPRequestHeaders]);
     
     count--;
     
@@ -169,6 +190,23 @@ typedef NS_ENUM(NSUInteger, OcONetworkRequestMethod) {
             }];
         }
             break;
+        case OcONetworkRequestMethodDownload:
+        {
+            NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:command.arguments[0]]];
+            NSURLSessionDownloadTask *downloadTask = [self.sessionManager downloadTaskWithRequest:request progress:nil destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) {
+                // 保存路径
+                return [NSURL fileURLWithPath:command.arguments[1]];
+            } completionHandler:^(NSURLResponse * _Nonnull response, NSURL * _Nullable filePath, NSError * _Nullable error) {
+                if (!error) {
+                    [self parseWithMethod:OcONetworkRequestMethodDownload response:(NSHTTPURLResponse *)response result:filePath command:command];
+                } else {
+                    if (count < 1) [self parseWithMethod:OcONetworkRequestMethodDownload response:(NSHTTPURLResponse *)response result:error command:command];
+                    else [self sendWithMethod:OcONetworkRequestMethodDownload retryTimes:count response:command];
+                }
+            }];
+            [downloadTask resume];
+        }
+            break;
         default:
             break;
     }
@@ -189,6 +227,17 @@ typedef NS_ENUM(NSUInteger, OcONetworkRequestMethod) {
                     [self sendStatus:CDVCommandStatus_OK message:@{@"statusCode": @(response.statusCode), @"result": result} command:command];
                 } else {
                     DLog(@"[ REQUEST ] Success but not JSON data", [NSString stringWithFormat:@"[ URL ] %@", command.arguments[0]]);
+                    [self sendStatus:CDVCommandStatus_ERROR message:@{@"statusCode": @(response.statusCode), @"result": [NSString stringWithFormat:@"%@", result]} command:command];
+                }
+            }
+                break;
+            case OcONetworkRequestMethodDownload:
+            {
+                if ([result isKindOfClass:[NSURL class]]) {
+                    DLog(@"[ REQUEST ] Success", [NSString stringWithFormat:@"[ URL ] %@", command.arguments[0]]);
+                    [self sendStatus:CDVCommandStatus_OK message:@{@"statusCode": @(response.statusCode), @"result": [NSString stringWithFormat:@"%@", result]} command:command];
+                } else {
+                    DLog(@"[ REQUEST ] Success but error file", [NSString stringWithFormat:@"[ URL ] %@", command.arguments[0]]);
                     [self sendStatus:CDVCommandStatus_ERROR message:@{@"statusCode": @(response.statusCode), @"result": [NSString stringWithFormat:@"%@", result]} command:command];
                 }
             }
@@ -267,6 +316,15 @@ typedef NS_ENUM(NSUInteger, OcONetworkRequestMethod) {
     [self.commandDelegate runInBackground:^{
         DLog([NSString stringWithFormat:@"[ FUNCTION ] '%@' run", NSStringFromSelector(_cmd)]);
         [self sendWithMethod:OcONetworkRequestMethodDELETE retryTimes:self.retryTimes response:command];
+    }];
+}
+
+// Web 调用 -> 发送下载请求
+- (void)request_download:(CDVInvokedUrlCommand *)command
+{
+    [self.commandDelegate runInBackground:^{
+        DLog([NSString stringWithFormat:@"[ FUNCTION ] '%@' run", NSStringFromSelector(_cmd)]);
+        [self sendWithMethod:OcONetworkRequestMethodDownload retryTimes:self.retryTimes response:command];
     }];
 }
 

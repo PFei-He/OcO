@@ -22,6 +22,11 @@
 
 package top.faylib.plugin.network;
 
+import android.app.DownloadManager;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.net.Uri;
 import android.util.Log;
 
@@ -49,6 +54,22 @@ import java.util.List;
 import java.util.Map;
 
 public class NetworkPlugin extends CordovaPlugin {
+
+    //region Constant
+
+    // 定义方法名
+    private static final String DEBUG_MODE = "debug_mode";
+    private static final String TIMEOUT_INTERVAL = "timeout_interval";
+    private static final String RETRY_TIMES = "retry_times";
+    private static final String SET_HEADERS = "set_headers";
+    private static final String REQUEST_GET = "request_get";
+    private static final String REQUEST_POST = "request_post";
+    private static final String REQUEST_DELETE = "request_delete";
+    private static final String REQUEST_DOWNLOAD = "request_download";
+    private static final String RESET_REQUEST = "reset_request";
+
+    //endregion
+
 
     //region Variable
 
@@ -113,7 +134,7 @@ public class NetworkPlugin extends CordovaPlugin {
         }   return map;
     }
 
-    // JSONArray 格式转 List 格式
+    // JSONArray 格式转 List<Object> 格式
     private static List<Object> toList(JSONArray jsonArray) throws JSONException {
         List<Object> list = new ArrayList<>();
         for(int i = 0; i < jsonArray.length(); i++) {
@@ -257,6 +278,23 @@ public class NetworkPlugin extends CordovaPlugin {
         }
     }
 
+    // 监听下载
+    private void listener(final long id, JSONArray args, CallbackContext callbackContext) {
+        // 注册广播监听系统的下载完成事件
+        IntentFilter intentFilter = new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE);
+        BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                if (intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1) == id) {
+                    try {
+                        parse(args.getString(0), DownloadManager.STATUS_SUCCESSFUL, args.getString(1), callbackContext);
+                    } catch (JSONException e) { e.printStackTrace(); }
+                }
+            }
+        };
+        cordova.getActivity().registerReceiver(broadcastReceiver, intentFilter);
+    }
+
     //endregion
 
 
@@ -274,7 +312,7 @@ public class NetworkPlugin extends CordovaPlugin {
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
 
         // Web 调用 -> 调试模式开关
-        if ("debug_mode".equals(action)) {
+        if (DEBUG_MODE.equals(action)) {
             cordova.getThreadPool().execute(() -> {
                 try {
                     debugMode = args.getBoolean(0);
@@ -285,7 +323,7 @@ public class NetworkPlugin extends CordovaPlugin {
         }
 
         //  Web 调用 -> 设置超时时隔
-        else if ("timeout_interval".equals(action)) {
+        else if (TIMEOUT_INTERVAL.equals(action)) {
             cordova.getThreadPool().execute(() -> {
                 debugLog("[ FUNCTION ] '" + action + "' run");
                 try {
@@ -296,7 +334,7 @@ public class NetworkPlugin extends CordovaPlugin {
         }
 
         // Web 调用 -> 设置重试次数
-        else if ("retry_times".equals(action)) {
+        else if (RETRY_TIMES.equals(action)) {
             cordova.getThreadPool().execute(() -> {
                 debugLog("[ FUNCTION ] '" + action + "' run");
                 try {
@@ -307,7 +345,7 @@ public class NetworkPlugin extends CordovaPlugin {
         }
 
         // Web 调用 -> 设置请求头
-        else if ("set_headers".equals(action)) {
+        else if (SET_HEADERS.equals(action)) {
             cordova.getThreadPool().execute(() -> {
                 debugLog("[ FUNCTION ] '" + action + "' run");
                 try {
@@ -317,7 +355,7 @@ public class NetworkPlugin extends CordovaPlugin {
         }
 
         // Web 调用 -> 发送 GET 请求
-        else if ("request_get".equals(action)) {
+        else if (REQUEST_GET.equals(action)) {
             cordova.getThreadPool().execute(() -> {
                 debugLog("[ FUNCTION ] '" + action + "' run");
                 try {
@@ -329,7 +367,7 @@ public class NetworkPlugin extends CordovaPlugin {
         }
 
         // Web 调用 -> 发送 POST 请求
-        else if ("request_post".equals(action)) {
+        else if (REQUEST_POST.equals(action)) {
             cordova.getThreadPool().execute(() -> {
                 debugLog("[ FUNCTION ] '" + action + "' run");
                 try {
@@ -341,7 +379,7 @@ public class NetworkPlugin extends CordovaPlugin {
         }
 
         // Web 调用 -> 发送 DELETE 请求
-        else if ("request_delete".equals(action)) {
+        else if (REQUEST_DELETE.equals(action)) {
             cordova.getThreadPool().execute(() -> {
                 debugLog("[ FUNCTION ] '" + action + "' run");
                 try {
@@ -352,8 +390,23 @@ public class NetworkPlugin extends CordovaPlugin {
             return true;
         }
 
+        // Web 调用 -> 发送下载请求
+        else if (REQUEST_DOWNLOAD.equals(action)) {
+            cordova.getThreadPool().execute(() -> {
+                debugLog("[ FUNCTION ] '" + action + "' run");
+                DownloadManager downloadManager = (DownloadManager)cordova.getActivity().getSystemService(Context.DOWNLOAD_SERVICE);
+                DownloadManager.Request request = null;
+                try {
+                    request = new DownloadManager.Request(Uri.parse(args.getString(0)));
+                    request.setDestinationInExternalFilesDir(cordova.getActivity(), null, args.getString(1));
+                } catch (JSONException e) { e.printStackTrace(); }
+                long downloadId = downloadManager != null ? downloadManager.enqueue(request) : 0;
+                listener(downloadId, args, callbackContext);
+            });
+        }
+
         // Web 调用 -> 重置请求
-        else if ("reset_request".equals(action)) {
+        else if (RESET_REQUEST.equals(action)) {
             cordova.getThreadPool().execute(() -> {
                 debugLog("[ FUNCTION ] '" + action + "' run");
                 timeoutInterval = 120000;
