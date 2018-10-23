@@ -27,24 +27,50 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import Device from './vendor/plugin/device'
 import Network from './vendor/plugin/network'
+import Application from './plugin/application'
+import Language from './util/language'
+import Debug from './util/debug'
 
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
+
+// document.addEventListener('DOMContentLoaded', function () { // 页面的 DOM 内容加载完成后即触发,而无需等待其他资源（CSS、JS）的加载
+// }, false)
+
+// window.addEventListener('load', function () { // 其他资源加载完成后触发
+// }, false)
+
 window.document.addEventListener('deviceready', function () { // 监听设备状态，准备好时加载WebApp
-  // 打开网络请求调试模式
-  Network.debugMode(true)
+  // 打开调试模式
+  Debug.debugMode(true)
+
   // 设置超时时隔
-  // Network.timeoutInterval(60000)
+  Network.timeoutInterval(60000)
   // 设置重试次数
-  // Network.retryTimes(1)
-  // 新建Vue实例
-  new Vue({
-    el: '#app',
-    router, // 添加路由
-    store, // 添加数据存储
-    template: '<App/>',
-    components: {App}
+  Network.retryTimes(1)
+
+  // 加载设备信息
+  Device.load(function () {
+    // 加载应用信息
+    Application.load(function () {
+      // 创建过滤器
+      // p.s. 转换为当地语言版本的文字，可传入单字符串，多字符串，对象
+      Vue.filter('localize', function () {
+        if (!arguments) return ''
+        return Language.convert(arguments)
+      })
+
+      // 新建Vue实例
+      new Vue({
+        el: '#app',
+        router, // 添加路由
+        store, // 添加数据存储
+        template: '<App/>',
+        components: {App}
+      })
+    })
   })
 }, false)

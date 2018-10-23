@@ -22,10 +22,13 @@
 
 <template>
   <a class="tab-bar-item" :class="{'is-active':isActive}" @click="toRoute">
+
     <!-- 普通状态图片 -->
     <span class="tab-bar-item-icon" v-show="!isActive"><slot name="tab-bar-item-icon-normal"></slot></span>
+
     <!-- 选择状态图片 -->
     <span class="tab-bar-item-icon" v-show="isActive"><slot name="tab-bar-item-icon-active"></slot></span>
+
     <!-- 文字 -->
     <span class="tab-bar-item-text"><slot></slot></span>
   </a>
@@ -33,6 +36,8 @@
 
 <script>
   export default {
+    // region Variable
+
     name: 'TabBarItem',
     props: {
       id: {
@@ -43,6 +48,11 @@
         default: false
       }
     },
+
+    // endregion
+
+    // region Computed Properties
+
     computed: {
       isActive () {
         if (this.$parent.value === this.id) {
@@ -50,6 +60,11 @@
         }
       }
     },
+
+    // endregion
+
+    // region Custom Methods
+
     methods: {
       toRoute () {
         this.$parent.$emit('input', this.id)
@@ -58,6 +73,8 @@
         }
       }
     }
+
+    // endregion
   }
 </script>
 

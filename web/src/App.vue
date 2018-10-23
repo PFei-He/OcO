@@ -29,19 +29,19 @@
       <tab-bar-item id="home" isRoute>
         <img src="./assets/image/ic_tab_home_normal.png" slot="tab-bar-item-icon-normal">
         <img src="./assets/image/ic_tab_home_active.png" slot="tab-bar-item-icon-active">
-        首页
+        {{'首页', '首頁', 'Home' | localize}}
       </tab-bar-item>
 
       <tab-bar-item id="search" isRoute>
         <img src="./assets/image/ic_tab_group_normal.png" slot="tab-bar-item-icon-normal">
         <img src="./assets/image/ic_tab_group_active.png" slot="tab-bar-item-icon-active">
-        搜索
+        {{'搜索', '搜索', 'Search' | localize}}
       </tab-bar-item>
 
       <tab-bar-item id="mine" isRoute>
         <img src="./assets/image/ic_tab_profile_normal.png" slot="tab-bar-item-icon-normal">
         <img src="./assets/image/ic_tab_profile_active.png" slot="tab-bar-item-icon-active">
-        我的
+        {{{'zh_CN': '我的', 'zh_HK': '我的', 'en': 'Mine'} | localize}}
       </tab-bar-item>
     </tab-bar>
   </div>
@@ -50,7 +50,10 @@
 <script>
   import TabBar from './component/TabBar'
   import TabBarItem from './component/TabBarItem'
+
   export default {
+    // region Variable
+
     components: { TabBarItem, TabBar },
     name: 'app',
     props: { // 动态绑定TabBar是否隐藏的属性，默认隐藏
@@ -59,11 +62,18 @@
         default: true
       }
     },
+
+    // endregion
+
+    // region Vue Methods
+
     data () {
       return {
         tab: 'home'
       }
     }
+
+    // endregion
   }
 </script>
 
@@ -86,3 +96,13 @@
     margin: 0;
   }
 </style>
+
+/* 引用外部文件 (.js) 作为本文件的 script */
+<!--<script src=".."></script>-->
+
+/* 引用外部文件 (.css/.scss/...) 作为本文件的 style */
+/* 这样写的css文件中的样式只能在本组件中使用，而不会影响其他组件 */
+<!--<style src=".."></style>-->
+/* 这样写的话import的css文件会被编译为全局样式，但是引入less等预编译文件，就会局部生效 */
+<!--<style>@import "..";</style>-->
+<!--<style>@import url("..");</style>-->

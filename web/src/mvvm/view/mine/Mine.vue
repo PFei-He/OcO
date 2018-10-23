@@ -27,18 +27,29 @@
 </template>
 
 <script>
-  import NavigationBar from '../../component/NavigationBar'
+  import NavigationBar from '../../../component/NavigationBar'
+
   export default {
+    // region Variable
+
     components: { NavigationBar }, // 添加导航栏
     name: 'mine',
+
+    // endregion
+
+    // region View Life Cycle
+
     mounted () { // 页面挂载后
       // 显示TabBar
       this.$parent.tabBarHidden = false
     },
+
     destroyed () { // 页面销毁后
       // 隐藏TabBar
       this.$parent.tabBarHidden = true
     }
+
+    // endregion
   }
 </script>
 

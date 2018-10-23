@@ -31,9 +31,15 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.List;
+public class ApplicationPlugin extends CordovaPlugin {
+    //region Constant
 
-public class DevicePlugin extends CordovaPlugin {
+    // 定义方法名
+    private static final String DEBUG_MODE = "debug_mode";
+    private static final String LOAD = "load_information";
+
+    //endregion
+
 
     //region Variable
 
@@ -71,21 +77,30 @@ public class DevicePlugin extends CordovaPlugin {
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
 
         // Web 调用 -> 调试模式开关
-        if ("debug_mode".equals(action)) {
+        if (DEBUG_MODE.equals(action)) {
             cordova.getThreadPool().execute(() -> {
                 try {
                     debugMode = args.getBoolean(0);
                     debugLog("[ FUNCTION ] '" + action + "' run", " Debug Mode Open");
-                } catch (JSONException e) { e.printStackTrace(); }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             });
             return true;
         }
 
-        // Web 调用 -> 获取设备系统
-        else if ("device_system".equals(action)) {
+        // Web 调用 -> 加载应用信息
+        else if (LOAD.equals(action)) {
             cordova.getThreadPool().execute(() -> {
                 debugLog("[ FUNCTION ] '" + action + "' run");
-                send(PluginResult.Status.OK, "Android", false, callbackContext);
+                JSONObject jsonObject = new JSONObject();
+                try {
+                    jsonObject.put("currentLanguage", "zh_CN");
+                    jsonObject.put("currentVersion", "1.0.0");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                callbackContext.success(jsonObject);
             });
             return true;
         }

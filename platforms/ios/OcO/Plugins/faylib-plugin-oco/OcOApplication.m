@@ -20,19 +20,24 @@
 //  THE SOFTWARE.
 //
 
-#import "OcODevice.h"
+#import "OcOApplication.h"
 
+// 定义方法名
+#define debug_mode debug_mode
+#define load_information load_information
+
+// 调试打印
 #define DLog(args...)\
 [self debugLog:args, nil]
 
-@interface OcODevice ()
+@interface OcOApplication ()
 
 // 调试模式
 @property (nonatomic, assign) BOOL debugMode;
 
 @end
 
-@implementation OcODevice
+@implementation OcOApplication
 
 #pragma mark - Private Methods
 
@@ -40,13 +45,13 @@
 - (void)debugLog:(NSString *)strings, ...
 {
     if (self.debugMode) {
-        NSLog(@"[ OcO ][ DEVICE ]%@.", strings);
+        NSLog(@"[ Resource Centre ][ APPLICATION ]%@.", strings);
         va_list list;
         va_start(list, strings);
         while (strings != nil) {
             NSString *string = va_arg(list, NSString *);
             if (!string) break;
-            NSLog(@"[ OcO ][ DEVICE ]%@.", string);
+            NSLog(@"[ Resource Centre ][ APPLICATION ]%@.", string);
         }
         va_end(list);
     }
@@ -60,16 +65,18 @@
 {
     [self.commandDelegate runInBackground:^{
         self.debugMode = ([command.arguments[0] isEqual:@0]) ? NO : YES;
-        DLog([NSString stringWithFormat:@"[ FUNCTION ] '%@' run", NSStringFromSelector(_cmd)], @" Debug Mode Open.");
+        DLog([NSString stringWithFormat:@"[ FUNCTION ] '%@' run", NSStringFromSelector(_cmd)], @" Debug Mode Open");
     }];
 }
 
-// Web 调用 -> 获取设备系统
-- (void)device_system:(CDVInvokedUrlCommand *)command
+// Web 调用 -> 加载应用信息
+- (void)load_information:(CDVInvokedUrlCommand *)command
 {
     [self.commandDelegate runInBackground:^{
         DLog([NSString stringWithFormat:@"[ FUNCTION ] '%@' run", NSStringFromSelector(_cmd)]);
-        [self sendStatus:CDVCommandStatus_OK message:@"iOS" command:command];
+        [self sendStatus:CDVCommandStatus_OK message:@{@"currentLanguage": @"zh_CN",
+                                                       @"currentVersion": @"1.0.0"}
+                 command:command];
     }];
 }
 

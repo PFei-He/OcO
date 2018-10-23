@@ -20,8 +20,10 @@
  * THE SOFTWARE.
  */
 
-package top.faylib.oco.plugin;
+package top.faylib.plugin.device;
 
+import android.os.Environment;
+import android.os.StatFs;
 import android.util.Log;
 
 import org.apache.cordova.CallbackContext;
@@ -31,7 +33,19 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class AdapterPlugin extends CordovaPlugin {
+import java.io.File;
+
+public class DevicePlugin extends CordovaPlugin {
+    //region Constant
+
+    // 定义方法名
+    private static final String DEBUG_MODE = "debug_mode";
+    private static final String LOAD = "load_information";
+    private static final String FREE_SIZE = "free_size";
+    private static final String STORE_SIZE = "store_size";
+
+    //endregion
+
 
     //region Variable
 
@@ -52,6 +66,48 @@ public class AdapterPlugin extends CordovaPlugin {
         }
     }
 
+    /**
+     * 获取手机内部空间总大小
+     * @return 大小，字节为单位
+     */
+    static private long getTotalInternalMemorySize() {
+
+        //获取内部存储根目录
+        File path = Environment.getDataDirectory();
+
+        //系统的空间描述类
+        StatFs stat = new StatFs(path.getPath());
+
+        //每个区块占字节数
+        long blockSize = stat.getBlockSize();
+
+        //区块总数
+        long totalBlocks = stat.getBlockCount();
+
+        return totalBlocks * blockSize;
+    }
+
+    /**
+     * 获取手机内部可用空间大小
+     * @return 大小，字节为单位
+     */
+    static private long getAvailableInternalMemorySize() {
+
+        //获取内部存储根目录
+        File path = Environment.getDataDirectory();
+
+        //系统的空间描述类
+        StatFs stat = new StatFs(path.getPath());
+
+        //每个区块占字节数
+        long blockSize = stat.getBlockSize();
+
+        //获取可用区块数量
+        long availableBlocks = stat.getAvailableBlocks();
+
+        return availableBlocks * blockSize;
+    }
+
     //endregion
 
 
@@ -69,7 +125,7 @@ public class AdapterPlugin extends CordovaPlugin {
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
 
         // Web 调用 -> 调试模式开关
-        if ("debug_mode".equals(action)) {
+        if (DEBUG_MODE.equals(action)) {
             cordova.getThreadPool().execute(() -> {
                 try {
                     debugMode = args.getBoolean(0);
@@ -79,12 +135,36 @@ public class AdapterPlugin extends CordovaPlugin {
             return true;
         }
 
-        // Web 调用 -> 关闭 Web 页面
-        else if ("dismiss_web".equals(action)) {
-            cordova.getActivity().finish();
+        // Web 调用 -> 加载设备信息
+        else if (LOAD.equals(action)) {
             cordova.getThreadPool().execute(() -> {
-                webDismissed();
                 debugLog("[ FUNCTION ] '" + action + "' run");
+                JSONObject jsonObject = new JSONObject();
+                try {
+                    jsonObject.put("deviceArchitecture", android.os.Build.CPU_ABI);
+                    jsonObject.put("deviceId", "");
+                    jsonObject.put("deviceSystem", "android");
+                    jsonObject.put("deviceVersion", android.os.Build.VERSION.RELEASE);
+                } catch (JSONException e) { e.printStackTrace(); }
+                callbackContext.success(jsonObject);
+            });
+            return true;
+        }
+
+        // Web 调用 -> 剩余存储空间
+        else if (FREE_SIZE.equals(action)) {
+            cordova.getThreadPool().execute(() -> {
+                debugLog("[ FUNCTION ] '" + action + "' run");
+                callbackContext.success((int) getAvailableInternalMemorySize() / 1024 / 1024);
+            });
+            return true;
+        }
+
+        // Web 调用 -> 总存储空间
+        else if (STORE_SIZE.equals(action)) {
+            cordova.getThreadPool().execute(() -> {
+                debugLog("[ FUNCTION ] '" + action + "' run");
+                callbackContext.success((int) getTotalInternalMemorySize()  / 1024 / 1024);
             });
             return true;
         }
@@ -96,11 +176,6 @@ public class AdapterPlugin extends CordovaPlugin {
 
 
     //region Cordova Plugin Methods (Native -> Web)
-
-    // Android 调用 -> Web 页面已关闭
-    private void webDismissed() {
-        cordova.getActivity().runOnUiThread(() -> webView.loadUrl("javascript:web_dismissed()"));
-    }
 
     //endregion
 

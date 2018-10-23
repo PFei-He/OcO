@@ -20,20 +20,75 @@
  * THE SOFTWARE.
  */
 
+// region Macro Definition
+
+// 应用接口
+var Application = 'Application'
+
+// 定义方法名
+var Method = {
+  debugMode: 'debug_mode',
+  load: 'load_information'
+}
+
+// endregion
+
+// region Private Variable
+
+// 应用语言
+var currentLanguage = ''
+
+// 应用版本
+var currentVersion = ''
+
+// endregion
+
 /* eslint-disable no-undef */
 export default {
+  // region Public Methods
+
+  /**
+   * 应用语言
+   * @returns {string}
+   */
+  currentLanguage () {
+    return currentLanguage
+  },
+
+  /**
+   * 应用版本
+   * @returns {string}
+   */
+  currentVersion () {
+    return currentVersion
+  },
+
+  // endregion
+
   // region Cordova Plugin Methods (Web -> Native)
+
   /**
    * 调试模式
    * @param openOrNot 是否打开
    */
   debugMode (openOrNot) {
-    cordova.exec(null, null, 'Device', 'debug_mode', [openOrNot])
+    cordova.exec(null, null, Application, Method.debugMode, [openOrNot])
   },
-  system (callback) {
-    cordova.exec(callback, null, 'Device', 'device_system', [])
+
+  /**
+   * 加载应用信息
+   * @param callback 回调
+   */
+  load (callback) {
+    cordova.exec(function (info) {
+      currentLanguage = info.currentLanguage
+      currentVersion = info.currentVersion
+      callback()
+    }, null, Application, Method.load, [])
   }
+
   // endregion
+
   // region Cordova Plugin Methods (Native -> Web)
   // endregion
 }

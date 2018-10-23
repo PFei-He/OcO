@@ -20,22 +20,40 @@
  * THE SOFTWARE.
  */
 
-/* eslint-disable no-undef */
+import Device from '../vendor/plugin/device'
+import Network from '../vendor/plugin/network'
+
+// region Private Variable
+
+var debugMode = false
+
+// endregion
+
 export default {
-  // region Cordova Plugin Methods (Web -> Native)
+  // region Public Methods
+
   /**
    * 调试模式
    * @param openOrNot 是否打开
    */
   debugMode (openOrNot) {
-    cordova.exec(null, null, 'Adapter', 'debug_mode', [openOrNot])
+    debugMode = openOrNot
+    Device.debugMode(openOrNot)
+    Network.debugMode(openOrNot)
   },
-  dismissWeb () {
-    cordova.exec(null, null, 'Adapter', 'dismiss_web', [])
-  },
-  // endregion
-  // region Cordova Plugin Methods (Native -> Web)
-  web_dismissed () {
+
+  /**
+   * 打印调试信息
+   */
+  log () {
+    if (debugMode) {
+      for (var i in arguments) {
+        if (arguments.hasOwnProperty(i)) {
+          console.log('[ Resource Centre ][ DEBUG ] ' + (typeof arguments[i] === 'object' ? JSON.stringify(arguments[i]) : arguments[i]) + '.')
+        }
+      }
+    }
   }
+
   // endregion
 }

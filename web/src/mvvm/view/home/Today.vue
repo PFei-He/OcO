@@ -21,52 +21,63 @@
 */
 
 <template>
-  <div class="home">
-    <navigation-bar>Hybrid</navigation-bar>
+  <div class="today">
+    <navigation-bar>
+      <img id="back_item" src="../../../assets/image/ic_arrow_gray_back.png" slot="navigation-bar-left-item" />
+    </navigation-bar>
     <h1>{{ msg }}</h1>
-    <button id="next" @click="pushNext">Next Page</button>
   </div>
 </template>
 
 <script>
-  import NavigationBar from '../../component/NavigationBar'
+  import NavigationBar from '../../../component/NavigationBar'
+  import Network from '../../../vendor/plugin/network'
+  import Debug from '../../../util/debug'
+
   export default {
+    // region Variable
+
     components: { NavigationBar }, // 添加导航栏
-    name: 'home',
-    methods: {
-      pushNext () { // 按钮 `next` 的点击事件
-        this.$router.push({ // 下一页
-          name: 'today' // 跳转到路径 `/today` ，则进入 `Today.vue`
-        })
-      }
-    },
+    name: 'today',
     data () { // 页面数据
       return {
-        msg: 'Welcome to Your Vue.js App'
+        msg: 'Thanks!'
       }
     },
-    mounted () { // 页面挂载后
-      // 显示TabBar
-      this.$parent.tabBarHidden = false
-    },
-    destroyed () { // 页面销毁后
-      // 隐藏TabBar
-      this.$parent.tabBarHidden = true
+
+    // endregion
+
+    // region View Life Cycle
+
+    created () {
+      var global = this
+      Network.GET('http://www.weather.com.cn/data/sk/101010100.html', null, function (result) {
+        global.msg = result
+      }, function (error) {
+        Debug.log(error)
+      })
     }
+
+    // endregion
   }
 </script>
 
 <style>
-  .home { /* 背景样式 */
+  .today { /* 背景样式 */
     background-color: white;
+    position: fixed;
+    width: 100%;
+  }
+
+  #back_item { /* 返回按钮样式 */
+    width: 10px;
+    height: 36px;
+    margin-top: 4px;
+    position: absolute;
+    margin-left: 25px;
   }
 
   h1 {
     font-weight: normal;
-    color: #2f3f4f;
-  }
-
-  #next {
-
   }
 </style>

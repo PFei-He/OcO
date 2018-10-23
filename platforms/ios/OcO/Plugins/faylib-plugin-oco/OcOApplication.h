@@ -22,6 +22,6 @@
 
 #import <Cordova/CDV.h>
 
-@interface OcOAdapter : CDVPlugin
+@interface OcOApplication : CDVPlugin
 
 @end

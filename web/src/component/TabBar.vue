@@ -28,12 +28,16 @@
 
 <script>
   export default {
+    // region Variable
+
     name: 'TabBar',
     props: { // 双向绑定属性
       value: {
         type: String
       }
     }
+
+    // endregion
   }
 </script>
 

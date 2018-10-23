@@ -20,19 +20,27 @@
 //  THE SOFTWARE.
 //
 
-#import "OcOAdapter.h"
+#import "OcODevice.h"
+#import "sys/utsname.h"
 
+// 定义方法名
+#define debug_mode debug_mode
+#define load_information load_information
+#define free_size free_size
+#define store_size store_size
+
+// 调试打印
 #define DLog(args...)\
 [self debugLog:args, nil]
 
-@interface OcOAdapter ()
+@interface OcODevice ()
 
 // 调试模式
 @property (nonatomic, assign) BOOL debugMode;
 
 @end
 
-@implementation OcOAdapter
+@implementation OcODevice
 
 #pragma mark - Private Methods
 
@@ -40,16 +48,31 @@
 - (void)debugLog:(NSString *)strings, ...
 {
     if (self.debugMode) {
-        NSLog(@"[ OcO ][ ADAPTER ]%@.", strings);
+        NSLog(@"[ OcO ][ DEVICE ]%@.", strings);
         va_list list;
         va_start(list, strings);
         while (strings != nil) {
             NSString *string = va_arg(list, NSString *);
             if (!string) break;
-            NSLog(@"[ OcO ][ ADAPTER ]%@.", string);
+            NSLog(@"[ OcO ][ DEVICE ]%@.", string);
         }
         va_end(list);
     }
+}
+
+// 设备架构
+- (NSString *)deviceModel
+{
+    struct utsname systemInfo;
+    uname(&systemInfo);
+    NSString *deviceModel = [NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding];
+    return deviceModel;
+}
+
+// 设备版本
+- (NSString *)deviceVersion
+{
+    return [[UIDevice currentDevice] systemVersion];
 }
 
 
@@ -64,24 +87,43 @@
     }];
 }
 
-// Web 调用 -> 关闭 Web 页面
-- (void)dismiss_web:(CDVInvokedUrlCommand *)command
+// Web 调用 -> 加载设备信息
+- (void)load_information:(CDVInvokedUrlCommand *)command
 {
-    [self.viewController dismissViewControllerAnimated:YES completion:NULL];
     [self.commandDelegate runInBackground:^{
-        [self webDismissed];
         DLog([NSString stringWithFormat:@"[ FUNCTION ] '%@' run", NSStringFromSelector(_cmd)]);
+        [self sendStatus:CDVCommandStatus_OK message:@{@"deviceArchitecture": [self deviceModel],
+                                                       @"deviceId": @"",
+                                                       @"deviceSystem": @"ios",
+                                                       @"deviceVersion": [self deviceVersion]}
+                 command:command];
+    }];
+}
+
+// Web 调用 -> 剩余存储空间
+- (void)free_size:(CDVInvokedUrlCommand *)command
+{
+    [self.commandDelegate runInBackground:^{
+        DLog([NSString stringWithFormat:@"[ FUNCTION ] '%@' run", NSStringFromSelector(_cmd)]);
+        NSDictionary *attributes = [[NSFileManager defaultManager] attributesOfFileSystemForPath:NSHomeDirectory() error:nil];
+        NSNumber *size = [NSNumber numberWithUnsignedInteger:[attributes[NSFileSystemFreeSize] unsignedIntegerValue] / 1024 / 1024];
+        [self sendStatus:CDVCommandStatus_OK message:size command:command];
+    }];
+}
+
+// Web 调用 -> 总存储空间
+- (void)store_size:(CDVInvokedUrlCommand *)command
+{
+    [self.commandDelegate runInBackground:^{
+        DLog([NSString stringWithFormat:@"[ FUNCTION ] '%@' run", NSStringFromSelector(_cmd)]);
+        NSDictionary *attributes = [[NSFileManager defaultManager] attributesOfFileSystemForPath:NSHomeDirectory() error:nil];
+        NSNumber *size = [NSNumber numberWithUnsignedInteger:[attributes[NSFileSystemSize] unsignedIntegerValue] / 1024 / 1024];
+        [self sendStatus:CDVCommandStatus_OK message:size command:command];
     }];
 }
 
 
 #pragma mark - Cordova Plugin Methods (Native -> Web)
-
-// iOS 调用 -> Web 页面已关闭
-- (void)webDismissed
-{
-    [self.commandDelegate evalJs:@"web_dismissed()"];
-}
 
 
 #pragma mark - Cordova Plugin Result Methods

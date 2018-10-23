@@ -54,7 +54,6 @@ import java.util.List;
 import java.util.Map;
 
 public class NetworkPlugin extends CordovaPlugin {
-
     //region Constant
 
     // 定义方法名

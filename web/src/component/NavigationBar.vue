@@ -21,9 +21,8 @@
 */
 
 <template>
-  <div class="navigation-bar">
-
-    <!-- 左边按钮 -->
+  <div class="navigation-bar" ref="navigationBar">
+    <!-- 左边区域 -->
     <span class="navigation-bar-left" v-on:click="leftItemEvent" v-if="showLiftItem">
         <slot name="navigation-bar-left-item"></slot>
       </span>
@@ -33,7 +32,7 @@
         <slot></slot>
       </span>
 
-    <!-- 右边按钮 -->
+    <!-- 右边区域 -->
     <span class="navigation-bar-right" v-on:click="rightItemEvent" v-if="showRightItem">
         <slot name="navigation-bar-right-item"></slot>
       </span>
@@ -41,8 +40,11 @@
 </template>
 
 <script>
-  import device from '../plugin/device'
+  import device from '../vendor/plugin/device'
+
   export default {
+    // region Variable
+
     name: 'NavigationBar',
     props: {
       showLiftItem: {
@@ -58,50 +60,59 @@
         default: 'center'
       }
     },
-    methods: {
-      leftItemEvent () { // 按钮 `back` 的点击事件
-        this.$router.back() // 上一页
-      },
-      rightItemEvent () {
+
+    // endregion
+
+    // region View Life Cycle
+
+    mounted () {
+      if (device.system() === 'ios') {
+        this.$refs.navigationBar.style.paddingTop = '20px'
       }
     },
-    beforeCreate: function () {
-      device.system(function (device) {
-        if (device === 'iOS') {
-          var div = document.getElementsByClassName('navigation-bar')
-          div[0].setAttribute('style', 'height:64px; line-height:84px;')
-          div = document.getElementsByClassName('navigation-bar-left')
-          div[0].setAttribute('style', 'margin-top:25px;')
-          div = document.getElementsByClassName('navigation-bar-right')
-          div[0].setAttribute('style', 'margin-top:25px;')
-        }
-      })
+
+    // endregion
+
+    // region Custom Methods
+
+    methods: {
+      // 按钮 `back` 的点击事件
+      leftItemEvent () {
+        this.$router.back() // 上一页
+      },
+
+      rightItemEvent () {
+      }
     }
+
+    // endregion
   }
 </script>
 
 <style lang="less">
   .navigation-bar {
-    width: auto;
     height: 44px;
-    text-align: center;
     line-height: 44px;
     background-color: #4f5f6f;
     color: #9b9b9b;
-    margin: 0;
 
     .navigation-bar-left {
       float: left;
-      margin-left: 20px;
-      margin-top: 5px;
-      height: 34px;
+      height: 44px;
+      width: 33%;
+    }
+
+    .navigation-bar-title {
+      height: 44px;
+      float: left;
+      width: 34%;
+      text-align: center;
     }
 
     .navigation-bar-right {
       float: right;
-      margin-right: 30px;
-      margin-top: 5px;
-      height: 34px;
+      height: 44px;
+      width: 33%;
     }
   }
 </style>

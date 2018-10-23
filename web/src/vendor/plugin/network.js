@@ -20,7 +20,9 @@
  * THE SOFTWARE.
  */
 
-// 网络框架
+// region Macro Definition
+
+// 网络接口
 var Network = 'Network'
 
 // 定义方法名
@@ -35,9 +37,12 @@ var Method = {
   resetRequest: 'reset_request'
 }
 
+// endregion
+
 /* eslint-disable no-undef */
 export default {
   // region Cordova Plugin Methods (Web -> Native)
+
   /**
    * 调试模式
    * @param openOrNot 是否打开
@@ -45,6 +50,7 @@ export default {
   debugMode (openOrNot) {
     cordova.exec(null, null, Network, Method.debugMode, [openOrNot])
   },
+
   /**
    * 设置超时时隔
    * @param millisecond 时隔（毫秒）
@@ -52,6 +58,7 @@ export default {
   timeoutInterval (millisecond) {
     cordova.exec(null, null, Network, Method.timeoutInterval, [millisecond])
   },
+
   /**
    * 设置重试次数
    * @param count 次数
@@ -59,6 +66,7 @@ export default {
   retryTimes (count) {
     cordova.exec(null, null, Network, Method.retryTimes, [count])
   },
+
   /**
    * 设置请求头
    * @param headers 请求头参数
@@ -66,6 +74,7 @@ export default {
   setHeaders (headers) {
     cordova.exec(null, null, Network, Method.setHeaders, [headers])
   },
+
   /**
    * 发送 GET 请求
    * @param url 请求接口
@@ -76,6 +85,7 @@ export default {
   GET (url, params, successCallback, errorCallback) {
     cordova.exec(successCallback, errorCallback, Network, Method.requestGet, [url, params])
   },
+
   /**
    * 发送 POST 请求
    * @param url 请求接口
@@ -86,6 +96,7 @@ export default {
   POST (url, params, successCallback, errorCallback) {
     cordova.exec(successCallback, errorCallback, Network, Method.requestPost, [url, params])
   },
+
   /**
    * 发送 DELETE 请求
    * @param url 请求接口
@@ -96,6 +107,7 @@ export default {
   DELETE (url, params, successCallback, errorCallback) {
     cordova.exec(successCallback, errorCallback, Network, Method.requestDelete, [url, params])
   },
+
   /**
    * 发送 download 请求
    * @param url 请求接口
@@ -106,13 +118,16 @@ export default {
   download (url, filePath, successCallback, errorCallback) {
     cordova.exec(successCallback, errorCallback, Network, Method.requestDownload, [url, filePath])
   },
+
   /**
    * 重置请求
    */
   reset () {
     cordova.exec(null, null, Network, Method.resetRequest, [])
   }
+
   // endregion
+
   // region Cordova Plugin Methods (Native -> Web)
   // endregion
 }
