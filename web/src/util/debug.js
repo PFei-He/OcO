@@ -51,7 +51,7 @@ export default {
     if (debugMode) {
       for (var i in arguments) {
         if (arguments.hasOwnProperty(i)) {
-          console.log('[ Resource Centre ][ DEBUG ] ' + (typeof arguments[i] === 'object' ? JSON.stringify(arguments[i]) : arguments[i]) + '.')
+          console.log('[ OcO ][ DEBUG ] ' + (typeof arguments[i] === 'object' ? JSON.stringify(arguments[i]) : arguments[i]) + '.')
         }
       }
     }
