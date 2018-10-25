@@ -22,6 +22,8 @@
 
 package top.faylib.oco.plugin;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 
 import org.apache.cordova.CallbackContext;
@@ -37,6 +39,7 @@ public class ApplicationPlugin extends CordovaPlugin {
     // 定义方法名
     private static final String DEBUG_MODE = "debug_mode";
     private static final String LOAD = "load_information";
+    private static final String CHANGE_LANGUAGE = "change_language";
 
     //endregion
 
@@ -55,7 +58,7 @@ public class ApplicationPlugin extends CordovaPlugin {
     private void debugLog(String ... strings) {
         if (debugMode) {
             for (String string : strings) {
-                Log.i("OcO", "[ OcO ][ NETWORK ]" + string + ".");
+                Log.i("OcO", "[ OcO ][ APPLICATION ]" + string + ".");
             }
         }
     }
@@ -82,9 +85,7 @@ public class ApplicationPlugin extends CordovaPlugin {
                 try {
                     debugMode = args.getBoolean(0);
                     debugLog("[ FUNCTION ] '" + action + "' run", " Debug Mode Open");
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+                } catch (JSONException e) { e.printStackTrace(); }
             });
             return true;
         }
@@ -95,12 +96,25 @@ public class ApplicationPlugin extends CordovaPlugin {
                 debugLog("[ FUNCTION ] '" + action + "' run");
                 JSONObject jsonObject = new JSONObject();
                 try {
-                    jsonObject.put("currentLanguage", "zh_CN");
+                    SharedPreferences sharedPreferences = cordova.getActivity().getSharedPreferences("OcO", Context.MODE_PRIVATE);
+                    jsonObject.put("currentLanguage", sharedPreferences.getString("OcO_CURRENT_LANGUAGE", "zh_CN"));
                     jsonObject.put("currentVersion", "1.0.0");
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+                } catch (JSONException e) { e.printStackTrace(); }
                 callbackContext.success(jsonObject);
+            });
+            return true;
+        }
+
+        // Web 调用 -> 更换语言环境
+        else if (CHANGE_LANGUAGE.equals(action)) {
+            cordova.getThreadPool().execute(() -> {
+                debugLog("[ FUNCTION ] '" + action + "' run");
+                try {
+                    SharedPreferences sharedPreferences = cordova.getActivity().getSharedPreferences("OcO", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString("OcO_CURRENT_LANGUAGE", args.getString(0));
+                    editor.apply();
+                } catch (JSONException e) { e.printStackTrace(); }
             });
             return true;
         }

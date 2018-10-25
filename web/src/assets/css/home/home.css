@@ -20,39 +20,33 @@
 * THE SOFTWARE.
 */
 
-<template>
-  <div class="tab-bar">
-    <slot></slot>
-  </div>
-</template>
+.home { /* 背景样式 */
+  background-color: white;
+  position: fixed;
+  width: 100%;
+}
 
-<script>
-  export default {
-    // region Variable
+.content {
+  height: 85px;
+  width: 100%;
+  margin-top: 44px;
+  position: fixed;
+}
 
-    name: 'TabBar',
-    props: { // 双向绑定属性
-      value: {
-        type: String
-      }
-    }
+h1 {
+  font-weight: normal;
+  color: #4f5f6f;
+  margin-left: 5px;
+  margin-right: 5px;
+}
 
-    // endregion
-  }
-</script>
-
-<style lang="less">
-  .tab-bar {
-    display: flex;
-    flex-direction: row;
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 100%;
-    overflow: hidden;
-    height: 44px;
-    background: #ffffff;
-    border-top: 1px solid lightgray;
-  }
-</style>
+#next {
+  background-color: #4f5f6f;
+  color: #9b9b9b;
+  height: 30px;
+  width: 80px;
+  margin-left: 5px;
+  font-size: 15px;
+  padding: 0;
+  border: 0;
+}

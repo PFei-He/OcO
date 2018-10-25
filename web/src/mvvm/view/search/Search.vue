@@ -22,37 +22,12 @@
 
 <template>
   <div class="search">
-    <navigation-bar :showBackItem="false">搜索</navigation-bar>
+    <navigation-bar :showBackItem="false">{{'search' | localize}}</navigation-bar>
   </div>
 </template>
 
-<script>
-  import NavigationBar from '../../../component/NavigationBar'
-
-  export default {
-    // region Variable
-
-    components: { NavigationBar }, // 添加导航栏
-    name: 'search',
-
-    // endregion
-
-    // region View Life Cycle
-
-    mounted () { // 页面挂载后
-      // 显示TabBar
-      this.$parent.tabBarHidden = false
-    },
-
-    destroyed () { // 页面销毁后
-      // 隐藏TabBar
-      this.$parent.tabBarHidden = true
-    }
-
-    // endregion
-  }
-</script>
+<script src="../../viewmodel/search/search.js"></script>
 
 <style>
-
+  @import "../../../assets/css/search/search.css";
 </style>

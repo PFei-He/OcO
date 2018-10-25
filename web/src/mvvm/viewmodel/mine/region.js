@@ -20,40 +20,49 @@
  * THE SOFTWARE.
  */
 
-import Device from '../vendor/plugin/device'
-import Network from '../vendor/plugin/network'
-import Application from '../plugin/application'
-
-// region Private Variable
-
-var debugMode = false
-
-// endregion
+import NavigationBar from '../../../component/NavigationBar.vue'
+import Device from '../../../vendor/plugin/device'
+import Application from '../../../plugin/application'
 
 export default {
-  // region Public Methods
+  // region Variable
 
-  /**
-   * 调试模式
-   * @param openOrNot 是否打开
-   */
-  debugMode (openOrNot) {
-    debugMode = openOrNot
-    Device.debugMode(openOrNot)
-    Network.debugMode(openOrNot)
-    Application.debugMode(openOrNot)
+  components: {NavigationBar},
+  name: 'region',
+  inject: ['reload'], // 获取父组件的刷新页面方法
+
+  // endregion
+
+  // region View Life Cycle
+
+  mounted () { // 页面挂载后
+    if (Device.system() === Device.ios) {
+      this.$refs.content.style.marginTop = '64px'
+    }
   },
 
-  /**
-   * 打印调试信息
-   */
-  log () {
-    if (debugMode) {
-      for (var i in arguments) {
-        if (arguments.hasOwnProperty(i)) {
-          console.log('[ Resource Centre ][ DEBUG ] ' + (typeof arguments[i] === 'object' ? JSON.stringify(arguments[i]) : arguments[i]) + '.')
-        }
-      }
+  // endregion
+
+  // region Vue Methods
+
+  data () {
+    return {
+      rows: [
+        {'code': 'zh_CN', 'value': '中文(简体)'},
+        {'code': 'zh_HK', 'value': '中文(香港)'},
+        {'code': 'en', 'value': 'English'}
+      ]
+    }
+  },
+
+  // endregion
+
+  // region Custom Methods
+
+  methods: {
+    changeLanguage (language) {
+      Application.changeLanguage(language)
+      this.reload()
     }
   }
 

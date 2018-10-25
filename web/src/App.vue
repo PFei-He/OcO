@@ -23,7 +23,7 @@
 <template>
   <div>
     <!-- 使用路由 -->
-    <router-view></router-view>
+    <router-view v-if="isRouterAlive"></router-view>
 
     <tab-bar v-model="tab" v-show="!tabBarHidden">
       <tab-bar-item id="home" isRoute>
@@ -67,9 +67,27 @@
 
     // region Vue Methods
 
+    provide () { // 将刷新页面方法传递到子组件
+      return {
+        reload: this.reload
+      }
+    },
+
     data () {
       return {
-        tab: 'home'
+        tab: 'home',
+        isRouterAlive: true
+      }
+    },
+
+    // endregion
+
+    // region Custom Methods
+
+    methods: {
+      reload () { // 刷新页面
+        this.isRouterAlive = false
+        this.$nextTick(() => (this.isRouterAlive = true))
       }
     }
 

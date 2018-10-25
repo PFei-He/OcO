@@ -4,14 +4,34 @@
     "zh_HK": "",
     "en": ""
   },
+  "account": {
+    "zh_CN": "账户",
+    "zh_HK": "賬戶",
+    "en": "Account"
+  },
   "appName": {
     "zh_CN": "混合应用",
     "zh_HK": "混合應用",
     "en": "Hybrid App"
   },
+  "mine": {
+    "zh_CN": "我的",
+    "zh_HK": "我的",
+    "en": "Mine"
+  },
   "nextPage": {
     "zh_CN": "下一页",
     "zh_HK": "下一頁",
     "en": "Next Page"
+  },
+  "region": {
+    "zh_CN": "地区",
+    "zh_HK": "地區",
+    "en": "Region"
+  },
+  "search": {
+    "zh_CN": "搜索",
+    "zh_HK": "搜索",
+    "en": "Search"
   }
 }

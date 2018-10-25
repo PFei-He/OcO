@@ -40,7 +40,7 @@
 </template>
 
 <script>
-  import device from '../vendor/plugin/device'
+  import Device from '../vendor/plugin/device'
 
   export default {
     // region Variable
@@ -66,7 +66,7 @@
     // region View Life Cycle
 
     mounted () {
-      if (device.system() === 'ios') {
+      if (Device.system() === Device.ios) {
         this.$refs.navigationBar.style.paddingTop = '20px'
       }
     },
@@ -95,6 +95,8 @@
     line-height: 44px;
     background-color: #4f5f6f;
     color: #9b9b9b;
+    position: fixed;
+    width: 100%;
 
     .navigation-bar-left {
       float: left;
@@ -107,6 +109,7 @@
       float: left;
       width: 34%;
       text-align: center;
+      font-size: 17px;
     }
 
     .navigation-bar-right {

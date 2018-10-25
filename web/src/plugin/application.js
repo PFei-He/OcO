@@ -28,7 +28,8 @@ var Application = 'Application'
 // 定义方法名
 var Method = {
   debugMode: 'debug_mode',
-  load: 'load_information'
+  load: 'load_information',
+  changeLanguage: 'change_language'
 }
 
 // endregion
@@ -85,6 +86,15 @@ export default {
       currentVersion = info.currentVersion
       callback()
     }, null, Application, Method.load, [])
+  },
+
+  /**
+   * 更改语言环境
+   * @param language 语言
+   */
+  changeLanguage (language) {
+    currentLanguage = language
+    cordova.exec(null, null, Application, Method.changeLanguage, [language])
   }
 
   // endregion

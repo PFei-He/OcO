@@ -82,10 +82,10 @@
   .tab-bar-item {
     flex: 1;
     text-align: center;
+    line-height: 13px;
 
     .tab-bar-item-icon {
       display: block;
-      padding-top: 2px;
 
       img {
         width: 28px;
@@ -95,7 +95,7 @@
 
     .tab-bar-item-text {
       display: block;
-      font-size: 10px;
+      font-size: 13px;
       color: #949494;
     }
 

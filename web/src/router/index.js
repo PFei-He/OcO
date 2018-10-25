@@ -29,6 +29,8 @@ import Today from '../mvvm/view/home/today.vue'
 import Search from '../mvvm/view/search/search.vue'
 
 import Mine from '../mvvm/view/mine/mine.vue'
+import Account from '../mvvm/view/mine/account.vue'
+import Region from '../mvvm/view/mine/region.vue'
 
 // 路由则为界面跳转的流程图
 // `Vue` 使用路由 `Route`
@@ -60,6 +62,16 @@ export default new Router({ // 导出路由表
       path: '/mine', // 设置 `Mine.vue` 的路径
       name: 'mine', // 设置模板名称
       component: Mine // 导入 `Mine` 组件
+    },
+    {
+      path: '/account', // 设置 `Account.vue` 的路径
+      name: 'account', // 设置模板名称
+      component: Account // 导入 `Account` 组件
+    },
+    {
+      path: '/region', // 设置 `Region.vue` 的路径
+      name: 'region', // 设置模板名称
+      component: Region // 导入 `Region` 组件
     }
   ]
 })

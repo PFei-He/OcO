@@ -53,6 +53,12 @@ var deviceVersion = ''
 
 /* eslint-disable no-undef */
 export default {
+  // region Public Variable
+
+  android: 'android',
+  ios: 'ios',
+
+  // endregion
   // region Public Methods
 
   /**

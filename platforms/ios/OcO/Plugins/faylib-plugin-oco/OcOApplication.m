@@ -25,6 +25,7 @@
 // 定义方法名
 #define debug_mode debug_mode
 #define load_information load_information
+#define change_language change_language
 
 // 调试打印
 #define DLog(args...)\
@@ -74,9 +75,19 @@
 {
     [self.commandDelegate runInBackground:^{
         DLog([NSString stringWithFormat:@"[ FUNCTION ] '%@' run", NSStringFromSelector(_cmd)]);
-        [self sendStatus:CDVCommandStatus_OK message:@{@"currentLanguage": @"zh_CN",
+        [self sendStatus:CDVCommandStatus_OK message:@{@"currentLanguage": [[NSUserDefaults standardUserDefaults] valueForKey:@"OcO_CURRENT_LANGUAGE"] ? [[NSUserDefaults standardUserDefaults] valueForKey:@"OcO_CURRENT_LANGUAGE"] : @"zh_CN",
                                                        @"currentVersion": @"1.0.0"}
                  command:command];
+    }];
+}
+
+// // Web 调用 -> 更换语言环境
+- (void)change_language:(CDVInvokedUrlCommand *)command
+{
+    [self.commandDelegate runInBackground:^{
+        DLog([NSString stringWithFormat:@"[ FUNCTION ] '%@' run", NSStringFromSelector(_cmd)]);
+        [[NSUserDefaults standardUserDefaults] setValue:command.arguments[0] forKey:@"OcO_CURRENT_LANGUAGE"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
     }];
 }
 

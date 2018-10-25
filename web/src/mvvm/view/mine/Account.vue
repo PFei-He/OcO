@@ -21,38 +21,46 @@
 */
 
 <template>
-  <div class="tab-bar">
-    <slot></slot>
+  <div class="account">
+    <navigation-bar>
+      <img id="back_item" src="../../../assets/image/ic_arrow_gray_back.png" slot="navigation-bar-left-item" />
+      {{'account' | localize}}
+    </navigation-bar>
+    <div class="content" ref="content"></div>
   </div>
 </template>
 
 <script>
+  import NavigationBar from '../../../component/NavigationBar'
+  import Device from '../../../vendor/plugin/device'
+
   export default {
     // region Variable
 
-    name: 'TabBar',
-    props: { // 双向绑定属性
-      value: {
-        type: String
+    components: {NavigationBar},
+    name: 'account',
+
+    // endregion
+
+    // region View Life Cycle
+
+    mounted () { // 页面挂载后
+      if (Device.system() === Device.ios) {
+        this.$refs.content.style.marginTop = '64px'
       }
     }
 
     // endregion
+
   }
 </script>
 
-<style lang="less">
-  .tab-bar {
-    display: flex;
-    flex-direction: row;
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0;
+<style>
+  .content {
+    height: 85%;
     width: 100%;
-    overflow: hidden;
-    height: 44px;
-    background: #ffffff;
-    border-top: 1px solid lightgray;
+    margin-top: 44px;
+    position: fixed;
+    overflow: auto;
   }
 </style>

@@ -22,37 +22,17 @@
 
 <template>
   <div class="mine">
-    <navigation-bar :showBackItem="false">我的</navigation-bar>
+    <navigation-bar :showBackItem="false">{{'mine' | localize}}</navigation-bar>
+    <div class="content" ref="content">
+      <ul class="lists">
+        <li class="row" v-for="row in rows" @click="pushNext(row)">{{row | localize}}</li>
+      </ul>
+    </div>
   </div>
 </template>
 
-<script>
-  import NavigationBar from '../../../component/NavigationBar'
+<script src="../../viewmodel/mine/mine.js"></script>
 
-  export default {
-    // region Variable
-
-    components: { NavigationBar }, // 添加导航栏
-    name: 'mine',
-
-    // endregion
-
-    // region View Life Cycle
-
-    mounted () { // 页面挂载后
-      // 显示TabBar
-      this.$parent.tabBarHidden = false
-    },
-
-    destroyed () { // 页面销毁后
-      // 隐藏TabBar
-      this.$parent.tabBarHidden = true
-    }
-
-    // endregion
-  }
-</script>
-
-<style>
-
+<style scoped>
+  @import "../../../assets/css/mine/mine.css";
 </style>

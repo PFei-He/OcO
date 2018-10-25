@@ -20,40 +20,50 @@
  * THE SOFTWARE.
  */
 
-import Device from '../vendor/plugin/device'
-import Network from '../vendor/plugin/network'
-import Application from '../plugin/application'
-
-// region Private Variable
-
-var debugMode = false
-
-// endregion
+import NavigationBar from '../../../component/NavigationBar.vue'
+import Device from '../../../vendor/plugin/device'
+//  import Debug from '../../../util/debug'
 
 export default {
-  // region Public Methods
+  // region Variable
 
-  /**
-   * 调试模式
-   * @param openOrNot 是否打开
-   */
-  debugMode (openOrNot) {
-    debugMode = openOrNot
-    Device.debugMode(openOrNot)
-    Network.debugMode(openOrNot)
-    Application.debugMode(openOrNot)
+  components: {NavigationBar}, // 添加导航栏
+  name: 'mine',
+
+  // endregion
+
+  // region View Life Cycle
+
+  mounted () { // 页面挂载后
+    // 显示TabBar
+    this.$parent.tabBarHidden = false
+    if (Device.system() === Device.ios) {
+      this.$refs.content.style.marginTop = '64px'
+    }
   },
 
-  /**
-   * 打印调试信息
-   */
-  log () {
-    if (debugMode) {
-      for (var i in arguments) {
-        if (arguments.hasOwnProperty(i)) {
-          console.log('[ Resource Centre ][ DEBUG ] ' + (typeof arguments[i] === 'object' ? JSON.stringify(arguments[i]) : arguments[i]) + '.')
-        }
-      }
+  destroyed () { // 页面销毁后
+    // 隐藏TabBar
+    this.$parent.tabBarHidden = true
+  },
+
+  // endregion
+
+  // region Vue Methods
+
+  data () {
+    return {
+      rows: ['account', 'region']
+    }
+  },
+
+  // endregion
+
+  // region Custom Methods
+
+  methods: {
+    pushNext (view) {
+      this.$router.push({name: view})
     }
   }
 

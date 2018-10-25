@@ -25,13 +25,16 @@
     <navigation-bar>
       <img id="back_item" src="../../../assets/image/ic_arrow_gray_back.png" slot="navigation-bar-left-item" />
     </navigation-bar>
-    <h1>{{ msg }}</h1>
+    <div class="content" ref="content">
+      <h1>{{ msg }}</h1>
+    </div>
   </div>
 </template>
 
 <script>
   import NavigationBar from '../../../component/NavigationBar'
   import Network from '../../../vendor/plugin/network'
+  import Device from '../../../vendor/plugin/device'
   import Debug from '../../../util/debug'
 
   export default {
@@ -39,11 +42,6 @@
 
     components: { NavigationBar }, // 添加导航栏
     name: 'today',
-    data () { // 页面数据
-      return {
-        msg: 'Thanks!'
-      }
-    },
 
     // endregion
 
@@ -56,6 +54,22 @@
       }, function (error) {
         Debug.log(error)
       })
+    },
+
+    mounted () { // 页面挂载后
+      if (Device.system() === Device.ios) {
+        this.$refs.content.style.marginTop = '64px'
+      }
+    },
+
+    // endregion
+
+    // region Vue Methods
+
+    data () { // 页面数据
+      return {
+        msg: 'Thanks!'
+      }
     }
 
     // endregion
@@ -67,6 +81,13 @@
     background-color: white;
     position: fixed;
     width: 100%;
+  }
+
+  .content {
+    height: 85%;
+    width: 100%;
+    margin-top: 44px;
+    position: fixed;
   }
 
   #back_item { /* 返回按钮样式 */

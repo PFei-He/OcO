@@ -21,38 +21,21 @@
 */
 
 <template>
-  <div class="tab-bar">
-    <slot></slot>
+  <div class="region">
+    <navigation-bar>
+      <img id="back_item" src="../../../assets/image/ic_arrow_gray_back.png" slot="navigation-bar-left-item" />
+      {{'region' | localize}}
+    </navigation-bar>
+    <div class="content" ref="content">
+      <ul class="lists">
+        <li class="row" v-for="row in rows" @click="changeLanguage(row.code)">{{row.value}}</li>
+      </ul>
+    </div>
   </div>
 </template>
 
-<script>
-  export default {
-    // region Variable
+<script src="../../viewmodel/mine/region.js"></script>
 
-    name: 'TabBar',
-    props: { // 双向绑定属性
-      value: {
-        type: String
-      }
-    }
-
-    // endregion
-  }
-</script>
-
-<style lang="less">
-  .tab-bar {
-    display: flex;
-    flex-direction: row;
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 100%;
-    overflow: hidden;
-    height: 44px;
-    background: #ffffff;
-    border-top: 1px solid lightgray;
-  }
+<style>
+  @import "../../../assets/css/mine/region.css";
 </style>
