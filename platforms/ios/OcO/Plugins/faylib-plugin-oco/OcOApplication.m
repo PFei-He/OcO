@@ -46,13 +46,13 @@
 - (void)debugLog:(NSString *)strings, ...
 {
     if (self.debugMode) {
-        NSLog(@"[ Resource Centre ][ APPLICATION ]%@.", strings);
+        NSLog(@"[ OcO ][ APPLICATION ]%@.", strings);
         va_list list;
         va_start(list, strings);
         while (strings != nil) {
             NSString *string = va_arg(list, NSString *);
             if (!string) break;
-            NSLog(@"[ Resource Centre ][ APPLICATION ]%@.", string);
+            NSLog(@"[ OcO ][ APPLICATION ]%@.", string);
         }
         va_end(list);
     }
