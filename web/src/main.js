@@ -51,6 +51,10 @@ window.document.addEventListener('deviceready', function () { // 监听设备状
   Network.timeoutInterval(60000)
   // 设置重试次数
   Network.retryTimes(1)
+  // 打开网络状态监听
+  Network.startMonitoring(function (status) {
+    Debug.log(status)
+  })
 
   // 加载设备信息
   Device.load(function () {

@@ -33,6 +33,9 @@
 #define request_delete request_delete
 #define request_download request_download
 #define reset_request reset_request
+#define start_monitoring start_monitoring
+#define stop_monitoring stop_monitoring
+#define network_reachability network_reachability
 
 // 调试打印
 #define DLog(args...)\
@@ -45,6 +48,12 @@ typedef NS_ENUM(NSUInteger, OcONetworkRequestMethod) {
     OcONetworkRequestMethodDownload
 };
 
+// 定义网络状态
+NSString * const OcO_NETWORK_REACHABILITY_STATUS_UNKNOWN = @"OcO_NETWORK_REACHABILITY_STATUS_UNKNOWN";
+NSString * const OcO_NETWORK_REACHABILITY_STATUS_NONE = @"OcO_NETWORK_REACHABILITY_STATUS_NONE";
+NSString * const OcO_NETWORK_REACHABILITY_STATUS_WWAN = @"OcO_NETWORK_REACHABILITY_STATUS_WWAN";
+NSString * const OcO_NETWORK_REACHABILITY_STATUS_WIFI = @"OcO_NETWORK_REACHABILITY_STATUS_WIFI";
+
 @interface OcONetwork ()
 
 // 调试模式
@@ -52,6 +61,9 @@ typedef NS_ENUM(NSUInteger, OcONetworkRequestMethod) {
 
 // 网络请求
 @property (nonatomic, strong) AFHTTPSessionManager *sessionManager;
+
+// 网络状态
+@property (nonatomic, strong) AFNetworkReachabilityManager *reachabilityManager;
 
 // 超时时隔
 @property (nonatomic) NSInteger timeoutInterval;
@@ -74,6 +86,15 @@ typedef NS_ENUM(NSUInteger, OcONetworkRequestMethod) {
         _sessionManager.responseSerializer.acceptableContentTypes = [_sessionManager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
     }
     return _sessionManager;
+}
+
+// 初始化监控
+- (AFNetworkReachabilityManager *)reachabilityManager
+{
+    if (!_reachabilityManager) {
+        _reachabilityManager = [AFNetworkReachabilityManager sharedManager];
+    }
+    return _reachabilityManager;
 }
 
 // 超时时隔
@@ -335,6 +356,61 @@ typedef NS_ENUM(NSUInteger, OcONetworkRequestMethod) {
         DLog([NSString stringWithFormat:@"[ FUNCTION ] '%@' run", NSStringFromSelector(_cmd)]);
         self.timeoutInterval = 120;
         self.retryTimes = 1;
+    }];
+}
+
+// Web 调用 -> 打开网络监听
+- (void)start_monitoring:(CDVInvokedUrlCommand *)command
+{
+    [self.commandDelegate runInBackground:^{
+        DLog([NSString stringWithFormat:@"[ FUNCTION ] '%@' run", NSStringFromSelector(_cmd)]);
+        [self.reachabilityManager startMonitoring];
+        [self sendStatus:CDVCommandStatus_OK message:nil keepCallback:YES command:command];
+        __weak __typeof__(self) weakSelf = self;
+        [self.reachabilityManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+            __typeof__(weakSelf) self = weakSelf;
+            switch (status) {
+                case AFNetworkReachabilityStatusUnknown:
+                    [self sendStatus:CDVCommandStatus_OK message:OcO_NETWORK_REACHABILITY_STATUS_UNKNOWN keepCallback:YES command:command];
+                    break;
+                case AFNetworkReachabilityStatusNotReachable:
+                    [self sendStatus:CDVCommandStatus_OK message:OcO_NETWORK_REACHABILITY_STATUS_NONE keepCallback:YES command:command];
+                    break;
+                case AFNetworkReachabilityStatusReachableViaWWAN:
+                    [self sendStatus:CDVCommandStatus_OK message:OcO_NETWORK_REACHABILITY_STATUS_WWAN keepCallback:YES command:command];
+                    break;
+                case AFNetworkReachabilityStatusReachableViaWiFi:
+                    [self sendStatus:CDVCommandStatus_OK message:OcO_NETWORK_REACHABILITY_STATUS_WIFI keepCallback:YES command:command];
+                    break;
+                default:
+                    break;
+            }
+        }];
+    }];
+}
+
+// Web 调用 -> 关闭网络监听
+- (void)stop_monitoring:(CDVInvokedUrlCommand *)command
+{
+    [self.commandDelegate runInBackground:^{
+        DLog([NSString stringWithFormat:@"[ FUNCTION ] '%@' run", NSStringFromSelector(_cmd)]);
+        [self.reachabilityManager stopMonitoring];
+        [self sendStatus:CDVCommandStatus_OK message:nil keepCallback:YES command:command];
+    }];
+}
+
+// Web 调用 -> 网络状态
+- (void)network_reachability:(CDVInvokedUrlCommand *)command
+{
+    [self.commandDelegate runInBackground:^{
+        DLog([NSString stringWithFormat:@"[ FUNCTION ] '%@' run", NSStringFromSelector(_cmd)]);
+        if (self.reachabilityManager.networkReachabilityStatus == AFNetworkReachabilityStatusReachableViaWWAN) {
+            [self sendStatus:CDVCommandStatus_OK message:OcO_NETWORK_REACHABILITY_STATUS_WWAN command:command];
+        } else if (self.reachabilityManager.networkReachabilityStatus == AFNetworkReachabilityStatusReachableViaWiFi) {
+            [self sendStatus:CDVCommandStatus_OK message:OcO_NETWORK_REACHABILITY_STATUS_WIFI command:command];
+        } else {
+            [self sendStatus:CDVCommandStatus_OK message:OcO_NETWORK_REACHABILITY_STATUS_NONE command:command];
+        }
     }];
 }
 

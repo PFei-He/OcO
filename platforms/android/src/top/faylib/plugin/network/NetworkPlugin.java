@@ -27,6 +27,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.util.Log;
 
@@ -66,11 +68,20 @@ public class NetworkPlugin extends CordovaPlugin {
     private static final String REQUEST_DELETE = "request_delete";
     private static final String REQUEST_DOWNLOAD = "request_download";
     private static final String RESET_REQUEST = "reset_request";
+    private static final String START_MONITORING = "start_monitoring";
+    private static final String STOP_MONITORING = "stop_monitoring";
+    private static final String NETWORK_REACHABILITY = "network_reachability";
+
+    // 定义网络状态
+    private static final String OcO_NETWORK_REACHABILITY_STATUS_UNKNOWN = "OcO_NETWORK_REACHABILITY_STATUS_UNKNOWN";
+    private static final String OcO_NETWORK_REACHABILITY_STATUS_NONE = "OcO_NETWORK_REACHABILITY_STATUS_NONE";
+    private static final String OcO_NETWORK_REACHABILITY_STATUS_WWAN = "OcO_NETWORK_REACHABILITY_STATUS_WWAN";
+    private static final String OcO_NETWORK_REACHABILITY_STATUS_WIFI = "OcO_NETWORK_REACHABILITY_STATUS_WIFI";
 
     //endregion
 
 
-    //region Variable
+    //region Private Variable
 
     // 调试模式
     private boolean debugMode = false;
@@ -413,6 +424,52 @@ public class NetworkPlugin extends CordovaPlugin {
             });
             return true;
         }
+
+        // Web 调用 -> 打开网络监听
+        else if (START_MONITORING.equals(action)) {
+            cordova.getThreadPool().execute(() -> {
+                debugLog("[ FUNCTION ] '" + action + "' run");
+                IntentFilter filter = new IntentFilter();
+                filter.addAction(NetworkStatus.NET_CHANGE_ACTION);
+                NetworkStatus networkStatus = new NetworkStatus();
+                cordova.getActivity().registerReceiver(networkStatus, filter);
+                NetworkStatus.Status status = new NetworkStatus.Status() {
+                    @Override
+                    public void onChange(NetworkStatus.Type type) {
+                        send(PluginResult.Status.OK, type.toString(), true, callbackContext);
+                    }
+                };
+                NetworkStatus.Observer.register(status);
+            });
+            return true;
+        }
+
+        // Web 调用 -> 关闭网络监听
+        else if (STOP_MONITORING.equals(action)) {
+            cordova.getThreadPool().execute(() -> {
+                debugLog("[ FUNCTION ] '" + action + "' run");
+                NetworkStatus.Observer.unregister();
+            });
+            return true;
+        }
+
+        // Web 调用 -> 网络状态
+        else if (NETWORK_REACHABILITY.equals(action)) {
+            cordova.getThreadPool().execute(() -> {
+                debugLog("[ FUNCTION ] '" + action + "' run");
+                ConnectivityManager connectivityManager = (ConnectivityManager)cordova.getActivity().getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+                assert connectivityManager != null;
+                NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+                if (networkInfo != null && networkInfo.getType() == ConnectivityManager.TYPE_MOBILE) {
+                    callbackContext.success(OcO_NETWORK_REACHABILITY_STATUS_WWAN);
+                } else if (networkInfo != null && networkInfo.getType() == ConnectivityManager.TYPE_WIFI) {
+                    callbackContext.success(OcO_NETWORK_REACHABILITY_STATUS_WIFI);
+                } else {
+                    callbackContext.success(OcO_NETWORK_REACHABILITY_STATUS_NONE);
+                }
+            });
+            return true;
+        }
         
         return super.execute(action, args, callbackContext);
     }
@@ -434,7 +491,7 @@ public class NetworkPlugin extends CordovaPlugin {
      * @param keepCallback 保持回调持续可用
      * @param callbackContext 回调信息
      */
-    private void send(PluginResult.Status status, Object message, boolean keepCallback, CallbackContext callbackContext) {
+    private void send(PluginResult.Status status, Object message, Boolean keepCallback, CallbackContext callbackContext) {
         PluginResult pluginResult = null;
         if (message instanceof String) {
             pluginResult = new PluginResult(status, (String)message);

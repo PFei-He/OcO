@@ -34,13 +34,28 @@ var Method = {
   requestGet: 'request_get',
   requestPost: 'request_post',
   requestDelete: 'request_delete',
-  resetRequest: 'reset_request'
+  resetRequest: 'reset_request',
+  startMonitoring: 'start_monitoring',
+  stopMonitoring: 'stop_monitoring',
+  networkReachability: 'network_reachability'
 }
 
 // endregion
 
 /* eslint-disable no-undef */
 export default {
+  // region Public Variable
+
+  // 定义网络状态
+  status: {
+    unknown: 'OcO_NETWORK_REACHABILITY_STATUS_UNKNOWN',
+    none: 'OcO_NETWORK_REACHABILITY_STATUS_NONE',
+    wwan: 'OcO_NETWORK_REACHABILITY_STATUS_WWAN',
+    wifi: 'OcO_NETWORK_REACHABILITY_STATUS_WIFI'
+  },
+
+  // endregion
+
   // region Cordova Plugin Methods (Web -> Native)
 
   /**
@@ -124,6 +139,30 @@ export default {
    */
   reset () {
     cordova.exec(null, null, Network, Method.resetRequest, [])
+  },
+
+  /**
+   * 打开网络监听
+   * @param callback 回调
+   */
+  startMonitoring (callback) {
+    cordova.exec(callback, null, Network, Method.startMonitoring, [])
+  },
+
+  /**
+   * 关闭网络监听
+   * @param callback 回调
+   */
+  stopMonitoring (callback) {
+    cordova.exec(callback, null, Network, Method.stopMonitoring, [])
+  },
+
+  /**
+   * 当前网络状态
+   * @param callback 回调
+   */
+  reachability (callback) {
+    cordova.exec(callback, null, Network, Method.networkReachability, [])
   }
 
   // endregion
