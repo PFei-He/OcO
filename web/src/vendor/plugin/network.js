@@ -34,6 +34,7 @@ var Method = {
   requestGet: 'request_get',
   requestPost: 'request_post',
   requestDelete: 'request_delete',
+  requestDownload: 'request_download',
   resetRequest: 'reset_request',
   startMonitoring: 'start_monitoring',
   stopMonitoring: 'stop_monitoring',
