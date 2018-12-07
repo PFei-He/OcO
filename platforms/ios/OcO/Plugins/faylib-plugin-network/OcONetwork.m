@@ -145,44 +145,19 @@ NSString * const OcO_NETWORK_REACHABILITY_STATUS_WIFI = @"OcO_NETWORK_REACHABILI
 // 发送请求
 - (void)sendWithMethod:(OcONetworkRequestMethod)method retryTimes:(NSInteger)count response:(CDVInvokedUrlCommand *)command
 {
-    if (method == OcONetworkRequestMethodGET)
-        DLog(count == self.retryTimes ? @"[ REQUEST ] Start sending" : @"[ REQUEST ] Retrying",
-             [NSString stringWithFormat:@"[ URL ] %@", command.arguments[0]],
-             @"[ METHOD ] GET",
-             [NSString stringWithFormat:@"[ PARAMS ] %@", command.arguments[1]],
-             [NSString stringWithFormat:@"[ RETRY TIMES ] %@", @(count)],
-             [NSString stringWithFormat:@"[ TIMEOUT INTERVAL ] %@", @(self.sessionManager.requestSerializer.timeoutInterval)],
-             [NSString stringWithFormat:@"[ HEADERS ] %@", self.sessionManager.requestSerializer.HTTPRequestHeaders]);
-    else if (method == OcONetworkRequestMethodPOST)
-        DLog(count == self.retryTimes ? @"[ REQUEST ] Start sending" : @"[ REQUEST ] Retrying",
-             [NSString stringWithFormat:@"[ URL ] %@", command.arguments[0]],
-             @"[ METHOD ] POST",
-             [NSString stringWithFormat:@"[ PARAMS ] %@", command.arguments[1]],
-             [NSString stringWithFormat:@"[ RETRY TIMES ] %@", @(count)],
-             [NSString stringWithFormat:@"[ TIMEOUT INTERVAL ] %@", @(self.sessionManager.requestSerializer.timeoutInterval)],
-             [NSString stringWithFormat:@"[ HEADERS ] %@", self.sessionManager.requestSerializer.HTTPRequestHeaders]);
-    else if (method == OcONetworkRequestMethodDELETE)
-        DLog(count == self.retryTimes ? @"[ REQUEST ] Start sending" : @"[ REQUEST ] Retrying",
-             [NSString stringWithFormat:@"[ URL ] %@", command.arguments[0]],
-             @"[ METHOD ] DELETE",
-             [NSString stringWithFormat:@"[ PARAMS ] %@", command.arguments[1]],
-             [NSString stringWithFormat:@"[ RETRY TIMES ] %@", @(count)],
-             [NSString stringWithFormat:@"[ TIMEOUT INTERVAL ] %@", @(self.sessionManager.requestSerializer.timeoutInterval)],
-             [NSString stringWithFormat:@"[ HEADERS ] %@", self.sessionManager.requestSerializer.HTTPRequestHeaders]);
-    else if (method == OcONetworkRequestMethodDownload)
-        DLog(count == self.retryTimes ? @"[ REQUEST ] Start sending" : @"[ REQUEST ] Retrying",
-             [NSString stringWithFormat:@"[ URL ] %@", command.arguments[0]],
-             @"[ METHOD ] Download",
-             [NSString stringWithFormat:@"[ FILE PATH ] %@", command.arguments[1]],
-             [NSString stringWithFormat:@"[ RETRY TIMES ] %@", @(count)],
-             [NSString stringWithFormat:@"[ TIMEOUT INTERVAL ] %@", @(self.sessionManager.requestSerializer.timeoutInterval)],
-             [NSString stringWithFormat:@"[ HEADERS ] %@", self.sessionManager.requestSerializer.HTTPRequestHeaders]);
-    
-    count--;
-    
     switch (method) {
         case OcONetworkRequestMethodGET:
         {
+            DLog(count == self.retryTimes ? @"[ REQUEST ] Start sending" : @"[ REQUEST ] Retrying",
+                 [NSString stringWithFormat:@"[ URL ] %@", command.arguments[0]],
+                 @"[ METHOD ] GET",
+                 [NSString stringWithFormat:@"[ PARAMS ] %@", command.arguments[1]],
+                 [NSString stringWithFormat:@"[ RETRY TIMES ] %@", @(count)],
+                 [NSString stringWithFormat:@"[ TIMEOUT INTERVAL ] %@", @(self.sessionManager.requestSerializer.timeoutInterval)],
+                 [NSString stringWithFormat:@"[ HEADERS ] %@", self.sessionManager.requestSerializer.HTTPRequestHeaders]);
+            
+            count--;
+            
             [self.sessionManager GET:command.arguments[0] parameters:command.arguments[1] success:^(NSURLSessionDataTask * _Nonnull task, id _Nonnull responseObject) {
                 [self parseWithMethod:OcONetworkRequestMethodGET response:(NSHTTPURLResponse *)task.response result:responseObject command:command];
             } failure:^(NSURLSessionDataTask * _Nonnull task, NSError * _Nonnull error) {
@@ -193,6 +168,16 @@ NSString * const OcO_NETWORK_REACHABILITY_STATUS_WIFI = @"OcO_NETWORK_REACHABILI
             break;
         case OcONetworkRequestMethodPOST:
         {
+            DLog(count == self.retryTimes ? @"[ REQUEST ] Start sending" : @"[ REQUEST ] Retrying",
+                 [NSString stringWithFormat:@"[ URL ] %@", command.arguments[0]],
+                 @"[ METHOD ] POST",
+                 [NSString stringWithFormat:@"[ PARAMS ] %@", command.arguments[1]],
+                 [NSString stringWithFormat:@"[ RETRY TIMES ] %@", @(count)],
+                 [NSString stringWithFormat:@"[ TIMEOUT INTERVAL ] %@", @(self.sessionManager.requestSerializer.timeoutInterval)],
+                 [NSString stringWithFormat:@"[ HEADERS ] %@", self.sessionManager.requestSerializer.HTTPRequestHeaders]);
+            
+            count--;
+            
             [self.sessionManager POST:command.arguments[0] parameters:command.arguments[1] success:^(NSURLSessionDataTask * _Nonnull task, id _Nonnull responseObject) {
                 [self parseWithMethod:OcONetworkRequestMethodPOST response:(NSHTTPURLResponse *)task.response result:responseObject command:command];
             } failure:^(NSURLSessionDataTask * _Nonnull task, NSError * _Nonnull error) {
@@ -203,6 +188,16 @@ NSString * const OcO_NETWORK_REACHABILITY_STATUS_WIFI = @"OcO_NETWORK_REACHABILI
             break;
         case OcONetworkRequestMethodDELETE:
         {
+            DLog(count == self.retryTimes ? @"[ REQUEST ] Start sending" : @"[ REQUEST ] Retrying",
+                 [NSString stringWithFormat:@"[ URL ] %@", command.arguments[0]],
+                 @"[ METHOD ] DELETE",
+                 [NSString stringWithFormat:@"[ PARAMS ] %@", command.arguments[1]],
+                 [NSString stringWithFormat:@"[ RETRY TIMES ] %@", @(count)],
+                 [NSString stringWithFormat:@"[ TIMEOUT INTERVAL ] %@", @(self.sessionManager.requestSerializer.timeoutInterval)],
+                 [NSString stringWithFormat:@"[ HEADERS ] %@", self.sessionManager.requestSerializer.HTTPRequestHeaders]);
+            
+            count--;
+            
             [self.sessionManager DELETE:command.arguments[0] parameters:command.arguments[1] success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
                 [self parseWithMethod:OcONetworkRequestMethodDELETE response:(NSHTTPURLResponse *)task.response result:responseObject command:command];
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -213,6 +208,16 @@ NSString * const OcO_NETWORK_REACHABILITY_STATUS_WIFI = @"OcO_NETWORK_REACHABILI
             break;
         case OcONetworkRequestMethodDownload:
         {
+            DLog(count == self.retryTimes ? @"[ REQUEST ] Start sending" : @"[ REQUEST ] Retrying",
+                 [NSString stringWithFormat:@"[ URL ] %@", command.arguments[0]],
+                 @"[ METHOD ] Download",
+                 [NSString stringWithFormat:@"[ FILE PATH ] %@", command.arguments[1]],
+                 [NSString stringWithFormat:@"[ RETRY TIMES ] %@", @(count)],
+                 [NSString stringWithFormat:@"[ TIMEOUT INTERVAL ] %@", @(self.sessionManager.requestSerializer.timeoutInterval)],
+                 [NSString stringWithFormat:@"[ HEADERS ] %@", self.sessionManager.requestSerializer.HTTPRequestHeaders]);
+            
+            count--;
+            
             NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:command.arguments[0]]];
             NSURLSessionDownloadTask *downloadTask = [self.sessionManager downloadTaskWithRequest:request progress:nil destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) {
                 // 保存路径
