@@ -56,19 +56,19 @@ NSString * const OcO_NETWORK_REACHABILITY_STATUS_WIFI = @"OcO_NETWORK_REACHABILI
 
 @interface OcONetwork ()
 
-// 调试模式
+/// 调试模式
 @property (nonatomic, assign) BOOL debugMode;
 
-// 网络请求
+/// 网络请求
 @property (nonatomic, strong) AFHTTPSessionManager *sessionManager;
 
-// 网络状态
+/// 网络状态
 @property (nonatomic, strong) AFNetworkReachabilityManager *reachabilityManager;
 
-// 超时时隔
+/// 超时时隔
 @property (nonatomic) NSInteger timeoutInterval;
 
-// 重试次数
+/// 重试次数
 @property (nonatomic) NSInteger retryTimes;
 
 @end

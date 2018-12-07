@@ -33,7 +33,7 @@
 
 @interface OcOApplication ()
 
-// 调试模式
+/// 调试模式
 @property (nonatomic, assign) BOOL debugMode;
 
 @end
