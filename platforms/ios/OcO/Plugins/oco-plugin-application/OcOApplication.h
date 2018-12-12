@@ -20,10 +20,8 @@
 //  THE SOFTWARE.
 //
 
-#ifdef __OBJC__
-    #import <Foundation/Foundation.h>
-    #import <UIKit/UIKit.h>
+#import "FLPlugin.h"
 
-    #import "plugin.h"
-    #import "project.h"
-#endif
+@interface OcOApplication : FLPlugin
+
+@end

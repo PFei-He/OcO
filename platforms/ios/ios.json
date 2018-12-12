@@ -13,19 +13,19 @@
               "count": 1
             },
             {
-              "xml": "<feature name=\"Device\"><param name=\"ios-package\" value=\"OcODevice\" /></feature>",
-              "count": 1
-            },
-            {
-              "xml": "<feature name=\"Network\"><param name=\"ios-package\" value=\"OcONetwork\" /></feature>",
-              "count": 1
-            },
-            {
               "xml": "<feature name=\"CDVWKWebViewEngine\"><param name=\"ios-package\" value=\"CDVWKWebViewEngine\" /></feature>",
               "count": 1
             },
             {
               "xml": "<preference name=\"CordovaWebViewEngine\" value=\"CDVWKWebViewEngine\" />",
+              "count": 1
+            },
+            {
+              "xml": "<feature name=\"Device\"><param name=\"ios-package\" value=\"FLDevice\" /></feature>",
+              "count": 1
+            },
+            {
+              "xml": "<feature name=\"Network\"><param name=\"ios-package\" value=\"FLNetwork\" /></feature>",
               "count": 1
             },
             {

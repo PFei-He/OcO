@@ -20,8 +20,8 @@
 //  THE SOFTWARE.
 //
 
-#import <Cordova/CDV.h>
+#import "FLPlugin.h"
 
-@interface OcODevice : CDVPlugin
+@interface FLDevice : FLPlugin
 
 @end

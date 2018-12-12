@@ -18,14 +18,14 @@
     <feature name="Console">
         <param name="ios-package" value="CDVLogger" />
     </feature>
-    <feature name="Device">
-        <param name="ios-package" value="OcODevice" />
-    </feature>
-    <feature name="Network">
-        <param name="ios-package" value="OcONetwork" />
-    </feature>
     <feature name="CDVWKWebViewEngine">
         <param name="ios-package" value="CDVWKWebViewEngine" />
+    </feature>
+    <feature name="Device">
+        <param name="ios-package" value="FLDevice" />
+    </feature>
+    <feature name="Network">
+        <param name="ios-package" value="FLNetwork" />
     </feature>
     <feature name="Application">
         <param name="ios-package" value="OcOApplication" />

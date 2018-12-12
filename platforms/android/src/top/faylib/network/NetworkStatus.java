@@ -20,7 +20,7 @@
  * THE SOFTWARE.
  */
 
-package top.faylib.plugin.network;
+package top.faylib.network;
 
 import android.app.Activity;
 import android.app.Service;

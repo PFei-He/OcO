@@ -20,34 +20,24 @@
  * THE SOFTWARE.
  */
 
-package top.faylib.plugin.device;
+package top.faylib.device;
 
 import android.os.Environment;
 import android.os.StatFs;
 import android.util.Log;
 
 import org.apache.cordova.CallbackContext;
-import org.apache.cordova.CordovaPlugin;
-import org.apache.cordova.PluginResult;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
 
-public class DevicePlugin extends CordovaPlugin {
-    //region Constant
+import top.faylib.base.BasePlugin;
+import top.faylib.oco.BuildConfig;
 
-    // 定义方法名
-    private static final String DEBUG_MODE = "debug_mode";
-    private static final String LOAD = "load_information";
-    private static final String FREE_SIZE = "free_size";
-    private static final String STORE_SIZE = "store_size";
-
-    //endregion
-
-
-    //region Variable
+public class DevicePlugin extends BasePlugin {
+    //region Private Variable
 
     // 调试模式
     private boolean debugMode = false;
@@ -61,7 +51,7 @@ public class DevicePlugin extends CordovaPlugin {
     private void debugLog(String ... strings) {
         if (debugMode) {
             for (String string : strings) {
-                Log.i("OcO", "[ OcO ][ DEVICE ]" + string + ".");
+                Log.i("FayLIB", "[ FayLIB ][ DEVICE ]" + string + ".");
             }
         }
     }
@@ -125,7 +115,7 @@ public class DevicePlugin extends CordovaPlugin {
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
 
         // Web 调用 -> 调试模式开关
-        if (DEBUG_MODE.equals(action)) {
+        if (BuildConfig.DEBUG_MODE.equals(action)) {
             cordova.getThreadPool().execute(() -> {
                 try {
                     debugMode = args.getBoolean(0);
@@ -136,7 +126,7 @@ public class DevicePlugin extends CordovaPlugin {
         }
 
         // Web 调用 -> 加载设备信息
-        else if (LOAD.equals(action)) {
+        else if (BuildConfig.LOAD.equals(action)) {
             cordova.getThreadPool().execute(() -> {
                 debugLog("[ FUNCTION ] '" + action + "' run");
                 JSONObject jsonObject = new JSONObject();
@@ -152,7 +142,7 @@ public class DevicePlugin extends CordovaPlugin {
         }
 
         // Web 调用 -> 剩余存储空间
-        else if (FREE_SIZE.equals(action)) {
+        else if (BuildConfig.FREE_SIZE.equals(action)) {
             cordova.getThreadPool().execute(() -> {
                 debugLog("[ FUNCTION ] '" + action + "' run");
                 callbackContext.success((int) getAvailableInternalMemorySize() / 1024 / 1024);
@@ -161,7 +151,7 @@ public class DevicePlugin extends CordovaPlugin {
         }
 
         // Web 调用 -> 总存储空间
-        else if (STORE_SIZE.equals(action)) {
+        else if (BuildConfig.STORE_SIZE.equals(action)) {
             cordova.getThreadPool().execute(() -> {
                 debugLog("[ FUNCTION ] '" + action + "' run");
                 callbackContext.success((int) getTotalInternalMemorySize()  / 1024 / 1024);
@@ -170,41 +160,6 @@ public class DevicePlugin extends CordovaPlugin {
         }
 
         return super.execute(action, args, callbackContext);
-    }
-
-    //endregion
-
-
-    //region Cordova Plugin Methods (Native -> Web)
-
-    //endregion
-
-
-    //region Cordova Plugin Result Methods
-
-    /**
-     * 发送到 Web 的回调
-     * @param status 响应状态
-     * @param message 回调参数
-     * @param keepCallback 保持回调持续可用
-     * @param callbackContext 回调信息
-     */
-    private void send(PluginResult.Status status, Object message, boolean keepCallback, CallbackContext callbackContext) {
-        PluginResult pluginResult = null;
-        if (message instanceof String) {
-            pluginResult = new PluginResult(status, (String)message);
-        } else if (message instanceof JSONArray) {
-            pluginResult = new PluginResult(status, (JSONArray)message);
-        } else if (message instanceof JSONObject) {
-            pluginResult = new PluginResult(status, (JSONObject)message);
-        } else if (message instanceof Integer) {
-            pluginResult = new PluginResult(status, (int)message);
-        } else if (message instanceof Float) {
-            pluginResult = new PluginResult(status, (float)message);
-        }
-        assert pluginResult != null;
-        pluginResult.setKeepCallback(keepCallback);
-        callbackContext.sendPluginResult(pluginResult);
     }
 
     //endregion

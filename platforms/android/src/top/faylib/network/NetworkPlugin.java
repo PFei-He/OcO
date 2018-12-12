@@ -20,7 +20,7 @@
  * THE SOFTWARE.
  */
 
-package top.faylib.plugin.network;
+package top.faylib.network;
 
 import android.app.DownloadManager;
 import android.content.BroadcastReceiver;
@@ -42,7 +42,6 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.apache.cordova.CallbackContext;
-import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.PluginResult;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -55,22 +54,11 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-public class NetworkPlugin extends CordovaPlugin {
-    //region Constant
+import top.faylib.base.BasePlugin;
+import top.faylib.oco.BuildConfig;
 
-    // 定义方法名
-    private static final String DEBUG_MODE = "debug_mode";
-    private static final String TIMEOUT_INTERVAL = "timeout_interval";
-    private static final String RETRY_TIMES = "retry_times";
-    private static final String SET_HEADERS = "set_headers";
-    private static final String REQUEST_GET = "request_get";
-    private static final String REQUEST_POST = "request_post";
-    private static final String REQUEST_DELETE = "request_delete";
-    private static final String REQUEST_DOWNLOAD = "request_download";
-    private static final String RESET_REQUEST = "reset_request";
-    private static final String START_MONITORING = "start_monitoring";
-    private static final String STOP_MONITORING = "stop_monitoring";
-    private static final String NETWORK_REACHABILITY = "network_reachability";
+public class NetworkPlugin extends BasePlugin {
+    //region Constant
 
     // 定义网络状态
     private static final String OcO_NETWORK_REACHABILITY_STATUS_UNKNOWN = "OcO_NETWORK_REACHABILITY_STATUS_UNKNOWN";
@@ -172,7 +160,7 @@ public class NetworkPlugin extends CordovaPlugin {
     private void debugLog(String ... strings) {
         if (debugMode) {
             for (String string : strings) {
-                Log.i("OcO", "[ OcO ][ NETWORK ]" + string + ".");
+                Log.i("FayLIB", "[ FayLIB ][ NETWORK ]" + string + ".");
             }
         }
     }
@@ -322,7 +310,7 @@ public class NetworkPlugin extends CordovaPlugin {
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
 
         // Web 调用 -> 调试模式开关
-        if (DEBUG_MODE.equals(action)) {
+        if (BuildConfig.DEBUG_MODE.equals(action)) {
             cordova.getThreadPool().execute(() -> {
                 try {
                     debugMode = args.getBoolean(0);
@@ -333,7 +321,7 @@ public class NetworkPlugin extends CordovaPlugin {
         }
 
         //  Web 调用 -> 设置超时时隔
-        else if (TIMEOUT_INTERVAL.equals(action)) {
+        else if (BuildConfig.TIMEOUT_INTERVAL.equals(action)) {
             cordova.getThreadPool().execute(() -> {
                 debugLog("[ FUNCTION ] '" + action + "' run");
                 try {
@@ -344,7 +332,7 @@ public class NetworkPlugin extends CordovaPlugin {
         }
 
         // Web 调用 -> 设置重试次数
-        else if (RETRY_TIMES.equals(action)) {
+        else if (BuildConfig.RETRY_TIMES.equals(action)) {
             cordova.getThreadPool().execute(() -> {
                 debugLog("[ FUNCTION ] '" + action + "' run");
                 try {
@@ -355,7 +343,7 @@ public class NetworkPlugin extends CordovaPlugin {
         }
 
         // Web 调用 -> 设置请求头
-        else if (SET_HEADERS.equals(action)) {
+        else if (BuildConfig.SET_HEADERS.equals(action)) {
             cordova.getThreadPool().execute(() -> {
                 debugLog("[ FUNCTION ] '" + action + "' run");
                 try {
@@ -365,7 +353,7 @@ public class NetworkPlugin extends CordovaPlugin {
         }
 
         // Web 调用 -> 发送 GET 请求
-        else if (REQUEST_GET.equals(action)) {
+        else if (BuildConfig.REQUEST_GET.equals(action)) {
             cordova.getThreadPool().execute(() -> {
                 debugLog("[ FUNCTION ] '" + action + "' run");
                 try {
@@ -377,7 +365,7 @@ public class NetworkPlugin extends CordovaPlugin {
         }
 
         // Web 调用 -> 发送 POST 请求
-        else if (REQUEST_POST.equals(action)) {
+        else if (BuildConfig.REQUEST_POST.equals(action)) {
             cordova.getThreadPool().execute(() -> {
                 debugLog("[ FUNCTION ] '" + action + "' run");
                 try {
@@ -389,7 +377,7 @@ public class NetworkPlugin extends CordovaPlugin {
         }
 
         // Web 调用 -> 发送 DELETE 请求
-        else if (REQUEST_DELETE.equals(action)) {
+        else if (BuildConfig.REQUEST_DELETE.equals(action)) {
             cordova.getThreadPool().execute(() -> {
                 debugLog("[ FUNCTION ] '" + action + "' run");
                 try {
@@ -401,7 +389,7 @@ public class NetworkPlugin extends CordovaPlugin {
         }
 
         // Web 调用 -> 发送下载请求
-        else if (REQUEST_DOWNLOAD.equals(action)) {
+        else if (BuildConfig.REQUEST_DOWNLOAD.equals(action)) {
             cordova.getThreadPool().execute(() -> {
                 debugLog("[ FUNCTION ] '" + action + "' run");
                 DownloadManager downloadManager = (DownloadManager)cordova.getActivity().getSystemService(Context.DOWNLOAD_SERVICE);
@@ -416,7 +404,7 @@ public class NetworkPlugin extends CordovaPlugin {
         }
 
         // Web 调用 -> 重置请求
-        else if (RESET_REQUEST.equals(action)) {
+        else if (BuildConfig.RESET_REQUEST.equals(action)) {
             cordova.getThreadPool().execute(() -> {
                 debugLog("[ FUNCTION ] '" + action + "' run");
                 timeoutInterval = 120000;
@@ -426,7 +414,7 @@ public class NetworkPlugin extends CordovaPlugin {
         }
 
         // Web 调用 -> 打开网络监听
-        else if (START_MONITORING.equals(action)) {
+        else if (BuildConfig.START_MONITORING.equals(action)) {
             cordova.getThreadPool().execute(() -> {
                 debugLog("[ FUNCTION ] '" + action + "' run");
                 IntentFilter filter = new IntentFilter();
@@ -445,7 +433,7 @@ public class NetworkPlugin extends CordovaPlugin {
         }
 
         // Web 调用 -> 关闭网络监听
-        else if (STOP_MONITORING.equals(action)) {
+        else if (BuildConfig.STOP_MONITORING.equals(action)) {
             cordova.getThreadPool().execute(() -> {
                 debugLog("[ FUNCTION ] '" + action + "' run");
                 NetworkStatus.Observer.unregister();
@@ -454,7 +442,7 @@ public class NetworkPlugin extends CordovaPlugin {
         }
 
         // Web 调用 -> 网络状态
-        else if (NETWORK_REACHABILITY.equals(action)) {
+        else if (BuildConfig.NETWORK_REACHABILITY.equals(action)) {
             cordova.getThreadPool().execute(() -> {
                 debugLog("[ FUNCTION ] '" + action + "' run");
                 ConnectivityManager connectivityManager = (ConnectivityManager)cordova.getActivity().getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -472,41 +460,6 @@ public class NetworkPlugin extends CordovaPlugin {
         }
         
         return super.execute(action, args, callbackContext);
-    }
-
-    //endregion
-
-
-    //region Cordova Plugin Methods (Native -> Web)
-
-    //endregion
-
-
-    //region Cordova Plugin Result Methods
-
-    /**
-     * 发送到 Web 的回调
-     * @param status 响应状态
-     * @param message 回调参数
-     * @param keepCallback 保持回调持续可用
-     * @param callbackContext 回调信息
-     */
-    private void send(PluginResult.Status status, Object message, Boolean keepCallback, CallbackContext callbackContext) {
-        PluginResult pluginResult = null;
-        if (message instanceof String) {
-            pluginResult = new PluginResult(status, (String)message);
-        } else if (message instanceof JSONArray) {
-            pluginResult = new PluginResult(status, (JSONArray)message);
-        } else if (message instanceof JSONObject) {
-            pluginResult = new PluginResult(status, (JSONObject)message);
-        } else if (message instanceof Integer) {
-            pluginResult = new PluginResult(status, (int)message);
-        } else if (message instanceof Float) {
-            pluginResult = new PluginResult(status, (float)message);
-        }
-        assert pluginResult != null;
-        pluginResult.setKeepCallback(keepCallback);
-        callbackContext.sendPluginResult(pluginResult);
     }
 
     //endregion

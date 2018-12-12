@@ -5,11 +5,11 @@
         <param name="onload" value="true" />
     </feature>
     <feature name="Device">
-        <param name="android-package" value="top.faylib.plugin.device.DevicePlugin" />
+        <param name="android-package" value="top.faylib.device.DevicePlugin" />
         <param name="onload" value="true" />
     </feature>
     <feature name="Network">
-        <param name="android-package" value="top.faylib.plugin.network.NetworkPlugin" />
+        <param name="android-package" value="top.faylib.network.NetworkPlugin" />
         <param name="onload" value="true" />
     </feature>
     <feature name="Application">

@@ -576,15 +576,11 @@ Add Plugin / 添加插件
 声明用于 `JavaScript` 与 `Java` 通信的接口文件。
 ```
 {
-    "xml": "<feature name=\"Adapter\"><param name=\"android-package\" value=\"top.faylib.oco.plugin.AdapterPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
+    "xml": "<feature name=\"Device\"><param name=\"android-package\" value=\"top.faylib.device.DevicePlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
     "count": 1
 },
 {
-    "xml": "<feature name=\"Device\"><param name=\"android-package\" value=\"top.faylib.oco.plugin.DevicePlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
-    "count": 1
-},
-{
-    "xml": "<feature name=\"Network\"><param name=\"android-package\" value=\"top.faylib.plugin.network.NetworkPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
+    "xml": "<feature name=\"Network\"><param name=\"android-package\" value=\"top.faylib.network.NetworkPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
     "count": 1
 }
 ```
@@ -668,15 +664,11 @@ Add Plugin / 添加插件
 声明用于 `JavaScript` 与 `Objective-C` 通信的接口文件。
 ```
 {
-    "xml": "<feature name=\"Adapter\"><param name=\"ios-package\" value=\"OcOAdapter\" /></feature>",
+    "xml": "<feature name=\"Device\"><param name=\"ios-package\" value=\"FLDevice\" /></feature>",
     "count": 1
 },
 {
-    "xml": "<feature name=\"Device\"><param name=\"ios-package\" value=\"OcODevice\" /></feature>",
-    "count": 1
-},
-{
-    "xml": "<feature name=\"Network\"><param name=\"ios-package\" value=\"OcONetwork\" /></feature>",
+    "xml": "<feature name=\"Network\"><param name=\"ios-package\" value=\"FLNetwork\" /></feature>",
     "count": 1
 }
 ```
@@ -689,9 +681,9 @@ UIWebView and WKWebView
 ```
 // 通过判断是否支持 IndexDB 来判定当前的 web 框架是 UIWebView 还是 WKWebView
 if (window.indexedDB) {
-    console.log('[ OcO ][ DEBUG ] Current web framework is WKWebView!')
+    console.log('[ FayLib ][ DEBUG ] Current web framework is WKWebView!')
 } else {
-    console.log('[ OcO ][ DEBUG ] Current web framework is UIWebView!')
+    console.log('[ FayLib ][ DEBUG ] Current web framework is UIWebView!')
 }
 ```
 

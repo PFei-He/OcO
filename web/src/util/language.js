@@ -65,7 +65,7 @@ export default {
             }
           }
         }
-        return name
+        return textArray[0]
       } else {
         if (zhCN()) {
           return textArray[0]['zh_CN']

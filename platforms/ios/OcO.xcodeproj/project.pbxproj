@@ -10,11 +10,12 @@
 		1D3623260D0F684500981E51 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* AppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		301BF552109A68D80062928A /* libCordova.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 301BF535109A57CC0062928A /* libCordova.a */; };
+		6514458021C0D6D10050DAF8 /* FLPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 6514457F21C0D6D10050DAF8 /* FLPlugin.m */; };
 		6547D15320A1B100001291EF /* OcOMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6547D14E20A1B100001291EF /* OcOMainViewController.m */; };
 		6547D15420A1B100001291EF /* OcONativeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6547D15020A1B100001291EF /* OcONativeViewController.m */; };
 		6547D15520A1B100001291EF /* OcOWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6547D15220A1B100001291EF /* OcOWebViewController.m */; };
-		65B9D493217486FC00537316 /* OcODevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B9D492217486FB00537316 /* OcODevice.m */; };
-		65C3603320F83CA400650323 /* OcONetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C3603220F83CA400650323 /* OcONetwork.m */; };
+		65B9D493217486FC00537316 /* FLDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B9D492217486FB00537316 /* FLDevice.m */; };
+		65C3603320F83CA400650323 /* FLNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C3603220F83CA400650323 /* FLNetwork.m */; };
 		65DDA25620A2CDCB002F1B91 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65DDA25420A2CDCB002F1B91 /* Images.xcassets */; };
 		65DDA25820A2CDD8002F1B91 /* OcO-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 65DDA25720A2CDD8002F1B91 /* OcO-Info.plist */; };
 		65DDA25E20A2CE28002F1B91 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65DDA25A20A2CE28002F1B91 /* LaunchScreen.storyboard */; };
@@ -67,16 +68,20 @@
 		301BF56E109A69640062928A /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; path = www; sourceTree = SOURCE_ROOT; };
 		32CA4F630368D1EE00C91783 /* OcO-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OcO-Prefix.pch"; sourceTree = "<group>"; };
 		4B983E3D31435E0EE17B9D13 /* Pods-OcO.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OcO.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OcO/Pods-OcO.debug.xcconfig"; sourceTree = "<group>"; };
+		6514457E21C0D6D10050DAF8 /* FLPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FLPlugin.h; path = "faylib-plugin-base/FLPlugin.h"; sourceTree = "<group>"; };
+		6514457F21C0D6D10050DAF8 /* FLPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FLPlugin.m; path = "faylib-plugin-base/FLPlugin.m"; sourceTree = "<group>"; };
+		653D5BD221C0E0EA00F2CDFD /* plugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = plugin.h; sourceTree = "<group>"; };
+		653D5BD721C0E8A200F2CDFD /* project.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = project.h; sourceTree = "<group>"; };
 		6547D14D20A1B100001291EF /* OcOMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OcOMainViewController.h; sourceTree = "<group>"; };
 		6547D14E20A1B100001291EF /* OcOMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OcOMainViewController.m; sourceTree = "<group>"; };
 		6547D14F20A1B100001291EF /* OcONativeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OcONativeViewController.h; sourceTree = "<group>"; };
 		6547D15020A1B100001291EF /* OcONativeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OcONativeViewController.m; sourceTree = "<group>"; };
 		6547D15120A1B100001291EF /* OcOWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OcOWebViewController.h; sourceTree = "<group>"; };
 		6547D15220A1B100001291EF /* OcOWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OcOWebViewController.m; sourceTree = "<group>"; };
-		65B9D491217486FB00537316 /* OcODevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OcODevice.h; path = "faylib-plugin-device/OcODevice.h"; sourceTree = "<group>"; };
-		65B9D492217486FB00537316 /* OcODevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OcODevice.m; path = "faylib-plugin-device/OcODevice.m"; sourceTree = "<group>"; };
-		65C3603120F83CA400650323 /* OcONetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OcONetwork.h; path = "faylib-plugin-network/OcONetwork.h"; sourceTree = "<group>"; };
-		65C3603220F83CA400650323 /* OcONetwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OcONetwork.m; path = "faylib-plugin-network/OcONetwork.m"; sourceTree = "<group>"; };
+		65B9D491217486FB00537316 /* FLDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FLDevice.h; path = "faylib-plugin-device/FLDevice.h"; sourceTree = "<group>"; };
+		65B9D492217486FB00537316 /* FLDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FLDevice.m; path = "faylib-plugin-device/FLDevice.m"; sourceTree = "<group>"; };
+		65C3603120F83CA400650323 /* FLNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FLNetwork.h; path = "faylib-plugin-network/FLNetwork.h"; sourceTree = "<group>"; };
+		65C3603220F83CA400650323 /* FLNetwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FLNetwork.m; path = "faylib-plugin-network/FLNetwork.m"; sourceTree = "<group>"; };
 		65DDA25420A2CDCB002F1B91 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = OcO/Images.xcassets; sourceTree = "<group>"; };
 		65DDA25720A2CDD8002F1B91 /* OcO-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "OcO-Info.plist"; path = "OcO/OcO-Info.plist"; sourceTree = "<group>"; };
 		65DDA25B20A2CE28002F1B91 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = OcO/Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -84,8 +89,8 @@
 		65DDA26320A2CF42002F1B91 /* build-debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "build-debug.xcconfig"; path = "cordova/build-debug.xcconfig"; sourceTree = "<group>"; };
 		65DDA26420A2CF42002F1B91 /* build-release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "build-release.xcconfig"; path = "cordova/build-release.xcconfig"; sourceTree = "<group>"; };
 		65DDA26520A2CF42002F1B91 /* build.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = build.xcconfig; path = cordova/build.xcconfig; sourceTree = "<group>"; };
-		65F5D675217EEF8F004265BD /* OcOApplication.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OcOApplication.h; path = "faylib-plugin-oco/OcOApplication.h"; sourceTree = "<group>"; };
-		65F5D676217EEF8F004265BD /* OcOApplication.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = OcOApplication.m; path = "faylib-plugin-oco/OcOApplication.m"; sourceTree = "<group>"; };
+		65F5D675217EEF8F004265BD /* OcOApplication.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OcOApplication.h; path = "oco-plugin-application/OcOApplication.h"; sourceTree = "<group>"; };
+		65F5D676217EEF8F004265BD /* OcOApplication.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = OcOApplication.m; path = "oco-plugin-application/OcOApplication.m"; sourceTree = "<group>"; };
 		935A3B929559D45D4A8CF844 /* libPods-OcO.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OcO.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5FA15744BB34F28931AE083 /* CDVWKProcessPoolFactory.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = CDVWKProcessPoolFactory.h; path = "cordova-plugin-wkwebview-engine/CDVWKProcessPoolFactory.h"; sourceTree = "<group>"; };
 		C8E8777C039645E6B7A38121 /* CDVWKWebViewEngine.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = CDVWKWebViewEngine.h; path = "cordova-plugin-wkwebview-engine/CDVWKWebViewEngine.h"; sourceTree = "<group>"; };
@@ -159,6 +164,8 @@
 				32CA4F630368D1EE00C91783 /* OcO-Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 				ED33DF2A687741AEAF9F8254 /* Bridging-Header.h */,
+				653D5BD221C0E0EA00F2CDFD /* plugin.h */,
+				653D5BD721C0E8A200F2CDFD /* project.h */,
 			);
 			name = "Other Sources";
 			path = OcO;
@@ -193,12 +200,14 @@
 				D515AB5B4D064F959D905461 /* CDVWKWebViewEngine.m */,
 				F800BDEF1EBB4AC6A3E41BBB /* CDVWKWebViewUIDelegate.h */,
 				2ED12C59FD5548B39C5BA81E /* CDVWKWebViewUIDelegate.m */,
+				65B9D491217486FB00537316 /* FLDevice.h */,
+				65B9D492217486FB00537316 /* FLDevice.m */,
+				65C3603120F83CA400650323 /* FLNetwork.h */,
+				65C3603220F83CA400650323 /* FLNetwork.m */,
+				6514457E21C0D6D10050DAF8 /* FLPlugin.h */,
+				6514457F21C0D6D10050DAF8 /* FLPlugin.m */,
 				65F5D675217EEF8F004265BD /* OcOApplication.h */,
 				65F5D676217EEF8F004265BD /* OcOApplication.m */,
-				65B9D491217486FB00537316 /* OcODevice.h */,
-				65B9D492217486FB00537316 /* OcODevice.m */,
-				65C3603120F83CA400650323 /* OcONetwork.h */,
-				65C3603220F83CA400650323 /* OcONetwork.m */,
 			);
 			name = Plugins;
 			path = OcO/Plugins;
@@ -439,18 +448,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65C3603320F83CA400650323 /* OcONetwork.m in Sources */,
+				65C3603320F83CA400650323 /* FLNetwork.m in Sources */,
 				6547D15520A1B100001291EF /* OcOWebViewController.m in Sources */,
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* AppDelegate.m in Sources */,
 				9DC00A17DAD946959CCADB2A /* CDVLogger.m in Sources */,
 				6547D15420A1B100001291EF /* OcONativeViewController.m in Sources */,
 				A03E251534924960BA890D9D /* CDVWKWebViewEngine.m in Sources */,
+				6514458021C0D6D10050DAF8 /* FLPlugin.m in Sources */,
 				6547D15320A1B100001291EF /* OcOMainViewController.m in Sources */,
 				6ADB7E317DD8486BA9969EC8 /* CDVWKWebViewUIDelegate.m in Sources */,
 				65F5D677217EEF8F004265BD /* OcOApplication.m in Sources */,
 				B2E07412A51B4B799AC04F5C /* CDVWKProcessPoolFactory.m in Sources */,
-				65B9D493217486FC00537316 /* OcODevice.m in Sources */,
+				65B9D493217486FC00537316 /* FLDevice.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -20,22 +20,8 @@
 //  THE SOFTWARE.
 //
 
-#import "OcONetwork.h"
+#import "FLNetwork.h"
 #import <AFNetworking/AFNetworking.h>
-
-// 定义方法名
-#define debug_mode debug_mode
-#define timeout_interval timeout_interval
-#define retry_times retry_times
-#define set_headers set_headers
-#define request_get request_get
-#define request_post request_post
-#define request_delete request_delete
-#define request_download request_download
-#define reset_request reset_request
-#define start_monitoring start_monitoring
-#define stop_monitoring stop_monitoring
-#define network_reachability network_reachability
 
 // 调试打印
 #define DLog(args...)\
@@ -54,7 +40,7 @@ NSString * const OcO_NETWORK_REACHABILITY_STATUS_NONE = @"OcO_NETWORK_REACHABILI
 NSString * const OcO_NETWORK_REACHABILITY_STATUS_WWAN = @"OcO_NETWORK_REACHABILITY_STATUS_WWAN";
 NSString * const OcO_NETWORK_REACHABILITY_STATUS_WIFI = @"OcO_NETWORK_REACHABILITY_STATUS_WIFI";
 
-@interface OcONetwork ()
+@interface FLNetwork ()
 
 /// 调试模式
 @property (nonatomic, assign) BOOL debugMode;
@@ -73,7 +59,7 @@ NSString * const OcO_NETWORK_REACHABILITY_STATUS_WIFI = @"OcO_NETWORK_REACHABILI
 
 @end
 
-@implementation OcONetwork
+@implementation FLNetwork
 
 #pragma mark - Setter / Getter Methods
 
@@ -120,13 +106,13 @@ NSString * const OcO_NETWORK_REACHABILITY_STATUS_WIFI = @"OcO_NETWORK_REACHABILI
 - (void)debugLog:(NSString *)strings, ...
 {
     if (self.debugMode) {
-        NSLog(@"[ OcO ][ NETWORK ]%@.", strings);
+        NSLog(@"[ FayLIB ][ NETWORK ]%@.", strings);
         va_list list;
         va_start(list, strings);
         while (strings != nil) {
             NSString *string = va_arg(list, NSString *);
             if (!string) break;
-            NSLog(@"[ OcO ][ NETWORK ]%@.", string);
+            NSLog(@"[ FayLIB ][ NETWORK ]%@.", string);
         }
         va_end(list);
     }
@@ -417,41 +403,6 @@ NSString * const OcO_NETWORK_REACHABILITY_STATUS_WIFI = @"OcO_NETWORK_REACHABILI
             [self sendStatus:CDVCommandStatus_OK message:OcO_NETWORK_REACHABILITY_STATUS_NONE command:command];
         }
     }];
-}
-
-
-#pragma mark - Cordova Plugin Methods (Native -> Web)
-
-
-#pragma mark - Cordova Plugin Result Methods
-
-// 发送到 Web 的回调
-- (void)sendStatus:(CDVCommandStatus)status message:(NSObject *)message command:(CDVInvokedUrlCommand *)command
-{
-    [self sendStatus:status message:message keepCallback:NO command:command];
-}
-
-// 发送到 Web 的回调
-- (void)sendStatus:(CDVCommandStatus)status message:(NSObject *)message keepCallback:(BOOL)yesOrNo command:(CDVInvokedUrlCommand *)command
-{
-    CDVPluginResult *pluginResult = nil;
-    if ([message isKindOfClass:[NSString class]]) {
-        pluginResult = [CDVPluginResult resultWithStatus:status messageAsString:(NSString *)message];
-    } else if ([message isKindOfClass:[NSArray class]]) {
-        pluginResult = [CDVPluginResult resultWithStatus:status messageAsArray:(NSArray *)message];
-    } else if ([message isKindOfClass:[NSDictionary class]]) {
-        pluginResult = [CDVPluginResult resultWithStatus:status messageAsDictionary:(NSDictionary *)message];
-    } else if ([message isKindOfClass:[NSNumber class]]) {
-        if ([[NSString stringWithFormat:@"%@", message] hasPrefix:@"."]) {
-            pluginResult = [CDVPluginResult resultWithStatus:status messageAsDouble:[(NSNumber *)message doubleValue]];
-        } else {
-            pluginResult = [CDVPluginResult resultWithStatus:status messageAsInt:[(NSNumber *)message intValue]];
-        }
-    } else {
-        pluginResult = [CDVPluginResult resultWithStatus:status];
-    }
-    [pluginResult setKeepCallbackAsBool:yesOrNo];
-    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
 @end

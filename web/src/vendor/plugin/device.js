@@ -59,6 +59,7 @@ export default {
   ios: 'ios',
 
   // endregion
+
   // region Public Methods
 
   /**

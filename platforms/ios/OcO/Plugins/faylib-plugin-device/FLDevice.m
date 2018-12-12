@@ -20,27 +20,21 @@
 //  THE SOFTWARE.
 //
 
-#import "OcODevice.h"
+#import "FLDevice.h"
 #import "sys/utsname.h"
-
-// 定义方法名
-#define debug_mode debug_mode
-#define load_information load_information
-#define free_size free_size
-#define store_size store_size
 
 // 调试打印
 #define DLog(args...)\
 [self debugLog:args, nil]
 
-@interface OcODevice ()
+@interface FLDevice ()
 
-/// 调试模式
+// 调试模式
 @property (nonatomic, assign) BOOL debugMode;
 
 @end
 
-@implementation OcODevice
+@implementation FLDevice
 
 #pragma mark - Private Methods
 
@@ -48,13 +42,13 @@
 - (void)debugLog:(NSString *)strings, ...
 {
     if (self.debugMode) {
-        NSLog(@"[ OcO ][ DEVICE ]%@.", strings);
+        NSLog(@"[ FayLIB ][ DEVICE ]%@.", strings);
         va_list list;
         va_start(list, strings);
         while (strings != nil) {
             NSString *string = va_arg(list, NSString *);
             if (!string) break;
-            NSLog(@"[ OcO ][ DEVICE ]%@.", string);
+            NSLog(@"[ FayLIB ][ DEVICE ]%@.", string);
         }
         va_end(list);
     }
@@ -120,41 +114,6 @@
         NSNumber *size = [NSNumber numberWithUnsignedInteger:[attributes[NSFileSystemSize] unsignedIntegerValue] / 1024 / 1024];
         [self sendStatus:CDVCommandStatus_OK message:size command:command];
     }];
-}
-
-
-#pragma mark - Cordova Plugin Methods (Native -> Web)
-
-
-#pragma mark - Cordova Plugin Result Methods
-
-// 发送到 Web 的回调
-- (void)sendStatus:(CDVCommandStatus)status message:(NSObject *)message command:(CDVInvokedUrlCommand *)command
-{
-    [self sendStatus:status message:message keepCallback:NO command:command];
-}
-
-// 发送到 Web 的回调
-- (void)sendStatus:(CDVCommandStatus)status message:(NSObject *)message keepCallback:(BOOL)yesOrNo command:(CDVInvokedUrlCommand *)command
-{
-    CDVPluginResult *pluginResult = nil;
-    if ([message isKindOfClass:[NSString class]]) {
-        pluginResult = [CDVPluginResult resultWithStatus:status messageAsString:(NSString *)message];
-    } else if ([message isKindOfClass:[NSArray class]]) {
-        pluginResult = [CDVPluginResult resultWithStatus:status messageAsArray:(NSArray *)message];
-    } else if ([message isKindOfClass:[NSDictionary class]]) {
-        pluginResult = [CDVPluginResult resultWithStatus:status messageAsDictionary:(NSDictionary *)message];
-    } else if ([message isKindOfClass:[NSNumber class]]) {
-        if ([[NSString stringWithFormat:@"%@", message] hasPrefix:@"."]) {
-            pluginResult = [CDVPluginResult resultWithStatus:status messageAsDouble:[(NSNumber *)message doubleValue]];
-        } else {
-            pluginResult = [CDVPluginResult resultWithStatus:status messageAsInt:[(NSNumber *)message intValue]];
-        }
-    } else {
-        pluginResult = [CDVPluginResult resultWithStatus:status];
-    }
-    [pluginResult setKeepCallbackAsBool:yesOrNo];
-    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
 @end

@@ -49,8 +49,8 @@
 
     created () {
       var global = this
-      Network.GET('http://www.weather.com.cn/data/sk/101010100.html', null, function (result) {
-        global.msg = result
+      Network.GET('http://www.weather.com.cn/data/sk/101010100.html', null, function (response) {
+        global.msg = response
       }, function (error) {
         Debug.log(error)
       })

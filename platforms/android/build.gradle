@@ -18,6 +18,8 @@
 */
 
 apply plugin: 'com.android.application'
+apply from: 'plugin.gradle'
+apply from: 'project.gradle'
 
 buildscript {
     repositories {

@@ -13,11 +13,11 @@
               "count": 1
             },
             {
-              "xml": "<feature name=\"Device\"><param name=\"android-package\" value=\"top.faylib.plugin.device.DevicePlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
+              "xml": "<feature name=\"Device\"><param name=\"android-package\" value=\"top.faylib.device.DevicePlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
               "count": 1
             },
             {
-              "xml": "<feature name=\"Network\"><param name=\"android-package\" value=\"top.faylib.plugin.network.NetworkPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
+              "xml": "<feature name=\"Network\"><param name=\"android-package\" value=\"top.faylib.network.NetworkPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
               "count": 1
             },
             {

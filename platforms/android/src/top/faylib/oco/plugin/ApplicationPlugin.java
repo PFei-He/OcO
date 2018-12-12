@@ -27,24 +27,15 @@ import android.content.SharedPreferences;
 import android.util.Log;
 
 import org.apache.cordova.CallbackContext;
-import org.apache.cordova.CordovaPlugin;
-import org.apache.cordova.PluginResult;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class ApplicationPlugin extends CordovaPlugin {
-    //region Constant
+import top.faylib.base.BasePlugin;
+import top.faylib.oco.BuildConfig;
 
-    // 定义方法名
-    private static final String DEBUG_MODE = "debug_mode";
-    private static final String LOAD = "load_information";
-    private static final String CHANGE_LANGUAGE = "change_language";
-
-    //endregion
-
-
-    //region Variable
+public class ApplicationPlugin extends BasePlugin {
+    //region Private Variable
 
     // 调试模式
     private boolean debugMode = false;
@@ -80,7 +71,7 @@ public class ApplicationPlugin extends CordovaPlugin {
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
 
         // Web 调用 -> 调试模式开关
-        if (DEBUG_MODE.equals(action)) {
+        if (BuildConfig.DEBUG_MODE.equals(action)) {
             cordova.getThreadPool().execute(() -> {
                 try {
                     debugMode = args.getBoolean(0);
@@ -91,7 +82,7 @@ public class ApplicationPlugin extends CordovaPlugin {
         }
 
         // Web 调用 -> 加载应用信息
-        else if (LOAD.equals(action)) {
+        else if (BuildConfig.LOAD.equals(action)) {
             cordova.getThreadPool().execute(() -> {
                 debugLog("[ FUNCTION ] '" + action + "' run");
                 JSONObject jsonObject = new JSONObject();
@@ -106,7 +97,7 @@ public class ApplicationPlugin extends CordovaPlugin {
         }
 
         // Web 调用 -> 更换语言环境
-        else if (CHANGE_LANGUAGE.equals(action)) {
+        else if (BuildConfig.CHANGE_LANGUAGE.equals(action)) {
             cordova.getThreadPool().execute(() -> {
                 debugLog("[ FUNCTION ] '" + action + "' run");
                 try {
@@ -120,41 +111,6 @@ public class ApplicationPlugin extends CordovaPlugin {
         }
 
         return super.execute(action, args, callbackContext);
-    }
-
-    //endregion
-
-
-    //region Cordova Plugin Methods (Native -> Web)
-
-    //endregion
-
-
-    //region Cordova Plugin Result Methods
-
-    /**
-     * 发送到 Web 的回调
-     * @param status 响应状态
-     * @param message 回调参数
-     * @param keepCallback 保持回调持续可用
-     * @param callbackContext 回调信息
-     */
-    private void send(PluginResult.Status status, Object message, boolean keepCallback, CallbackContext callbackContext) {
-        PluginResult pluginResult = null;
-        if (message instanceof String) {
-            pluginResult = new PluginResult(status, (String)message);
-        } else if (message instanceof JSONArray) {
-            pluginResult = new PluginResult(status, (JSONArray)message);
-        } else if (message instanceof JSONObject) {
-            pluginResult = new PluginResult(status, (JSONObject)message);
-        } else if (message instanceof Integer) {
-            pluginResult = new PluginResult(status, (int)message);
-        } else if (message instanceof Float) {
-            pluginResult = new PluginResult(status, (float)message);
-        }
-        assert pluginResult != null;
-        pluginResult.setKeepCallback(keepCallback);
-        callbackContext.sendPluginResult(pluginResult);
     }
 
     //endregion
