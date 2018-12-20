@@ -27,18 +27,18 @@
 #define DLog(args...)\
 [self debugLog:args, nil]
 
-typedef NS_ENUM(NSUInteger, OcONetworkRequestMethod) {
-    OcONetworkRequestMethodGET,
-    OcONetworkRequestMethodPOST,
-    OcONetworkRequestMethodDELETE,
-    OcONetworkRequestMethodDownload
+typedef NS_ENUM(NSUInteger, FLNetworkRequestMethod) {
+    FLNetworkRequestMethodGET,
+    FLNetworkRequestMethodPOST,
+    FLNetworkRequestMethodDELETE,
+    FLNetworkRequestMethodDownload
 };
 
 // 定义网络状态
-NSString * const OcO_NETWORK_REACHABILITY_STATUS_UNKNOWN = @"OcO_NETWORK_REACHABILITY_STATUS_UNKNOWN";
-NSString * const OcO_NETWORK_REACHABILITY_STATUS_NONE = @"OcO_NETWORK_REACHABILITY_STATUS_NONE";
-NSString * const OcO_NETWORK_REACHABILITY_STATUS_WWAN = @"OcO_NETWORK_REACHABILITY_STATUS_WWAN";
-NSString * const OcO_NETWORK_REACHABILITY_STATUS_WIFI = @"OcO_NETWORK_REACHABILITY_STATUS_WIFI";
+NSString * const FL_NETWORK_REACHABILITY_STATUS_UNKNOWN = @"FL_NETWORK_REACHABILITY_STATUS_UNKNOWN";
+NSString * const FL_NETWORK_REACHABILITY_STATUS_NONE = @"FL_NETWORK_REACHABILITY_STATUS_NONE";
+NSString * const FL_NETWORK_REACHABILITY_STATUS_WWAN = @"FL_NETWORK_REACHABILITY_STATUS_WWAN";
+NSString * const FL_NETWORK_REACHABILITY_STATUS_WIFI = @"FL_NETWORK_REACHABILITY_STATUS_WIFI";
 
 @interface FLNetwork ()
 
@@ -129,10 +129,10 @@ NSString * const OcO_NETWORK_REACHABILITY_STATUS_WIFI = @"OcO_NETWORK_REACHABILI
 }
 
 // 发送请求
-- (void)sendWithMethod:(OcONetworkRequestMethod)method retryTimes:(NSInteger)count response:(CDVInvokedUrlCommand *)command
+- (void)sendWithMethod:(FLNetworkRequestMethod)method retryTimes:(NSInteger)count response:(CDVInvokedUrlCommand *)command
 {
     switch (method) {
-        case OcONetworkRequestMethodGET:
+        case FLNetworkRequestMethodGET:
         {
             DLog(count == self.retryTimes ? @"[ REQUEST ] Start sending" : @"[ REQUEST ] Retrying",
                  [NSString stringWithFormat:@"[ URL ] %@", command.arguments[0]],
@@ -145,14 +145,14 @@ NSString * const OcO_NETWORK_REACHABILITY_STATUS_WIFI = @"OcO_NETWORK_REACHABILI
             count--;
             
             [self.sessionManager GET:command.arguments[0] parameters:command.arguments[1] success:^(NSURLSessionDataTask * _Nonnull task, id _Nonnull responseObject) {
-                [self parseWithMethod:OcONetworkRequestMethodGET response:(NSHTTPURLResponse *)task.response result:responseObject command:command];
+                [self parseWithMethod:FLNetworkRequestMethodGET response:(NSHTTPURLResponse *)task.response result:responseObject command:command];
             } failure:^(NSURLSessionDataTask * _Nonnull task, NSError * _Nonnull error) {
-                if (count < 1) [self parseWithMethod:OcONetworkRequestMethodGET response:(NSHTTPURLResponse *)task.response result:[NSString stringWithFormat:@"%@", error] command:command];
-                else [self sendWithMethod:OcONetworkRequestMethodGET retryTimes:count response:command];
+                if (count < 1) [self parseWithMethod:FLNetworkRequestMethodGET response:(NSHTTPURLResponse *)task.response result:[NSString stringWithFormat:@"%@", error] command:command];
+                else [self sendWithMethod:FLNetworkRequestMethodGET retryTimes:count response:command];
             }];
         }
             break;
-        case OcONetworkRequestMethodPOST:
+        case FLNetworkRequestMethodPOST:
         {
             DLog(count == self.retryTimes ? @"[ REQUEST ] Start sending" : @"[ REQUEST ] Retrying",
                  [NSString stringWithFormat:@"[ URL ] %@", command.arguments[0]],
@@ -165,14 +165,14 @@ NSString * const OcO_NETWORK_REACHABILITY_STATUS_WIFI = @"OcO_NETWORK_REACHABILI
             count--;
             
             [self.sessionManager POST:command.arguments[0] parameters:command.arguments[1] success:^(NSURLSessionDataTask * _Nonnull task, id _Nonnull responseObject) {
-                [self parseWithMethod:OcONetworkRequestMethodPOST response:(NSHTTPURLResponse *)task.response result:responseObject command:command];
+                [self parseWithMethod:FLNetworkRequestMethodPOST response:(NSHTTPURLResponse *)task.response result:responseObject command:command];
             } failure:^(NSURLSessionDataTask * _Nonnull task, NSError * _Nonnull error) {
-                if (count < 1) [self parseWithMethod:OcONetworkRequestMethodPOST response:(NSHTTPURLResponse *)task.response result:[NSString stringWithFormat:@"%@", error] command:command];
-                else [self sendWithMethod:OcONetworkRequestMethodPOST retryTimes:count response:command];
+                if (count < 1) [self parseWithMethod:FLNetworkRequestMethodPOST response:(NSHTTPURLResponse *)task.response result:[NSString stringWithFormat:@"%@", error] command:command];
+                else [self sendWithMethod:FLNetworkRequestMethodPOST retryTimes:count response:command];
             }];
         }
             break;
-        case OcONetworkRequestMethodDELETE:
+        case FLNetworkRequestMethodDELETE:
         {
             DLog(count == self.retryTimes ? @"[ REQUEST ] Start sending" : @"[ REQUEST ] Retrying",
                  [NSString stringWithFormat:@"[ URL ] %@", command.arguments[0]],
@@ -185,14 +185,14 @@ NSString * const OcO_NETWORK_REACHABILITY_STATUS_WIFI = @"OcO_NETWORK_REACHABILI
             count--;
             
             [self.sessionManager DELETE:command.arguments[0] parameters:command.arguments[1] success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-                [self parseWithMethod:OcONetworkRequestMethodDELETE response:(NSHTTPURLResponse *)task.response result:responseObject command:command];
+                [self parseWithMethod:FLNetworkRequestMethodDELETE response:(NSHTTPURLResponse *)task.response result:responseObject command:command];
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-                if (count < 1) [self parseWithMethod:OcONetworkRequestMethodDELETE response:(NSHTTPURLResponse *)task.response result:[NSString stringWithFormat:@"%@", error] command:command];
-                else [self sendWithMethod:OcONetworkRequestMethodDELETE retryTimes:count response:command];
+                if (count < 1) [self parseWithMethod:FLNetworkRequestMethodDELETE response:(NSHTTPURLResponse *)task.response result:[NSString stringWithFormat:@"%@", error] command:command];
+                else [self sendWithMethod:FLNetworkRequestMethodDELETE retryTimes:count response:command];
             }];
         }
             break;
-        case OcONetworkRequestMethodDownload:
+        case FLNetworkRequestMethodDownload:
         {
             DLog(count == self.retryTimes ? @"[ REQUEST ] Start sending" : @"[ REQUEST ] Retrying",
                  [NSString stringWithFormat:@"[ URL ] %@", command.arguments[0]],
@@ -210,10 +210,10 @@ NSString * const OcO_NETWORK_REACHABILITY_STATUS_WIFI = @"OcO_NETWORK_REACHABILI
                 return [NSURL fileURLWithPath:command.arguments[1]];
             } completionHandler:^(NSURLResponse * _Nonnull response, NSURL * _Nullable filePath, NSError * _Nullable error) {
                 if (!error) {
-                    [self parseWithMethod:OcONetworkRequestMethodDownload response:(NSHTTPURLResponse *)response result:filePath command:command];
+                    [self parseWithMethod:FLNetworkRequestMethodDownload response:(NSHTTPURLResponse *)response result:filePath command:command];
                 } else {
-                    if (count < 1) [self parseWithMethod:OcONetworkRequestMethodDownload response:(NSHTTPURLResponse *)response result:error command:command];
-                    else [self sendWithMethod:OcONetworkRequestMethodDownload retryTimes:count response:command];
+                    if (count < 1) [self parseWithMethod:FLNetworkRequestMethodDownload response:(NSHTTPURLResponse *)response result:error command:command];
+                    else [self sendWithMethod:FLNetworkRequestMethodDownload retryTimes:count response:command];
                 }
             }];
             [downloadTask resume];
@@ -225,14 +225,14 @@ NSString * const OcO_NETWORK_REACHABILITY_STATUS_WIFI = @"OcO_NETWORK_REACHABILI
 }
 
 // 数据处理
-- (void)parseWithMethod:(OcONetworkRequestMethod)method response:(NSHTTPURLResponse *)response result:(id)result command:(CDVInvokedUrlCommand *)command
+- (void)parseWithMethod:(FLNetworkRequestMethod)method response:(NSHTTPURLResponse *)response result:(id)result command:(CDVInvokedUrlCommand *)command
 {
     // 回调结果到 Web 端
     if (response.statusCode == 200) {
         switch (method) {
-            case OcONetworkRequestMethodGET:
-            case OcONetworkRequestMethodPOST:
-            case OcONetworkRequestMethodDELETE:
+            case FLNetworkRequestMethodGET:
+            case FLNetworkRequestMethodPOST:
+            case FLNetworkRequestMethodDELETE:
             {
                 if ([result isKindOfClass:[NSDictionary class]]) {
                     DLog(@"[ REQUEST ] Success", [NSString stringWithFormat:@"[ URL ] %@", command.arguments[0]]);
@@ -243,7 +243,7 @@ NSString * const OcO_NETWORK_REACHABILITY_STATUS_WIFI = @"OcO_NETWORK_REACHABILI
                 }
             }
                 break;
-            case OcONetworkRequestMethodDownload:
+            case FLNetworkRequestMethodDownload:
             {
                 if ([result isKindOfClass:[NSURL class]]) {
                     DLog(@"[ REQUEST ] Success", [NSString stringWithFormat:@"[ URL ] %@", command.arguments[0]]);
@@ -309,7 +309,7 @@ NSString * const OcO_NETWORK_REACHABILITY_STATUS_WIFI = @"OcO_NETWORK_REACHABILI
 {
     [self.commandDelegate runInBackground:^{
         DLog([NSString stringWithFormat:@"[ FUNCTION ] '%@' run", NSStringFromSelector(_cmd)]);
-        [self sendWithMethod:OcONetworkRequestMethodGET retryTimes:self.retryTimes response:command];
+        [self sendWithMethod:FLNetworkRequestMethodGET retryTimes:self.retryTimes response:command];
     }];
 }
 
@@ -318,7 +318,7 @@ NSString * const OcO_NETWORK_REACHABILITY_STATUS_WIFI = @"OcO_NETWORK_REACHABILI
 {
     [self.commandDelegate runInBackground:^{
         DLog([NSString stringWithFormat:@"[ FUNCTION ] '%@' run", NSStringFromSelector(_cmd)]);
-        [self sendWithMethod:OcONetworkRequestMethodPOST retryTimes:self.retryTimes response:command];
+        [self sendWithMethod:FLNetworkRequestMethodPOST retryTimes:self.retryTimes response:command];
     }];
 }
 
@@ -327,7 +327,7 @@ NSString * const OcO_NETWORK_REACHABILITY_STATUS_WIFI = @"OcO_NETWORK_REACHABILI
 {
     [self.commandDelegate runInBackground:^{
         DLog([NSString stringWithFormat:@"[ FUNCTION ] '%@' run", NSStringFromSelector(_cmd)]);
-        [self sendWithMethod:OcONetworkRequestMethodDELETE retryTimes:self.retryTimes response:command];
+        [self sendWithMethod:FLNetworkRequestMethodDELETE retryTimes:self.retryTimes response:command];
     }];
 }
 
@@ -336,7 +336,7 @@ NSString * const OcO_NETWORK_REACHABILITY_STATUS_WIFI = @"OcO_NETWORK_REACHABILI
 {
     [self.commandDelegate runInBackground:^{
         DLog([NSString stringWithFormat:@"[ FUNCTION ] '%@' run", NSStringFromSelector(_cmd)]);
-        [self sendWithMethod:OcONetworkRequestMethodDownload retryTimes:self.retryTimes response:command];
+        [self sendWithMethod:FLNetworkRequestMethodDownload retryTimes:self.retryTimes response:command];
     }];
 }
 
@@ -362,16 +362,16 @@ NSString * const OcO_NETWORK_REACHABILITY_STATUS_WIFI = @"OcO_NETWORK_REACHABILI
             __typeof__(weakSelf) self = weakSelf;
             switch (status) {
                 case AFNetworkReachabilityStatusUnknown:
-                    [self sendStatus:CDVCommandStatus_OK message:OcO_NETWORK_REACHABILITY_STATUS_UNKNOWN keepCallback:YES command:command];
+                    [self sendStatus:CDVCommandStatus_OK message:FL_NETWORK_REACHABILITY_STATUS_UNKNOWN keepCallback:YES command:command];
                     break;
                 case AFNetworkReachabilityStatusNotReachable:
-                    [self sendStatus:CDVCommandStatus_OK message:OcO_NETWORK_REACHABILITY_STATUS_NONE keepCallback:YES command:command];
+                    [self sendStatus:CDVCommandStatus_OK message:FL_NETWORK_REACHABILITY_STATUS_NONE keepCallback:YES command:command];
                     break;
                 case AFNetworkReachabilityStatusReachableViaWWAN:
-                    [self sendStatus:CDVCommandStatus_OK message:OcO_NETWORK_REACHABILITY_STATUS_WWAN keepCallback:YES command:command];
+                    [self sendStatus:CDVCommandStatus_OK message:FL_NETWORK_REACHABILITY_STATUS_WWAN keepCallback:YES command:command];
                     break;
                 case AFNetworkReachabilityStatusReachableViaWiFi:
-                    [self sendStatus:CDVCommandStatus_OK message:OcO_NETWORK_REACHABILITY_STATUS_WIFI keepCallback:YES command:command];
+                    [self sendStatus:CDVCommandStatus_OK message:FL_NETWORK_REACHABILITY_STATUS_WIFI keepCallback:YES command:command];
                     break;
                 default:
                     break;
@@ -396,11 +396,11 @@ NSString * const OcO_NETWORK_REACHABILITY_STATUS_WIFI = @"OcO_NETWORK_REACHABILI
     [self.commandDelegate runInBackground:^{
         DLog([NSString stringWithFormat:@"[ FUNCTION ] '%@' run", NSStringFromSelector(_cmd)]);
         if (self.reachabilityManager.networkReachabilityStatus == AFNetworkReachabilityStatusReachableViaWWAN) {
-            [self sendStatus:CDVCommandStatus_OK message:OcO_NETWORK_REACHABILITY_STATUS_WWAN command:command];
+            [self sendStatus:CDVCommandStatus_OK message:FL_NETWORK_REACHABILITY_STATUS_WWAN command:command];
         } else if (self.reachabilityManager.networkReachabilityStatus == AFNetworkReachabilityStatusReachableViaWiFi) {
-            [self sendStatus:CDVCommandStatus_OK message:OcO_NETWORK_REACHABILITY_STATUS_WIFI command:command];
+            [self sendStatus:CDVCommandStatus_OK message:FL_NETWORK_REACHABILITY_STATUS_WIFI command:command];
         } else {
-            [self sendStatus:CDVCommandStatus_OK message:OcO_NETWORK_REACHABILITY_STATUS_NONE command:command];
+            [self sendStatus:CDVCommandStatus_OK message:FL_NETWORK_REACHABILITY_STATUS_NONE command:command];
         }
     }];
 }

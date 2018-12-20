@@ -61,10 +61,10 @@ public class NetworkPlugin extends BasePlugin {
     //region Constant
 
     // 定义网络状态
-    private static final String OcO_NETWORK_REACHABILITY_STATUS_UNKNOWN = "OcO_NETWORK_REACHABILITY_STATUS_UNKNOWN";
-    private static final String OcO_NETWORK_REACHABILITY_STATUS_NONE = "OcO_NETWORK_REACHABILITY_STATUS_NONE";
-    private static final String OcO_NETWORK_REACHABILITY_STATUS_WWAN = "OcO_NETWORK_REACHABILITY_STATUS_WWAN";
-    private static final String OcO_NETWORK_REACHABILITY_STATUS_WIFI = "OcO_NETWORK_REACHABILITY_STATUS_WIFI";
+    private static final String FL_NETWORK_REACHABILITY_STATUS_UNKNOWN = "FL_NETWORK_REACHABILITY_STATUS_UNKNOWN";
+    private static final String FL_NETWORK_REACHABILITY_STATUS_NONE = "FL_NETWORK_REACHABILITY_STATUS_NONE";
+    private static final String FL_NETWORK_REACHABILITY_STATUS_WWAN = "FL_NETWORK_REACHABILITY_STATUS_WWAN";
+    private static final String FL_NETWORK_REACHABILITY_STATUS_WIFI = "FL_NETWORK_REACHABILITY_STATUS_WIFI";
 
     //endregion
 
@@ -167,7 +167,6 @@ public class NetworkPlugin extends BasePlugin {
 
     // 发送请求
     private void request(int method, String url, Map params, int retryTimes, CallbackContext callbackContext) {
-
         switch (method) {
             case 0:
                 debugLog(retryTimes == this.retryTimes ? "[ REQUEST ] Start sending" : "[ REQUEST ] Retrying",
@@ -449,11 +448,11 @@ public class NetworkPlugin extends BasePlugin {
                 assert connectivityManager != null;
                 NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
                 if (networkInfo != null && networkInfo.getType() == ConnectivityManager.TYPE_MOBILE) {
-                    callbackContext.success(OcO_NETWORK_REACHABILITY_STATUS_WWAN);
+                    callbackContext.success(FL_NETWORK_REACHABILITY_STATUS_WWAN);
                 } else if (networkInfo != null && networkInfo.getType() == ConnectivityManager.TYPE_WIFI) {
-                    callbackContext.success(OcO_NETWORK_REACHABILITY_STATUS_WIFI);
+                    callbackContext.success(FL_NETWORK_REACHABILITY_STATUS_WIFI);
                 } else {
-                    callbackContext.success(OcO_NETWORK_REACHABILITY_STATUS_NONE);
+                    callbackContext.success(FL_NETWORK_REACHABILITY_STATUS_NONE);
                 }
             });
             return true;
