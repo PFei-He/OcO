@@ -74,10 +74,10 @@ public class NetworkStatus extends BroadcastReceiver {
             init(globalContext);
             ConnectivityManager connectivityManager = getConnectivityManager(globalContext);
             NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
-            if (networkInfo == null) return Type.OcO_NETWORK_REACHABILITY_STATUS_NONE;
-            else if (networkInfo.getType() == ConnectivityManager.TYPE_MOBILE) return Type.OcO_NETWORK_REACHABILITY_STATUS_WWAN;
-            else if (networkInfo.getType() == ConnectivityManager.TYPE_WIFI) return Type.OcO_NETWORK_REACHABILITY_STATUS_WIFI;
-            return Type.OcO_NETWORK_REACHABILITY_STATUS_NONE;
+            if (networkInfo == null) return Type.FL_NETWORK_REACHABILITY_STATUS_NONE;
+            else if (networkInfo.getType() == ConnectivityManager.TYPE_MOBILE) return Type.FL_NETWORK_REACHABILITY_STATUS_WWAN;
+            else if (networkInfo.getType() == ConnectivityManager.TYPE_WIFI) return Type.FL_NETWORK_REACHABILITY_STATUS_WIFI;
+            return Type.FL_NETWORK_REACHABILITY_STATUS_NONE;
         }
     }
 
@@ -98,9 +98,9 @@ public class NetworkStatus extends BroadcastReceiver {
     }
 
     public enum Type {
-        OcO_NETWORK_REACHABILITY_STATUS_NONE,
-        OcO_NETWORK_REACHABILITY_STATUS_WWAN,
-        OcO_NETWORK_REACHABILITY_STATUS_WIFI
+        FL_NETWORK_REACHABILITY_STATUS_NONE,
+        FL_NETWORK_REACHABILITY_STATUS_WWAN,
+        FL_NETWORK_REACHABILITY_STATUS_WIFI
     }
 
     public interface Status {
